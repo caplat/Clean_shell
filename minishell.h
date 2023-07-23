@@ -6,7 +6,7 @@
 /*   By: acaplat <acaplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 12:50:26 by acaplat           #+#    #+#             */
-/*   Updated: 2023/07/22 19:43:27 by acaplat          ###   ########.fr       */
+/*   Updated: 2023/07/23 16:46:23 by acaplat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ typedef struct s_mini
 	t_elem			*lst;
 	char			**simple_command;
 	t_lex			*simplecommand;
+	t_lex *redir;
 }					t_mini;
 
 typedef struct s_compteur
@@ -112,7 +113,7 @@ void				free_shell(t_mini *shell);
 void				free_arr(char **arr);
 void				free_list(t_elem *head);
 void				free_list_bis(t_lex *head);
-void				safe_free(char *str);
+void				safe_free(char **str);
 
 //Lex.c
 
@@ -121,5 +122,9 @@ void				printlist_bis(t_lex *head);
 t_lex				*get_my_element(t_mini *shell);
 t_lex				*set_command(t_lex *head, t_mini *shell);
 int					check_flag_bis(t_lex *current, int flag);
+
+//Parse_redir
+
+void	parse_redir(t_lex **simple_command, t_mini *shell);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: acaplat <acaplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 12:36:57 by acaplat           #+#    #+#             */
-/*   Updated: 2023/07/22 19:47:14 by acaplat          ###   ########.fr       */
+/*   Updated: 2023/07/23 16:58:13 by acaplat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,17 +41,24 @@ void minishell_loop(t_mini *shell)
 			{
 				replace_line(shell->line,shell);
 				shell->lst = get_my_list(shell);
+				safe_free(&shell->add_char);
+				shell->add_char = ft_calloc(1,2);
 				separate_command(shell->lst);
 				shell->newline = convert_to_str(shell->lst);
+				printf("shell->newline --> %s\n",shell->newline);
 				shell->simplecommand = get_my_element(shell);
+				// parse_redir(&shell->simplecommand,shell);
+				// printf("\nsimple_command :\n");
+				// printlist_bis(shell->simplecommand);
+				// printf("\nshell->redir :\n");
+				// printlist_bis(shell->redir);
 			}
-			// free(shell->add_char);
-			shell->add_char = ft_calloc(1,2);
-			// system("leaks minishell");
+			// shell->add_char = ft_calloc(1,2);
 		}
 		else
 		{
 			printf("allo\n");
+			printf("%s\n",shell->newline);
 			free_shell(shell);
 			exit(0);
 		}

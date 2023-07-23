@@ -6,7 +6,7 @@
 /*   By: acaplat <acaplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 15:13:26 by acaplat           #+#    #+#             */
-/*   Updated: 2023/07/22 19:45:06 by acaplat          ###   ########.fr       */
+/*   Updated: 2023/07/23 16:58:34 by acaplat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,13 @@
 void free_shell(t_mini *shell)
 {
     free_arr(shell->command);
-    safe_free(shell->line);
-    safe_free(shell->newline);
-    safe_free(shell->add_char);
+    safe_free(&shell->line);
+    safe_free(&shell->newline);
+    safe_free(&shell->add_char);
     free_list(shell->lst);
-    // free_arr(shell->simple_command);
+    free_arr(shell->simple_command);
     free_list_bis(shell->simplecommand);
+    // free_list_bis(shell->redir);
     free(shell);
 }
 
@@ -72,8 +73,9 @@ void free_list_bis(t_lex *head)
     }
 }
 
-void safe_free(char *str)
+void safe_free(char **str)
 {
-    if(str != NULL)
-        free(str);
+    if(str != NULL && *str != NULL)
+        free(*str);
+    *str = NULL;
 }

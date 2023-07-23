@@ -6,7 +6,7 @@
 /*   By: acaplat <acaplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/22 18:29:54 by acaplat           #+#    #+#             */
-/*   Updated: 2023/07/22 19:10:07 by acaplat          ###   ########.fr       */
+/*   Updated: 2023/07/23 15:57:13 by acaplat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ t_lex	*get_my_element(t_mini *shell)
 	newlist = NULL;
 	i = 0;
 	shell->simple_command = ft_split(shell->newline, ' ');
-	free(shell->newline);
+	// free(shell->newline);
 	while (shell->simple_command[i])
 	{
 		add_element_bis(&newlist, shell->simple_command[i]);

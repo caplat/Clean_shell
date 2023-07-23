@@ -9,6 +9,7 @@ linked_list.c \
 linked_list_bis.c \
 free.c \
 lex.c \
+parse_redir.c \
 
 
 CC = gcc -Wall -Wextra -Werror -g3

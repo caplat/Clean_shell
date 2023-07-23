@@ -6,7 +6,7 @@
 /*   By: acaplat <acaplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 14:57:03 by acaplat           #+#    #+#             */
-/*   Updated: 2023/07/22 18:24:52 by acaplat          ###   ########.fr       */
+/*   Updated: 2023/07/23 12:56:29 by acaplat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,5 +63,6 @@ char *convert_to_str(t_elem *head)
         current = current->next;
         i++;
     }
+    str[i] = '\0';
     return(str);
 }

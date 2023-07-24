@@ -6,7 +6,7 @@
 /*   By: acaplat <acaplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 12:36:57 by acaplat           #+#    #+#             */
-/*   Updated: 2023/07/23 16:58:13 by acaplat          ###   ########.fr       */
+/*   Updated: 2023/07/24 18:08:51 by acaplat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ int main(int argc,char **argv,char **env)
 	}
 	shell = malloc(sizeof(t_mini));
 	initialize(env,shell);
+	shell->env_cpy = do_export(shell);
+	print_tab(shell->env_cpy);
 	// rl_catch_signals = 0;
 	do_signal();
 	minishell_loop(shell);
@@ -45,20 +47,17 @@ void minishell_loop(t_mini *shell)
 				shell->add_char = ft_calloc(1,2);
 				separate_command(shell->lst);
 				shell->newline = convert_to_str(shell->lst);
-				printf("shell->newline --> %s\n",shell->newline);
 				shell->simplecommand = get_my_element(shell);
-				// parse_redir(&shell->simplecommand,shell);
-				// printf("\nsimple_command :\n");
-				// printlist_bis(shell->simplecommand);
-				// printf("\nshell->redir :\n");
-				// printlist_bis(shell->redir);
+				parse_redir(shell->simplecommand,shell);
+				remove_redir(shell->simplecommand);
+				printf("\n\n");
+				shell->args = set_command(shell->simplecommand,shell);
+				// print_tab(shell->env_cpy);
 			}
-			// shell->add_char = ft_calloc(1,2);
 		}
 		else
 		{
 			printf("allo\n");
-			printf("%s\n",shell->newline);
 			free_shell(shell);
 			exit(0);
 		}

@@ -6,7 +6,7 @@
 /*   By: acaplat <acaplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 14:57:03 by acaplat           #+#    #+#             */
-/*   Updated: 2023/07/23 12:56:29 by acaplat          ###   ########.fr       */
+/*   Updated: 2023/07/24 15:33:59 by acaplat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,4 +65,15 @@ char *convert_to_str(t_elem *head)
     }
     str[i] = '\0';
     return(str);
+}
+
+void delete_node(t_lex **head,t_lex *node_to_del)
+{
+    if(*head == node_to_del)
+        *head = node_to_del->next;
+    if(node_to_del->prev != NULL)
+        node_to_del->prev->next = node_to_del->next;
+    if(node_to_del->next != NULL)
+        node_to_del->next->prev = node_to_del->prev;
+    free(node_to_del);
 }

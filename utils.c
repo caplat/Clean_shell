@@ -6,7 +6,7 @@
 /*   By: acaplat <acaplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 13:04:00 by acaplat           #+#    #+#             */
-/*   Updated: 2023/07/23 16:43:17 by acaplat          ###   ########.fr       */
+/*   Updated: 2023/07/24 18:40:19 by acaplat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,10 @@ void initialize(char **env,t_mini *shell)
 	shell->lst = NULL;
 	shell->simple_command = NULL;
 	shell->simplecommand = NULL;
+	shell->args = NULL;
 	shell->redir = NULL;
+	shell->env_cpy = NULL;
+	shell->tab = NULL;
 }
 char *add_char(char *str,char c)
 {

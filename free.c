@@ -6,7 +6,7 @@
 /*   By: acaplat <acaplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 15:13:26 by acaplat           #+#    #+#             */
-/*   Updated: 2023/07/23 16:58:34 by acaplat          ###   ########.fr       */
+/*   Updated: 2023/07/24 18:40:43 by acaplat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,10 @@ void free_shell(t_mini *shell)
     free_list(shell->lst);
     free_arr(shell->simple_command);
     free_list_bis(shell->simplecommand);
-    // free_list_bis(shell->redir);
+    free_list_bis(shell->redir);
+    free_list_bis(shell->args);
+    free_arr(shell->env_cpy);
+    free_arr(shell->tab);
     free(shell);
 }
 

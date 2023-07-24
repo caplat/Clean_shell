@@ -6,7 +6,7 @@
 /*   By: acaplat <acaplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 12:50:26 by acaplat           #+#    #+#             */
-/*   Updated: 2023/07/23 16:46:23 by acaplat          ###   ########.fr       */
+/*   Updated: 2023/07/24 18:44:40 by acaplat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,10 @@ typedef struct s_mini
 	t_elem			*lst;
 	char			**simple_command;
 	t_lex			*simplecommand;
-	t_lex *redir;
+	t_lex			*redir;
+	t_lex			*args;
+	char			**env_cpy;
+	char			**tab;
 }					t_mini;
 
 typedef struct s_compteur
@@ -106,6 +109,7 @@ void				processlist(t_elem *head, char targetchar, char newdata);
 void				processlist_chevron(t_elem *head, char targetchar,
 						char newdata);
 char				*convert_to_str(t_elem *head);
+void				delete_node(t_lex **head, t_lex *node_to_del);
 
 //Free
 
@@ -123,8 +127,40 @@ t_lex				*get_my_element(t_mini *shell);
 t_lex				*set_command(t_lex *head, t_mini *shell);
 int					check_flag_bis(t_lex *current, int flag);
 
-//Parse_redir
+// Parse_redir
 
-void	parse_redir(t_lex **simple_command, t_mini *shell);
+void				parse_redir(t_lex *simplecommand, t_mini *shell);
+void				remove_redir(t_lex *simplecommand);
+
+// BUILT-IN
+
+// Env
+
+void				print_env(t_mini *shell);
+void				env_cpy(t_mini *shell);
+
+// Export
+
+void				sort_tab(char **tab);
+void				swap_strings(char **str1, char **str2);
+int					compare_length(char *str1, char *str2);
+void				declare_x(char **env_cpy);
+void				insert_char(char *str, char character, int position);
+
+//Export_bis.c
+
+int					find_character(char *str, char c);
+void				add_quotes(char **env_cpy);
+char				**do_export(t_mini *shell);
+void				add_var_export(char *str, t_mini *shell);
+void				export(t_mini *shell);
+
+//Add_var_export.c
+
+void				add_str_to_tab(char ***tab, char *str);
+void				remove_str_from_tab(char ***tab, int position);
+int					check_dup(char **tab, char *compare);
+int					check_dup_env(char **tab, char *compare);
+void				add_var_env(char *str, t_mini *shell);
 
 #endif

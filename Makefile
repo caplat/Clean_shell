@@ -10,7 +10,10 @@ linked_list_bis.c \
 free.c \
 lex.c \
 parse_redir.c \
-
+Built_in/env.c \
+Built_in/export.c \
+Built_in/export_bis.c \
+Built_in/add_var_export.c \
 
 CC = gcc -Wall -Wextra -Werror -g3
 

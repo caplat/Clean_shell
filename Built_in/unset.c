@@ -1,43 +1,47 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   env.c                                              :+:      :+:    :+:   */
+/*   unset.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: acaplat <acaplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/24 16:32:59 by acaplat           #+#    #+#             */
-/*   Updated: 2023/08/01 13:36:36 by acaplat          ###   ########.fr       */
+/*   Created: 2023/07/25 12:22:30 by acaplat           #+#    #+#             */
+/*   Updated: 2023/08/01 13:45:15 by acaplat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-void print_env(t_mini *shell)
+void unset(t_mini *shell)
 {
+	int i;
+	int length;
+	int res;
+	int res_bis;
 	t_lex *current;
 
 	current = shell->args;
+	i = 1;
 	while(current)
 	{
 		shell->tab = ft_split(current->str,' ');
-		if(ft_strncmp(shell->tab[0],"env",4) == 0)
-			print_tab(shell->env);
+		length = find_length(shell->tab);
+		if(ft_strncmp(shell->tab[0],"unset",6) == 0 && length > 1)
+		{
+			while(shell->tab[i])
+			{
+				res = check_dup_env(shell->env,shell->tab[i]);
+				res_bis = check_dup(shell->env_cpy,shell->tab[i]);
+				printf("res --> %d\nres_bis --> %d\n",res,res_bis);
+				if(res >= 0)
+					remove_str_from_tab(&shell->env,res);
+				if(res_bis >= 0)
+					remove_str_from_tab(&shell->env_cpy,res_bis);
+				i++;
+			}
+		}
 		free_arr(shell->tab);
 		shell->tab = NULL;
-		current = current->next;
+     	current = current->next;
 	}
-}
-
-void env_cpy(t_mini *shell)
-{
-	int i;
-
-	i = 0;
-	shell->env_cpy = malloc(sizeof(char *) * (find_length(shell->env) + 1));
-	while(shell->env[i])
-	{
-		shell->env_cpy[i] = ft_strdup(shell->env[i]);
-		i++;
-	}
-	shell->env_cpy[i] = NULL;
 }

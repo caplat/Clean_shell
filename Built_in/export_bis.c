@@ -6,7 +6,7 @@
 /*   By: acaplat <acaplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 16:42:55 by acaplat           #+#    #+#             */
-/*   Updated: 2023/07/24 18:33:42 by acaplat          ###   ########.fr       */
+/*   Updated: 2023/08/01 13:35:31 by acaplat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,17 @@ void add_quotes(char **env_cpy)
 		pos = find_character(env_cpy[i],'=');
 		if(pos != -1)
 		{	
-			insert_char(env_cpy[i],'\"',pos + 1);
-			env_cpy[i] = ft_strjoin(env_cpy[i],"\"");
+			insert_char(&env_cpy[i],'\"',pos + 1);
+			// env_cpy[i] = ft_strjoin(env_cpy[i],"\"");
 		}
+		i++;
+	}
+	i = 0;
+	while(env_cpy[i])
+	{
+		pos = find_character(env_cpy[i],'=');
+		if(pos != -1)
+			env_cpy[i] = ft_strjoin(env_cpy[i],"\"");
 		i++;
 	}
 }
@@ -72,12 +80,10 @@ void export(t_mini *shell)
 				i++;
 			}
 		}
+		free_arr(shell->tab);
 		shell->tab = NULL;
 		current = current->next;
 	}
-	// free(tab);
-	// printf("\n\n");
-	// print_tab(shell->env);
 }
 
 
@@ -103,7 +109,7 @@ void add_var_export(char *str,t_mini *shell)
 	else if(pos != -1)
 	{
 		printf("newstr --> %s\n",newstr);
-		insert_char(newstr,'\"',new_pos + 1);
+		insert_char(&newstr,'\"',new_pos + 1);
 		newstr = ft_strjoin(newstr,"\"");
 	}
 	printf("newstr --> %s\n",newstr);

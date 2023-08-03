@@ -6,7 +6,7 @@
 /*   By: acaplat <acaplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 18:15:06 by acaplat           #+#    #+#             */
-/*   Updated: 2023/07/24 18:22:28 by acaplat          ###   ########.fr       */
+/*   Updated: 2023/07/25 11:58:07 by acaplat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,16 +30,9 @@ void add_str_to_tab(char ***tab,char *str)
 	while(++i < length)
 	{
 		newtab[i] = ft_strdup((*tab)[i]);
-		// free(*tab[i]);
 	}
 	newtab[length] = ft_strdup(str);
 	newtab[length + 1] = NULL;
-	// i = -1;
-	// while(++i < length)
-	// {
-	// 	free((*tab)[i]);
-	// }
-	// free(*tab); //invalid free
 	*tab = newtab;
 }
 void remove_str_from_tab(char ***tab,int position)
@@ -67,8 +60,6 @@ void remove_str_from_tab(char ***tab,int position)
 		}	
 	}
 	newtab[j] = NULL;
-	// free_tab(*tab,length);
-	// free(*tab);
 	*tab = newtab;
 }
 int check_dup(char **tab,char *compare)

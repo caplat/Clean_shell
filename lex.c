@@ -6,7 +6,7 @@
 /*   By: acaplat <acaplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/22 18:29:54 by acaplat           #+#    #+#             */
-/*   Updated: 2023/07/23 15:57:13 by acaplat          ###   ########.fr       */
+/*   Updated: 2023/08/03 16:01:15 by acaplat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,8 @@ t_lex	*get_my_element(t_mini *shell)
 
 	newlist = NULL;
 	i = 0;
+	if(shell->newline == NULL)
+		return(NULL);
 	shell->simple_command = ft_split(shell->newline, ' ');
 	// free(shell->newline);
 	while (shell->simple_command[i])
@@ -61,6 +63,42 @@ t_lex	*get_my_element(t_mini *shell)
 	printlist_bis(newlist);
 	return (newlist);
 }
+
+// static void	set_command_helper(t_lex *newlist, char *test)
+// {
+// 	add_element_bis(&newlist, ft_strdup(test));
+// 	free(test);
+// 	printlist_bis(newlist);
+// }
+
+// t_lex	*set_command(t_lex *head, t_mini *shell)
+// {
+// 	t_lex	*newlist;
+// 	t_lex	*current;
+// 	int		i;
+// 	char	*test;
+
+// 	i = 0;
+// 	newlist = NULL;
+// 	current = head;
+// 	test = ft_calloc(1, 1);
+// 	while (current)
+// 	{
+// 		shell->flag = check_flag_bis(current, shell->flag);
+// 		test = ft_strjoin(test, current->str);
+// 		test = ft_strjoin(test, " ");
+// 		if (current->next && ft_strncmp(current->next->str, "|", 2) == 0
+// 			&& shell->flag == 0)
+// 		{
+// 			add_element_bis(&newlist, ft_strdup(test));
+// 			current = current->next;
+// 			test = ft_calloc(1, 1);
+// 		}
+// 		current = current->next;
+// 	}
+// 	set_command_helper(newlist, test);
+// 	return (newlist);
+// }
 
 t_lex	*set_command(t_lex *head,t_mini *shell)
 {

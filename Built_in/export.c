@@ -6,7 +6,7 @@
 /*   By: acaplat <acaplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 16:30:33 by acaplat           #+#    #+#             */
-/*   Updated: 2023/08/01 11:55:21 by acaplat          ###   ########.fr       */
+/*   Updated: 2023/08/03 15:52:23 by acaplat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,8 +110,8 @@ void insert_char(char **str,char c,int pos)
 		j++;
 	}
 	new_str[j] = '\0';
-	free(*str);
 	*str = new_str;
+	// free(*str);
 }
 
 

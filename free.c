@@ -6,7 +6,7 @@
 /*   By: acaplat <acaplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 15:13:26 by acaplat           #+#    #+#             */
-/*   Updated: 2023/07/24 18:40:43 by acaplat          ###   ########.fr       */
+/*   Updated: 2023/08/03 15:47:35 by acaplat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,24 +25,42 @@ void free_shell(t_mini *shell)
     free_list_bis(shell->args);
     free_arr(shell->env_cpy);
     free_arr(shell->tab);
+    free_arr(shell->allpath);
+    free_arr(shell->arg_bis);
+    safe_free(&shell->exe);
     free(shell);
 }
 
+// void free_arr(char ***arr)
+// {
+// 	size_t i;
+	
+// 	i = 0;
+//     if(*arr == NULL)
+//         return;
+// 	while((*arr)[i])
+// 	{
+//         free((*arr)[i]);
+//         (*arr)[i] = NULL;
+//         i++;
+// 	}
+// 	free(*arr);
+// 	*arr = NULL;
+// }
+
 void free_arr(char **arr)
 {
-	size_t i;
-	
-	i = 0;
+    size_t i = 0;
     if(arr == NULL)
         return;
-	while(arr[i])
-	{
-		free(arr[i]);
-		arr[i] = NULL;
-		i++;
-	}
-	free(arr);
-	arr = NULL;
+    while(arr[i])
+    {
+        free(arr[i]);
+        arr[i] = NULL;
+        i++;
+    }
+    free(arr);
+    arr = NULL;
 }
 void free_list(t_elem *head)
 {

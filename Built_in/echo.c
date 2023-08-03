@@ -6,7 +6,7 @@
 /*   By: acaplat <acaplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 16:33:42 by acaplat           #+#    #+#             */
-/*   Updated: 2023/08/01 16:47:23 by acaplat          ###   ########.fr       */
+/*   Updated: 2023/08/03 15:46:43 by acaplat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,4 +85,20 @@ void echo_bis(char **compare,int i,int k,int flag_bis)
             }
             k++;
         }
+}
+
+void exec_echo(t_mini *shell)
+{
+    t_lex *current;
+
+    current = shell->args;
+    while(current)
+    {
+        shell->tab = ft_split(current->str,' ');
+        if(ft_strncmp(shell->tab[0],"echo",5) == 0)
+            echo(shell->tab);
+        free_arr(shell->tab);
+        shell->tab = NULL;
+        current = current->next;
+    }
 }

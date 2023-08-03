@@ -6,7 +6,7 @@
 /*   By: acaplat <acaplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/23 16:44:47 by acaplat           #+#    #+#             */
-/*   Updated: 2023/08/01 09:50:58 by acaplat          ###   ########.fr       */
+/*   Updated: 2023/08/03 17:50:03 by acaplat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,23 +102,26 @@
 void	parse_redir(t_lex *simplecommand,t_mini *shell)
 {
 	t_lex *current;
-	char *str;
+	char *temp;
+	char *combined;
 
 	current = simplecommand;
 	while (current)
 	{
-		str = ft_calloc(1,1);
 		if ((ft_strncmp(current->str, ">", 1) == 0 || 
 			(ft_strncmp(current->str,"<", 1) == 0)) && (current->next))
 		{
-			str = ft_strjoin(current->str," ");
+			temp = ft_strjoin(current->str," ");
 			current = current->next;
-			str = ft_strjoin(str,current->str);
-			add_element_bis(&shell->redir,str);
+			combined = ft_strjoin(temp,current->str);
+			free(temp);
+			add_element_bis(&shell->redir,combined);
+			free(combined);
+			current = current->next;
 		}
-		current = current->next;
+		else
+			current = current->next;
 	}
-	free(str);
 }
 
 void remove_redir(t_lex **simplecommand)

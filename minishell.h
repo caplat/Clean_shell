@@ -6,7 +6,7 @@
 /*   By: acaplat <acaplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 12:50:26 by acaplat           #+#    #+#             */
-/*   Updated: 2023/08/01 16:38:40 by acaplat          ###   ########.fr       */
+/*   Updated: 2023/08/03 15:46:44 by acaplat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,9 @@ typedef struct s_mini
 	t_lex			*args;
 	char			**env_cpy;
 	char			**tab;
+	char			**allpath;
+	char			**arg_bis;
+	char			*exe;
 }					t_mini;
 
 typedef struct s_compteur
@@ -132,6 +135,19 @@ int					check_flag_bis(t_lex *current, int flag);
 void				parse_redir(t_lex *simplecommand, t_mini *shell);
 void				remove_redir(t_lex **simplecommand);
 
+//Pipe
+
+int					get_nb_node(t_lex *head);
+void				do_the_pipe(t_mini *shell);
+
+//Exec
+
+void				get_my_path(t_mini *shell);
+int					verify(t_mini *shell, int j);
+int					execute(t_mini *shell);
+t_lex				*find_node(int i, t_mini *shell);
+void				exec_all(t_mini *shell, int i);
+
 // BUILT-IN
 
 // Env
@@ -166,6 +182,8 @@ void				add_var_env(char *str, t_mini *shell);
 // Unset
 
 void				unset(t_mini *shell);
+void	unset_helper_helper(t_mini *shell);
+void	unset_helper(t_mini *shell, int res, int res_bis);
 
 //Cd
 
@@ -184,6 +202,7 @@ int					check_n(char **compare);
 void				echo(char **compare);
 int					cote(char c, int flag);
 void				echo_bis(char **compare, int i, int k, int flag_bis);
+void				exec_echo(t_mini *shell);
 
 //Check_built_in
 

@@ -14,6 +14,11 @@ Built_in/env.c \
 Built_in/export.c \
 Built_in/export_bis.c \
 Built_in/add_var_export.c \
+Built_in/unset.c \
+Built_in/check_built_in.c \
+Built_in/cd.c \
+Built_in/pwd.c \
+Built_in/echo.c \
 
 CC = gcc -Wall -Wextra -Werror -g3
 

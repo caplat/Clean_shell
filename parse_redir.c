@@ -6,7 +6,7 @@
 /*   By: acaplat <acaplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/23 16:44:47 by acaplat           #+#    #+#             */
-/*   Updated: 2023/07/24 16:14:11 by acaplat          ###   ########.fr       */
+/*   Updated: 2023/08/01 09:50:58 by acaplat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,20 +121,20 @@ void	parse_redir(t_lex *simplecommand,t_mini *shell)
 	free(str);
 }
 
-void remove_redir(t_lex *simplecommand)
+void remove_redir(t_lex **simplecommand)
 {
-	t_lex *current;
+    t_lex *current = *simplecommand;
+    t_lex *next_node;
+	
+	current = *simplecommand;
+    while (current != NULL)
+    {
+        next_node = current->next;
 
-	current = simplecommand;
-	while(current)
-	{
-		if ((ft_strncmp(current->str, ">", 1) == 0 || 
-			(ft_strncmp(current->str,"<", 1) == 0)) && (current->next))
-		{
-			delete_node(&simplecommand,current);
-			current = current->next;
-			delete_node(&simplecommand,current);
-		}
-		current = current->next;
-	}
+        if (ft_strncmp(current->str, ">", 1) == 0 || ft_strncmp(current->str, "<", 1) == 0)
+        {
+            delete_node(simplecommand, current);
+        }
+        current = next_node;
+    }
 }

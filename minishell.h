@@ -6,7 +6,7 @@
 /*   By: acaplat <acaplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 12:50:26 by acaplat           #+#    #+#             */
-/*   Updated: 2023/08/03 15:46:44 by acaplat          ###   ########.fr       */
+/*   Updated: 2023/08/04 14:48:44 by acaplat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,14 @@
 
 # include "libft/libft.h"
 # include <fcntl.h>
+# include <readline/history.h>
+# include <readline/readline.h>
 # include <signal.h>
 # include <stdio.h>
 # include <stdlib.h>
 # include <string.h>
 # include <termios.h>
 # include <unistd.h>
-# include <readline/history.h>
-# include <readline/readline.h>
 
 typedef struct s_elem
 {
@@ -182,8 +182,8 @@ void				add_var_env(char *str, t_mini *shell);
 // Unset
 
 void				unset(t_mini *shell);
-void	unset_helper_helper(t_mini *shell);
-void	unset_helper(t_mini *shell, int res, int res_bis);
+void				unset_helper_helper(t_mini *shell);
+void				unset_helper(t_mini *shell, int res, int res_bis);
 
 //Cd
 
@@ -204,8 +204,15 @@ int					cote(char c, int flag);
 void				echo_bis(char **compare, int i, int k, int flag_bis);
 void				exec_echo(t_mini *shell);
 
+//Exit
+
+void				ft_exit(t_mini *shell);
+void				print_exit(void);
+void				builtin_exit(t_mini *shell);
+
 //Check_built_in
 
 void				check_built_in(t_mini *shell);
+int					verif_built_in(t_mini *shell);
 
 #endif

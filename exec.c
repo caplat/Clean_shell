@@ -6,7 +6,7 @@
 /*   By: acaplat <acaplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/03 12:03:18 by acaplat           #+#    #+#             */
-/*   Updated: 2023/08/03 17:24:16 by acaplat          ###   ########.fr       */
+/*   Updated: 2023/08/04 14:48:49 by acaplat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,14 +48,18 @@ int verify(t_mini *shell,int j)
 			return(1);
 		free(shell->exe);
 	}
-	check_built_in(shell);
-	exit(printf("problem with verify\n"));
+	if(get_nb_node(shell->args) > 1)
+		check_built_in(shell);
+	return(0);
 }
 
 int execute(t_mini *shell)
 {
-	if(execve(shell->exe,shell->arg_bis,shell->env) == -1)
-		exit(printf("problem with execve\n"));
+	if(ft_strncmp(shell->arg_bis[0],"echo",4) == 0)
+		return(0);
+	if(execve(shell->exe,shell->arg_bis,shell->env) == -1)	
+		if(verif_built_in(shell) == 0)
+			printf("minishell: %s: command not found\n",shell->arg_bis[0]);
 	return(0);
 }
 

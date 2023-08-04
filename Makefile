@@ -21,6 +21,7 @@ Built_in/check_built_in.c \
 Built_in/cd.c \
 Built_in/pwd.c \
 Built_in/echo.c \
+Built_in/exit.c \
 
 CC = gcc -Wall -Wextra -Werror -g3
 

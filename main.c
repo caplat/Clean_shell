@@ -6,7 +6,7 @@
 /*   By: acaplat <acaplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 12:36:57 by acaplat           #+#    #+#             */
-/*   Updated: 2023/08/03 17:59:03 by acaplat          ###   ########.fr       */
+/*   Updated: 2023/08/04 13:16:15 by acaplat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,8 @@ void minishell_loop(t_mini *shell)
 				// remove_redir(&shell->simplecommand);
 				printf("\n\n");
 				shell->args = set_command(shell->simplecommand,shell);
+				if(get_nb_node(shell->args) == 1)
+					check_built_in(shell);
 				do_the_pipe(shell);
 			}
 		}

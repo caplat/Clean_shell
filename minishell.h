@@ -6,7 +6,7 @@
 /*   By: acaplat <acaplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 12:50:26 by acaplat           #+#    #+#             */
-/*   Updated: 2023/08/04 14:48:44 by acaplat          ###   ########.fr       */
+/*   Updated: 2023/08/06 15:46:03 by acaplat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,14 @@
 
 # include "libft/libft.h"
 # include <fcntl.h>
-# include <readline/history.h>
-# include <readline/readline.h>
 # include <signal.h>
 # include <stdio.h>
 # include <stdlib.h>
 # include <string.h>
 # include <termios.h>
 # include <unistd.h>
+# include <readline/history.h>
+# include <readline/readline.h>
 
 typedef struct s_elem
 {
@@ -57,6 +57,7 @@ typedef struct s_mini
 	char			**allpath;
 	char			**arg_bis;
 	char			*exe;
+	int				exit_code;
 }					t_mini;
 
 typedef struct s_compteur
@@ -81,7 +82,7 @@ void				print_tab(char **tab);
 
 void				handle_SIGINT(int signal);
 void				handle_SIGQUIT(int signal);
-void				do_signal(void);
+void				do_signal(t_mini *shell);
 
 //Parsing
 
@@ -139,6 +140,7 @@ void				remove_redir(t_lex **simplecommand);
 
 int					get_nb_node(t_lex *head);
 void				do_the_pipe(t_mini *shell);
+void				ft_wait(t_mini *shell, pid_t child_pid, int nb_node);
 
 //Exec
 
@@ -206,9 +208,12 @@ void				exec_echo(t_mini *shell);
 
 //Exit
 
+// void				ft_exit(t_mini *shell);
+// void				print_exit(void);
+// void				builtin_exit(t_mini *shell);
 void				ft_exit(t_mini *shell);
-void				print_exit(void);
-void				builtin_exit(t_mini *shell);
+void				exec_exit(char **tab, t_mini *shell);
+int					ft_is_digit_str(const char *str);
 
 //Check_built_in
 

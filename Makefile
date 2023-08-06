@@ -12,6 +12,7 @@ lex.c \
 parse_redir.c \
 pipe.c \
 exec.c \
+exit_code.c \
 Built_in/env.c \
 Built_in/export.c \
 Built_in/export_bis.c \

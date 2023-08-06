@@ -6,7 +6,7 @@
 /*   By: acaplat <acaplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/03 12:03:18 by acaplat           #+#    #+#             */
-/*   Updated: 2023/08/04 14:48:49 by acaplat          ###   ########.fr       */
+/*   Updated: 2023/08/06 17:19:07 by acaplat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,8 @@ int execute(t_mini *shell)
 	if(ft_strncmp(shell->arg_bis[0],"echo",4) == 0)
 		return(0);
 	if(execve(shell->exe,shell->arg_bis,shell->env) == -1)	
-		if(verif_built_in(shell) == 0)
-			printf("minishell: %s: command not found\n",shell->arg_bis[0]);
+		if(verif_built_in(shell) == 0)	
+			printf("minishell: %s: command not found\n",shell->arg_bis[0]);	
 	return(0);
 }
 

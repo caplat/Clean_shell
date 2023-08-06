@@ -6,7 +6,7 @@
 /*   By: acaplat <acaplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 13:04:00 by acaplat           #+#    #+#             */
-/*   Updated: 2023/08/04 13:50:37 by acaplat          ###   ########.fr       */
+/*   Updated: 2023/08/06 11:42:35 by acaplat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ void initialize(char **env,t_mini *shell)
 	shell->allpath = NULL;
 	shell->arg_bis = NULL;
 	shell->exe = NULL;
+	shell->exit_code = 0;
 }
 char *add_char(char *str,char c)
 {

@@ -6,7 +6,7 @@
 /*   By: acaplat <acaplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 14:20:55 by acaplat           #+#    #+#             */
-/*   Updated: 2023/07/22 18:16:51 by acaplat          ###   ########.fr       */
+/*   Updated: 2023/08/06 16:39:04 by acaplat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	replace_line(char *line, t_mini *shell)
 	while (line[++var.i])
 	{
 		set_flag(line, shell, var.i);
-		if (line[var.i] == '$' && (shell->flag == 0 || shell->flag == 2))
+		if (line[var.i] == '$' && (shell->flag == 0 || shell->flag == 2) && line[var.i + 1] != '?')
 		{
 			compare = compare_line(line, var.i);
 			if (compare_with_env(compare, shell) == 1)
@@ -84,6 +84,7 @@ char	*compare_line(char *line, int i)
 	compare[j] = 0;
 	return (compare);
 }
+
 int	compare_with_env(char *compare, t_mini *shell)
 {
 	int	i;

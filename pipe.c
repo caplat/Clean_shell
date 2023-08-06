@@ -6,7 +6,7 @@
 /*   By: acaplat <acaplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/03 11:55:14 by acaplat           #+#    #+#             */
-/*   Updated: 2023/08/03 12:02:23 by acaplat          ###   ########.fr       */
+/*   Updated: 2023/08/06 17:23:28 by acaplat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,23 @@ void do_the_pipe(t_mini *shell)
         }
     }
     close(prev_pipe_read);
-	i = -1;
+    ft_wait(shell,child_pid,nb_node);
+	// i = -1;
+    // while(++i < nb_node)
+    //     wait(NULL);
+}
+
+void ft_wait(t_mini *shell, pid_t child_pid,int nb_node)
+{
+    int status;
+    int i;
+
+    i = -1;
     while(++i < nb_node)
-        wait(NULL);
+        waitpid(child_pid, &status,0);
+    if(WIFEXITED(status))
+    {
+        shell->exit_code = WEXITSTATUS(status);
+        printf("--> exit_code = %d\n",shell->exit_code);
+    }
 }

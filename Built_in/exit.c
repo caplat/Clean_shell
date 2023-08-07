@@ -6,7 +6,7 @@
 /*   By: acaplat <acaplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 14:41:57 by acaplat           #+#    #+#             */
-/*   Updated: 2023/08/06 16:50:17 by acaplat          ###   ########.fr       */
+/*   Updated: 2023/08/07 11:18:06 by acaplat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,6 +145,7 @@ void exec_exit(char **tab,t_mini *shell)
 	else
 	{
 		shell->exit_code = ft_atoi(tab[1]) % 256;
+		printf("exit\n");
 		exit(ft_atoi(tab[1]) % 256);
 	}
 }

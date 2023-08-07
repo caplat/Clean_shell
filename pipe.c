@@ -6,7 +6,7 @@
 /*   By: acaplat <acaplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/03 11:55:14 by acaplat           #+#    #+#             */
-/*   Updated: 2023/08/06 17:23:28 by acaplat          ###   ########.fr       */
+/*   Updated: 2023/08/07 11:52:55 by acaplat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,6 @@ void ft_wait(t_mini *shell, pid_t child_pid,int nb_node)
     if(WIFEXITED(status))
     {
         shell->exit_code = WEXITSTATUS(status);
-        printf("--> exit_code = %d\n",shell->exit_code);
+        // printf("--> exit_code = %d\n",shell->exit_code);
     }
 }

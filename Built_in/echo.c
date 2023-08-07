@@ -6,7 +6,7 @@
 /*   By: acaplat <acaplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 16:33:42 by acaplat           #+#    #+#             */
-/*   Updated: 2023/08/03 15:46:43 by acaplat          ###   ########.fr       */
+/*   Updated: 2023/08/07 11:59:51 by acaplat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int check_n(char **compare)
     return(i);
 }
 
-void echo(char **compare)
+void echo(char **compare,t_mini *shell)
 {
     int i;
 	int j;
@@ -47,6 +47,7 @@ void echo(char **compare)
 	j = find_length(compare);
     i = check_n(compare);
     flag = i;
+    ft_exit_code(compare,shell);
     while(compare[i])
     {
         echo_bis(compare,i,k,flag_bis);
@@ -96,7 +97,7 @@ void exec_echo(t_mini *shell)
     {
         shell->tab = ft_split(current->str,' ');
         if(ft_strncmp(shell->tab[0],"echo",5) == 0)
-            echo(shell->tab);
+            echo(shell->tab,shell);
         free_arr(shell->tab);
         shell->tab = NULL;
         current = current->next;

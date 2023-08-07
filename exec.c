@@ -6,7 +6,7 @@
 /*   By: acaplat <acaplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/03 12:03:18 by acaplat           #+#    #+#             */
-/*   Updated: 2023/08/06 17:19:07 by acaplat          ###   ########.fr       */
+/*   Updated: 2023/08/07 13:37:39 by acaplat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,12 @@ int verify(t_mini *shell,int j)
 
 	i = 0;
 	current = find_node(j,shell);
+	if(current == NULL)
+		return(0);
+	if(shell->arg_bis != NULL)
+		free_arr(shell->arg_bis);
 	shell->arg_bis = ft_split(current->str,' ');
+	ft_exit_code(shell->arg_bis,shell);
 	while(shell->allpath[i++])
 	{
 		path_part = ft_strjoin(shell->allpath[i],"/");
@@ -57,9 +62,13 @@ int execute(t_mini *shell)
 {
 	if(ft_strncmp(shell->arg_bis[0],"echo",4) == 0)
 		return(0);
-	if(execve(shell->exe,shell->arg_bis,shell->env) == -1)	
+	if(execve(shell->exe,shell->arg_bis,shell->env) == -1)
+	{	
+		if(shell->arg_bis[0] == NULL)
+			return(0);
 		if(verif_built_in(shell) == 0)	
 			printf("minishell: %s: command not found\n",shell->arg_bis[0]);	
+	}
 	return(0);
 }
 

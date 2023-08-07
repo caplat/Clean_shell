@@ -6,7 +6,7 @@
 /*   By: acaplat <acaplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 12:50:26 by acaplat           #+#    #+#             */
-/*   Updated: 2023/08/06 15:46:03 by acaplat          ###   ########.fr       */
+/*   Updated: 2023/08/07 12:00:09 by acaplat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -150,6 +150,10 @@ int					execute(t_mini *shell);
 t_lex				*find_node(int i, t_mini *shell);
 void				exec_all(t_mini *shell, int i);
 
+//Exit_code
+
+void ft_exit_code(char **tab,t_mini *shell);
+
 // BUILT-IN
 
 // Env
@@ -201,7 +205,7 @@ void				pwd(t_mini *shell);
 //Echo
 
 int					check_n(char **compare);
-void				echo(char **compare);
+void				echo(char **compare,t_mini *shell);
 int					cote(char c, int flag);
 void				echo_bis(char **compare, int i, int k, int flag_bis);
 void				exec_echo(t_mini *shell);

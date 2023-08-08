@@ -6,7 +6,7 @@
 /*   By: acaplat <acaplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 12:36:57 by acaplat           #+#    #+#             */
-/*   Updated: 2023/08/07 14:11:18 by acaplat          ###   ########.fr       */
+/*   Updated: 2023/08/08 17:19:00 by acaplat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,16 +50,16 @@ void minishell_loop(t_mini *shell)
 				shell->newline = convert_to_str(shell->lst);
 				// printf("hey\n");
 				shell->simplecommand = get_my_element(shell);
-				parse_redir(shell->simplecommand,shell);
-				printf("\nshell->redir :\n");
-				printlist_bis(shell->redir);
-				// remove_redir(&shell->simplecommand);
-				printf("\n\n");
+				here_doc(shell->simplecommand);
+				redir(shell);
+				printf("\n");
 				shell->args = set_command(shell->simplecommand,shell);
 				if(get_nb_node(shell->args) == 1)
 					check_built_in(shell);
 				do_the_pipe(shell);
 			}
+			dup2(shell->stdout_cpy,STDOUT_FILENO);
+			dup2(shell->stdin_cpy,STDIN_FILENO);
 		}
 		else
 		{

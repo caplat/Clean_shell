@@ -6,7 +6,7 @@
 /*   By: acaplat <acaplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 15:13:26 by acaplat           #+#    #+#             */
-/*   Updated: 2023/08/06 12:26:10 by acaplat          ###   ########.fr       */
+/*   Updated: 2023/08/08 16:41:06 by acaplat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,23 +30,6 @@ void free_shell(t_mini *shell)
     safe_free(&shell->exe);
     free(shell);
 }
-
-// void free_arr(char ***arr)
-// {
-// 	size_t i;
-	
-// 	i = 0;
-//     if(*arr == NULL)
-//         return;
-// 	while((*arr)[i])
-// 	{
-//         free((*arr)[i]);
-//         (*arr)[i] = NULL;
-//         i++;
-// 	}
-// 	free(*arr);
-// 	*arr = NULL;
-// }
 
 void free_arr(char **arr)
 {

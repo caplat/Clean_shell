@@ -6,7 +6,7 @@
 /*   By: acaplat <acaplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 12:50:26 by acaplat           #+#    #+#             */
-/*   Updated: 2023/08/07 12:00:09 by acaplat          ###   ########.fr       */
+/*   Updated: 2023/08/08 18:09:04 by acaplat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,8 @@ typedef struct s_mini
 	char			**arg_bis;
 	char			*exe;
 	int				exit_code;
+	int				stdout_cpy;
+	int				stdin_cpy;
 }					t_mini;
 
 typedef struct s_compteur
@@ -133,8 +135,22 @@ int					check_flag_bis(t_lex *current, int flag);
 
 // Parse_redir
 
-void				parse_redir(t_lex *simplecommand, t_mini *shell);
-void				remove_redir(t_lex **simplecommand);
+void				do_redir(t_mini *shell);
+void				do_redir_output(t_mini *shell);
+void				do_redir_input(t_mini *shell);
+void				redir(t_mini *shell);
+
+//Redir
+
+void				redir_output_append(char *file);
+void				redir_output(char *file);
+void				redir_input(char *file,t_mini *shell);
+
+//Heredoc
+
+void				here_doc(t_lex *simple_command);
+int					too_much(int fd, char *del);
+void				too_much_bis(int fd);
 
 //Pipe
 
@@ -152,7 +168,7 @@ void				exec_all(t_mini *shell, int i);
 
 //Exit_code
 
-void ft_exit_code(char **tab,t_mini *shell);
+void				ft_exit_code(char **tab, t_mini *shell);
 
 // BUILT-IN
 
@@ -205,7 +221,7 @@ void				pwd(t_mini *shell);
 //Echo
 
 int					check_n(char **compare);
-void				echo(char **compare,t_mini *shell);
+void				echo(char **compare, t_mini *shell);
 int					cote(char c, int flag);
 void				echo_bis(char **compare, int i, int k, int flag_bis);
 void				exec_echo(t_mini *shell);

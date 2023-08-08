@@ -6,7 +6,7 @@
 /*   By: acaplat <acaplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 13:04:00 by acaplat           #+#    #+#             */
-/*   Updated: 2023/08/06 11:42:35 by acaplat          ###   ########.fr       */
+/*   Updated: 2023/08/08 15:53:34 by acaplat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ void initialize(char **env,t_mini *shell)
 	shell->arg_bis = NULL;
 	shell->exe = NULL;
 	shell->exit_code = 0;
+	shell->stdin_cpy = dup(STDIN_FILENO);
+	shell->stdout_cpy = dup(STDOUT_FILENO);
 }
 char *add_char(char *str,char c)
 {

@@ -6,7 +6,7 @@
 /*   By: acaplat <acaplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 12:50:26 by acaplat           #+#    #+#             */
-/*   Updated: 2023/08/08 18:09:04 by acaplat          ###   ########.fr       */
+/*   Updated: 2023/08/09 17:41:46 by acaplat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,6 @@ typedef struct s_mini
 	t_elem			*lst;
 	char			**simple_command;
 	t_lex			*simplecommand;
-	t_lex			*redir;
 	t_lex			*args;
 	char			**env_cpy;
 	char			**tab;
@@ -69,9 +68,17 @@ typedef struct s_compteur
 	int				length;
 }					t_compteur;
 
+typedef struct s_pipe
+{
+	int				nb_node;
+	int				prev_pipe_read;
+	int				i;
+}					t_pipe;
+
 //Main
 
 void				minishell_loop(t_mini *shell);
+void				norme_main(t_mini *shell);
 
 //Utils
 
@@ -82,8 +89,8 @@ void				print_tab(char **tab);
 
 //Signal
 
-void				handle_SIGINT(int signal);
-void				handle_SIGQUIT(int signal);
+void				handle_sigint(int signal);
+void				handle_sigquit(int signal);
 void				do_signal(t_mini *shell);
 
 //Parsing
@@ -101,6 +108,7 @@ void				replace_line(char *line, t_mini *shell);
 void				set_flag(char *line, t_mini *shell, int i);
 char				*compare_line(char *line, int i);
 int					compare_with_env(char *compare, t_mini *shell);
+void				norme_dollar(t_compteur var, t_mini *shell);
 
 //Linked_list
 
@@ -139,24 +147,31 @@ void				do_redir(t_mini *shell);
 void				do_redir_output(t_mini *shell);
 void				do_redir_input(t_mini *shell);
 void				redir(t_mini *shell);
+void				norme_parse_redir(char *redir);
 
 //Redir
 
 void				redir_output_append(char *file);
 void				redir_output(char *file);
-void				redir_input(char *file,t_mini *shell);
+void				redir_input(char *file, t_mini *shell);
 
 //Heredoc
 
 void				here_doc(t_lex *simple_command);
 int					too_much(int fd, char *del);
 void				too_much_bis(int fd);
+void				norme_heredoc(t_lex *simplecommand, t_lex *current,
+						t_lex *next, char *del);
+void				norme_heredoc_bis(void);
 
 //Pipe
 
 int					get_nb_node(t_lex *head);
 void				do_the_pipe(t_mini *shell);
 void				ft_wait(t_mini *shell, pid_t child_pid, int nb_node);
+// void				ft_wait(t_mini *shell, pid_t child_pid, t_pipe var);
+// void				norme_pipe(int pipe_fd[2], t_pipe var);
+// void				norme_pipe_bis(int pipe_fd[2], t_pipe var);
 
 //Exec
 
@@ -169,6 +184,13 @@ void				exec_all(t_mini *shell, int i);
 //Exit_code
 
 void				ft_exit_code(char **tab, t_mini *shell);
+
+//Norme
+
+void				norme_export(void);
+void				norme_lex(t_lex **newlist, char *test);
+void				norme_pipe_ter(void);
+void				norme_pipe_4(void);
 
 // BUILT-IN
 
@@ -228,12 +250,10 @@ void				exec_echo(t_mini *shell);
 
 //Exit
 
-// void				ft_exit(t_mini *shell);
-// void				print_exit(void);
-// void				builtin_exit(t_mini *shell);
 void				ft_exit(t_mini *shell);
 void				exec_exit(char **tab, t_mini *shell);
 int					ft_is_digit_str(const char *str);
+void				norme_exit(t_mini *shell);
 
 //Check_built_in
 

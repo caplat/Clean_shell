@@ -6,13 +6,13 @@
 /*   By: acaplat <acaplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 13:04:00 by acaplat           #+#    #+#             */
-/*   Updated: 2023/08/08 15:53:34 by acaplat          ###   ########.fr       */
+/*   Updated: 2023/08/09 14:41:00 by acaplat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void initialize(char **env,t_mini *shell)
+void	initialize(char **env, t_mini *shell)
 {
 	shell->env = env;
 	shell->line = NULL;
@@ -20,12 +20,11 @@ void initialize(char **env,t_mini *shell)
 	shell->flag = 0;
 	shell->command = NULL;
 	shell->length_command = 0;
-	shell->add_char = ft_calloc(1,2);
+	shell->add_char = ft_calloc(1, 2);
 	shell->lst = NULL;
 	shell->simple_command = NULL;
 	shell->simplecommand = NULL;
 	shell->args = NULL;
-	shell->redir = NULL;
 	shell->env_cpy = NULL;
 	shell->tab = NULL;
 	shell->allpath = NULL;
@@ -35,37 +34,39 @@ void initialize(char **env,t_mini *shell)
 	shell->stdin_cpy = dup(STDIN_FILENO);
 	shell->stdout_cpy = dup(STDOUT_FILENO);
 }
-char *add_char(char *str,char c)
+
+char	*add_char(char *str, char c)
 {
-	char *newstr;
-	int i;
+	char	*newstr;
+	int		i;
 
 	i = 0;
 	newstr = ft_calloc(ft_strlen(str) + 2, sizeof(char));
-	while(str[i])
+	while (str[i])
 	{
 		newstr[i] = str[i];
 		i++;
 	}
 	newstr[i] = c;
 	free(str);
-	return(newstr);
+	return (newstr);
 }
-int find_length(char **str)
+
+int	find_length(char **str)
 {
-	int i;
+	int	i;
 
 	i = 0;
-	while(str[i])
+	while (str[i])
 		i++;
-	return(i);
+	return (i);
 }
-void print_tab(char **tab)
+
+void	print_tab(char **tab)
 {
-	int i;
+	int	i;
 
 	i = 0;
-	while(tab[i])
-		printf("%s\n",tab[i++]);
+	while (tab[i])
+		printf("%s\n", tab[i++]);
 }
-

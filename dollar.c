@@ -6,7 +6,7 @@
 /*   By: acaplat <acaplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 14:20:55 by acaplat           #+#    #+#             */
-/*   Updated: 2023/08/06 16:39:04 by acaplat          ###   ########.fr       */
+/*   Updated: 2023/08/09 14:44:50 by acaplat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,18 +23,13 @@ void	replace_line(char *line, t_mini *shell)
 	while (line[++var.i])
 	{
 		set_flag(line, shell, var.i);
-		if (line[var.i] == '$' && (shell->flag == 0 || shell->flag == 2) && line[var.i + 1] != '?')
+		if (line[var.i] == '$' && (shell->flag == 0 || shell->flag == 2)
+			&& line[var.i + 1] != '?')
 		{
 			compare = compare_line(line, var.i);
 			if (compare_with_env(compare, shell) == 1)
 			{
-				while (shell->command[1][var.j])
-				{	
-					shell->add_char = add_char(shell->add_char,shell->command[1][var.j++]);
-				}
-				printf("add_char --> %s\n",shell->add_char);
-				var.i += ft_strlen(shell->command[0]) + 1;
-				var.j = 0;
+				norme_dollar(var, shell);
 			}
 			else
 				var.i += ft_strlen(compare) + 1;
@@ -43,6 +38,7 @@ void	replace_line(char *line, t_mini *shell)
 		shell->add_char = add_char(shell->add_char, line[var.i]);
 	}
 }
+
 void	set_flag(char *line, t_mini *shell, int i)
 {
 	if (line[i] == '\"' && shell->flag == 0)
@@ -57,6 +53,7 @@ void	set_flag(char *line, t_mini *shell, int i)
 		return ;
 	i++;
 }
+
 char	*compare_line(char *line, int i)
 {
 	char	*compare;
@@ -95,7 +92,7 @@ int	compare_with_env(char *compare, t_mini *shell)
 		shell->command = ft_split(shell->env[i], '=');
 		shell->length_command = ft_strlen(shell->command[0]);
 		if (ft_strncmp(compare, shell->command[0], shell->length_command
-			+ 1) == 0)
+				+ 1) == 0)
 			return (1);
 		else
 		{
@@ -104,4 +101,15 @@ int	compare_with_env(char *compare, t_mini *shell)
 		}
 	}
 	return (0);
+}
+
+void	norme_dollar(t_compteur var, t_mini *shell)
+{
+	while (shell->command[1][var.j])
+	{
+		shell->add_char = add_char(shell->add_char,
+				shell->command[1][var.j++]);
+	}
+	var.i += ft_strlen(shell->command[0]) + 1;
+	var.j = 0;
 }

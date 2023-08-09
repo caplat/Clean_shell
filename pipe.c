@@ -6,26 +6,90 @@
 /*   By: acaplat <acaplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/03 11:55:14 by acaplat           #+#    #+#             */
-/*   Updated: 2023/08/07 11:52:55 by acaplat          ###   ########.fr       */
+/*   Updated: 2023/08/09 17:41:32 by acaplat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int get_nb_node(t_lex *head)
+int	get_nb_node(t_lex *head)
 {
-	t_lex *current;
-	int i;
+	t_lex	*current;
+	int		i;
 
 	i = 0;
 	current = head;
-	while(current)
+	while (current)
 	{
 		current = current->next;
 		i++;
 	}
-	return(i);
+	return (i);
 }
+
+// void	do_the_pipe(t_mini *shell)
+// {
+// 	int		pipe_fd[2];
+// 	pid_t	child_pid;
+//     t_pipe var;
+
+// 	var.prev_pipe_read = 0;
+// 	var.nb_node = get_nb_node(shell->args);
+// 	var.i = -1;
+// 	while (++var.i < var.nb_node)
+// 	{
+// 		if (pipe(pipe_fd) == -1)
+// 		   norme_pipe_4();
+// 	    child_pid = fork();
+// 	    if (child_pid == -1)
+// 		   norme_pipe_ter();
+// 		if (child_pid == 0)
+// 		{
+// 			norme_pipe_bis(&pipe_fd[2],var);
+// 			exec_all(shell, var.i);
+// 			exit(0);
+// 		}
+// 		else
+// 			norme_pipe(&pipe_fd[2], var);
+// 	}
+// 	close(var.prev_pipe_read);
+// 	ft_wait(shell, child_pid, var);
+// }
+
+// void	ft_wait(t_mini *shell, pid_t child_pid, t_pipe var)
+// {
+// 	int	status;
+// 	int	i;
+
+// 	i = -1;
+// 	while (++i < var.nb_node)
+// 		waitpid(child_pid, &status, 0);
+// 	if (WIFEXITED(status))
+// 	{
+// 		shell->exit_code = WEXITSTATUS(status);
+// 	}
+// }
+
+// void	norme_pipe(int pipe_fd[2], t_pipe var)
+// {
+// 	close(pipe_fd[1]);
+// 	if (var.i > 0)
+// 		close(var.prev_pipe_read);
+// 	var.prev_pipe_read = pipe_fd[0];
+// }
+
+// void	norme_pipe_bis(int pipe_fd[2],t_pipe var)
+// {
+// 	close(pipe_fd[0]);
+// 	if (var.i > 0)
+// 	{
+// 		dup2(var.prev_pipe_read, STDIN_FILENO);
+// 		close(var.prev_pipe_read);
+// 	}
+// 	if (var.i < var.nb_node - 1)
+// 		dup2(pipe_fd[1], STDOUT_FILENO);
+// }
+
 void do_the_pipe(t_mini *shell)
 {
     int nb_node;
@@ -36,8 +100,10 @@ void do_the_pipe(t_mini *shell)
 
 	nb_node = get_nb_node(shell->args);
 	i = -1;
+	printf("--> nb_node %d\n",nb_node);
     while(++i < nb_node) 
 	{
+		printf("aaa\n");
         if (pipe(pipe_fd) == -1) 
 		{
             perror("pipe error\n");

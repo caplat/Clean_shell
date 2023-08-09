@@ -15,6 +15,7 @@ exec.c \
 exit_code.c \
 redir.c \
 heredoc.c \
+norme.c \
 Built_in/env.c \
 Built_in/export.c \
 Built_in/export_bis.c \

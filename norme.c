@@ -1,37 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   signal.c                                           :+:      :+:    :+:   */
+/*   norme.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: acaplat <acaplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/21 13:07:48 by acaplat           #+#    #+#             */
-/*   Updated: 2023/08/09 14:39:52 by acaplat          ###   ########.fr       */
+/*   Created: 2023/08/09 12:40:18 by acaplat           #+#    #+#             */
+/*   Updated: 2023/08/09 17:34:42 by acaplat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	handle_sigint(int signal)
+void	norme_export(void)
 {
-	(void)signal;
-	printf("\n");
-	rl_on_new_line();
-	rl_replace_line("", 0);
-	rl_redisplay();
+	perror("Memory alloc failed\n");
+	return ;
 }
 
-void	handle_sigquit(int signal)
+void	norme_lex(t_lex **newlist, char *test)
 {
-	(void)signal;
+	add_element_bis(newlist, ft_strdup(test));
+	free(test);
 }
 
-void	do_signal(t_mini *shell)
+void	norme_pipe_ter()
 {
-	if (signal(SIGINT, handle_sigint))
-		shell->exit_code = 1;
-	if (signal(SIGINT, handle_sigint) == SIG_ERR)
-		printf("erreur SIGINT");
-	if (signal(SIGQUIT, handle_sigquit) == SIG_ERR)
-		printf("error SIGQUIT");
+	perror("fork error\n");
+	return ;
 }
+
+void norme_pipe_4()
+{
+	perror("pipe error\n");
+	return ;
+}
+

@@ -6,7 +6,7 @@
 /*   By: acaplat <acaplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 13:04:00 by acaplat           #+#    #+#             */
-/*   Updated: 2023/08/09 14:41:00 by acaplat          ###   ########.fr       */
+/*   Updated: 2023/08/10 19:20:07 by acaplat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,3 +70,4 @@ void	print_tab(char **tab)
 	while (tab[i])
 		printf("%s\n", tab[i++]);
 }
+

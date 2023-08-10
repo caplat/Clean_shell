@@ -6,7 +6,7 @@
 /*   By: acaplat <acaplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 18:15:06 by acaplat           #+#    #+#             */
-/*   Updated: 2023/08/09 12:17:36 by acaplat          ###   ########.fr       */
+/*   Updated: 2023/08/10 19:03:26 by acaplat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,6 @@ int	check_dup(char **tab, char *compare)
 
 	i = 0;
 	pos = find_character(compare, '=');
-	printf("--> pos %d\n", pos);
 	while (tab[i])
 	{
 		if (pos != -1)
@@ -109,7 +108,6 @@ void	add_var_env(char *str, t_mini *shell)
 	if (find_character(str, '=') != -1)
 	{
 		res = check_dup_env(shell->env, str);
-		printf("dup env --> %d\n", res);
 		if (res == -2)
 			return ;
 		if (res != -1)

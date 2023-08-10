@@ -6,7 +6,7 @@
 /*   By: acaplat <acaplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 12:50:26 by acaplat           #+#    #+#             */
-/*   Updated: 2023/08/09 17:41:46 by acaplat          ###   ########.fr       */
+/*   Updated: 2023/08/10 17:48:19 by acaplat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -168,10 +168,11 @@ void				norme_heredoc_bis(void);
 
 int					get_nb_node(t_lex *head);
 void				do_the_pipe(t_mini *shell);
-void				ft_wait(t_mini *shell, pid_t child_pid, int nb_node);
-// void				ft_wait(t_mini *shell, pid_t child_pid, t_pipe var);
-// void				norme_pipe(int pipe_fd[2], t_pipe var);
-// void				norme_pipe_bis(int pipe_fd[2], t_pipe var);
+void				ft_wait(t_mini *shell, int nb_node);
+void handle_parent(int pipe_fd[2], int i, int *prev_pipe_read);
+void norme_pipe(t_mini *shell,int pipe_fd[2], t_pipe var);
+int error_child(pid_t child_pid); 
+
 
 //Exec
 

@@ -6,7 +6,7 @@
 /*   By: acaplat <acaplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/03 12:03:18 by acaplat           #+#    #+#             */
-/*   Updated: 2023/08/09 15:43:50 by acaplat          ###   ########.fr       */
+/*   Updated: 2023/08/10 17:55:43 by acaplat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ int	verify(t_mini *shell, int j)
 
 	i = 0;
 	current = find_node(j, shell);
+	// printf("current -->%s\n",current->str);
 	if (current == NULL)
 		return (0);
 	if (shell->arg_bis != NULL)
@@ -89,7 +90,6 @@ t_lex	*find_node(int i, t_mini *shell)
 
 void	exec_all(t_mini *shell, int i)
 {
-	printf("allo\n");
 	get_my_path(shell);
 	verify(shell, i);
 	execute(shell);

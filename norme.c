@@ -6,7 +6,7 @@
 /*   By: acaplat <acaplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 12:40:18 by acaplat           #+#    #+#             */
-/*   Updated: 2023/08/09 17:34:42 by acaplat          ###   ########.fr       */
+/*   Updated: 2023/08/10 17:49:19 by acaplat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,15 +24,13 @@ void	norme_lex(t_lex **newlist, char *test)
 	free(test);
 }
 
-void	norme_pipe_ter()
+int error_child(pid_t child_pid)
 {
-	perror("fork error\n");
-	return ;
-}
-
-void norme_pipe_4()
-{
-	perror("pipe error\n");
-	return ;
+    if(child_pid == -1)
+    {    
+        perror("fork error\n");
+        return(0);
+    }
+    return(1);
 }
 

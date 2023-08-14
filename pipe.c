@@ -6,7 +6,7 @@
 /*   By: acaplat <acaplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/03 11:55:14 by acaplat           #+#    #+#             */
-/*   Updated: 2023/08/10 17:50:38 by acaplat          ###   ########.fr       */
+/*   Updated: 2023/08/14 16:58:23 by acaplat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,8 @@ void handle_parent(int pipe_fd[2], int i, int *prev_pipe_read)
 
 void norme_pipe(t_mini *shell,int pipe_fd[2], t_pipe var)
 {
+    (void)shell;
+    
     close(pipe_fd[0]);
     if (var.i > 0) 
 	{

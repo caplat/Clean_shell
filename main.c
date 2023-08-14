@@ -6,7 +6,7 @@
 /*   By: acaplat <acaplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 12:36:57 by acaplat           #+#    #+#             */
-/*   Updated: 2023/08/10 18:03:17 by acaplat          ###   ########.fr       */
+/*   Updated: 2023/08/14 18:01:39 by acaplat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	main(int argc, char **argv, char **env)
 	// rl_catch_signals = 0;
 	do_signal(shell);
 	minishell_loop(shell);
-	// system("leaks minishell");
+	system("leaks minishell");
 }
 
 void	minishell_loop(t_mini *shell)

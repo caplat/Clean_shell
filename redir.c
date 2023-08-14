@@ -6,7 +6,7 @@
 /*   By: acaplat <acaplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 15:02:07 by acaplat           #+#    #+#             */
-/*   Updated: 2023/08/10 18:47:49 by acaplat          ###   ########.fr       */
+/*   Updated: 2023/08/11 13:12:38 by acaplat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,3 +64,8 @@ void	redir_input(char *file, t_mini *shell)
 	}
 	// dup2(fd, STDIN_FILENO);
 }
+
+
+
+
+

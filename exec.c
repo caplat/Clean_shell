@@ -6,7 +6,7 @@
 /*   By: acaplat <acaplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/03 12:03:18 by acaplat           #+#    #+#             */
-/*   Updated: 2023/08/10 17:55:43 by acaplat          ###   ########.fr       */
+/*   Updated: 2023/08/14 18:01:03 by acaplat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,8 @@ int	verify(t_mini *shell, int j)
 int	execute(t_mini *shell)
 {
 	if (ft_strncmp(shell->arg_bis[0], "echo", 4) == 0)
+		return (0);
+	if (ft_strncmp(shell->arg_bis[0], "cd", 2) == 0)
 		return (0);
 	if (execve(shell->exe, shell->arg_bis, shell->env) == -1)
 	{

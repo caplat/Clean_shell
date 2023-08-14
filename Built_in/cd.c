@@ -6,7 +6,7 @@
 /*   By: acaplat <acaplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 13:59:11 by acaplat           #+#    #+#             */
-/*   Updated: 2023/08/09 12:18:39 by acaplat          ###   ########.fr       */
+/*   Updated: 2023/08/11 13:22:26 by acaplat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,15 +57,13 @@ void	change_directory(char *dir, t_mini *shell)
 		return ;
 	}
 	too_much_line(&dir, &path, &cwd);
-	printf("%s\n", dir);
-	printf("%s\n", path);
 	if (chdir(path) == 0)
 	{
 		change_env(cwd, shell);
-		if (cwd != NULL)
-			printf("current dir : %s\n", cwd);
-		else
-			perror("error getting dir");
+		// if (cwd != NULL)
+		// 	printf("current dir : %s\n", cwd);
+		// else
+		// 	perror("error getting dir");
 	}
 	else
 		perror("dir not found");

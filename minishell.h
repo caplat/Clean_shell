@@ -6,7 +6,7 @@
 /*   By: acaplat <acaplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 12:50:26 by acaplat           #+#    #+#             */
-/*   Updated: 2023/08/14 17:47:05 by acaplat          ###   ########.fr       */
+/*   Updated: 2023/08/15 17:53:35 by acaplat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ typedef struct s_mini
 	int				exit_code;
 	int				stdout_cpy;
 	int				stdin_cpy;
+	int redir_input;
 }					t_mini;
 
 typedef struct s_compteur
@@ -189,6 +190,7 @@ void				ft_exit_code(char **tab, t_mini *shell);
 
 void				norme_export(void);
 void				norme_lex(t_lex **newlist, char *test);
+int parse_export(char **tab,int i);
 
 // BUILT-IN
 
@@ -242,9 +244,9 @@ void				pwd(t_mini *shell);
 
 int					check_n(char **compare);
 void				echo(char **compare, t_mini *shell);
-int					cote(char c, int flag);
-void				echo_bis(char **compare, int i, int k, int flag_bis);
 void				exec_echo(t_mini *shell);
+int echo_help(char *compare,int k,char cote);
+void echo_norme(int i,int k, char **compare);
 
 //Exit
 

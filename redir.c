@@ -6,7 +6,7 @@
 /*   By: acaplat <acaplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 15:02:07 by acaplat           #+#    #+#             */
-/*   Updated: 2023/08/11 13:12:38 by acaplat          ###   ########.fr       */
+/*   Updated: 2023/08/15 17:31:18 by acaplat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ void	redir_input(char *file, t_mini *shell)
 	if(access(file, F_OK) == -1)
 	{	
 		printf("minishell: %s: No such file or directory\n", file);
+		shell->redir_input = 1;
 		return;
 	}
 	fd = open(file, O_RDONLY);
@@ -62,7 +63,6 @@ void	redir_input(char *file, t_mini *shell)
 		}
 		close(fd);
 	}
-	// dup2(fd, STDIN_FILENO);
 }
 
 

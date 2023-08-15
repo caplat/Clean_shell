@@ -6,7 +6,7 @@
 /*   By: acaplat <acaplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 12:36:57 by acaplat           #+#    #+#             */
-/*   Updated: 2023/08/14 18:01:39 by acaplat          ###   ########.fr       */
+/*   Updated: 2023/08/15 17:28:17 by acaplat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ void	minishell_loop(t_mini *shell)
 			}
 			dup2(shell->stdout_cpy, STDOUT_FILENO);
 			dup2(shell->stdin_cpy, STDIN_FILENO);
+			shell->redir_input = 0;
 		}
 		else
 		{

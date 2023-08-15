@@ -6,7 +6,7 @@
 /*   By: acaplat <acaplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 16:42:55 by acaplat           #+#    #+#             */
-/*   Updated: 2023/08/10 19:09:25 by acaplat          ###   ########.fr       */
+/*   Updated: 2023/08/15 17:51:46 by acaplat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ void	export(t_mini *shell)
 			print_tab(shell->env_cpy);
 		else if (ft_strncmp(shell->tab[0], "export", 7) == 0 && length > 1)
 		{
-			while (shell->tab[i])
+			while (shell->tab[i] && parse_export(shell->tab,i) == 1)
 			{
 				add_var_export(shell->tab[i], shell);
 				add_var_env(shell->tab[i], shell);

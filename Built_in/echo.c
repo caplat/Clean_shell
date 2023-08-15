@@ -6,7 +6,7 @@
 /*   By: acaplat <acaplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 16:33:42 by acaplat           #+#    #+#             */
-/*   Updated: 2023/08/09 12:24:14 by acaplat          ###   ########.fr       */
+/*   Updated: 2023/08/15 17:10:29 by acaplat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,56 +37,19 @@ int	check_n(char **compare)
 void	echo(char **compare, t_mini *shell)
 {
 	int	i;
-	int	j;
 	int	k;
-	int	flag;
-	int	flag_bis;
 
 	k = 0;
-	flag_bis = 0;
-	j = find_length(compare);
 	i = check_n(compare);
-	flag = i;
 	ft_exit_code(compare, shell);
 	while (compare[i])
 	{
-		echo_bis(compare, i, k, flag_bis);
-		if (i < j - 1)
-			ft_putchar_fd(' ', 1);
+		echo_norme(i,k,compare);
+		printf(" ");
 		i++;
 		k = 0;
 	}
-	if (flag == 1)
-		ft_putchar_fd('\n', 1);
-}
-
-int	cote(char c, int flag)
-{
-	if (c == '\"' && flag == 0)
-		flag = 2;
-	else if (c == '\"' && flag == 2)
-		flag = 0;
-	else if (c == '\'' && flag == 0)
-		flag = 1;
-	else if (c == '\'' && flag == 1)
-		flag = 0;
-	return (flag);
-}
-
-void	echo_bis(char **compare, int i, int k, int flag_bis)
-{
-	while (compare[i][k])
-	{
-		if (i >= 1)
-		{
-			if (flag_bis == 0 && (compare[i][k] == '\''
-				|| compare[i][k] == '\"'))
-				k++;
-			flag_bis = cote(compare[i][k], flag_bis);
-			ft_putchar_fd(compare[i][k], 1);
-		}
-		k++;
-	}
+	printf("\n");
 }
 
 void	exec_echo(t_mini *shell)
@@ -102,5 +65,44 @@ void	exec_echo(t_mini *shell)
 		free_arr(shell->tab);
 		shell->tab = NULL;
 		current = current->next;
+	}
+}
+
+int echo_help(char *compare,int k,char cote)
+{
+	int i;
+	int j;
+	
+	i = 0;
+	j = k;
+	k++;
+
+	while(compare[k] && compare[k] != cote)
+	{
+		printf("%c",compare[k]);
+		k++;
+	}
+	k++;
+	return(k - j);
+}
+
+void echo_norme(int i,int k, char **compare)
+{
+	while(compare[i][k])
+	{
+		if(compare[i][k] == '\'')
+		{	
+			k += echo_help(compare[i],k,'\'');
+			if(compare[i][k] == '\'')
+				continue;
+		}
+		if(compare[i][k] == '\"')
+		{
+			k += echo_help(compare[i],k,'\"');
+			if(compare[i][k] == '\"')
+				continue;
+		}
+		printf("%c",compare[i][k]);
+		k++;
 	}
 }

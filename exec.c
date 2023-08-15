@@ -6,7 +6,7 @@
 /*   By: acaplat <acaplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/03 12:03:18 by acaplat           #+#    #+#             */
-/*   Updated: 2023/08/14 18:01:03 by acaplat          ###   ########.fr       */
+/*   Updated: 2023/08/15 17:27:44 by acaplat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,5 +94,6 @@ void	exec_all(t_mini *shell, int i)
 {
 	get_my_path(shell);
 	verify(shell, i);
-	execute(shell);
+	if(shell->redir_input == 0)
+		execute(shell);
 }

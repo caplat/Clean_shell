@@ -6,7 +6,7 @@
 /*   By: acaplat <acaplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/22 18:29:54 by acaplat           #+#    #+#             */
-/*   Updated: 2023/08/09 17:37:02 by acaplat          ###   ########.fr       */
+/*   Updated: 2023/08/16 16:54:17 by acaplat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,9 @@ t_lex	*set_command(t_lex *head, t_mini *shell)
 
 int	check_flag_bis(t_lex *current, int flag)
 {
+	int i;
+
+	i = 0;
 	if (ft_strncmp(current->str, "\"", 2) == 0 && flag == 0)
 		flag = 1;
 	else if (ft_strncmp(current->str, "\"", 2) == 0 && flag == 1)

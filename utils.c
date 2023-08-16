@@ -6,7 +6,7 @@
 /*   By: acaplat <acaplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 13:04:00 by acaplat           #+#    #+#             */
-/*   Updated: 2023/08/15 17:26:52 by acaplat          ###   ########.fr       */
+/*   Updated: 2023/08/16 18:20:27 by acaplat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 void	initialize(char **env, t_mini *shell)
 {
+	shell->lst_bis = NULL;
+	shell->newline_bis = NULL;
 	shell->env = env;
 	shell->line = NULL;
 	shell->newline = NULL;

@@ -6,7 +6,7 @@
 /*   By: acaplat <acaplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 12:50:26 by acaplat           #+#    #+#             */
-/*   Updated: 2023/08/15 17:53:35 by acaplat          ###   ########.fr       */
+/*   Updated: 2023/08/16 18:19:21 by acaplat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,9 @@ typedef struct s_lex
 
 typedef struct s_mini
 {
+	t_elem *lst_bis;
+	char *newline_bis;
+
 	char			*line;
 	char			*newline;
 	char			**env;
@@ -190,7 +193,8 @@ void				ft_exit_code(char **tab, t_mini *shell);
 
 void				norme_export(void);
 void				norme_lex(t_lex **newlist, char *test);
-int parse_export(char **tab,int i);
+int	parse_export(char **tab);
+void check_flag_ter(t_lex *current,t_mini *shell);
 
 // BUILT-IN
 

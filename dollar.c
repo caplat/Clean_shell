@@ -6,7 +6,7 @@
 /*   By: acaplat <acaplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 14:20:55 by acaplat           #+#    #+#             */
-/*   Updated: 2023/08/14 17:53:45 by acaplat          ###   ########.fr       */
+/*   Updated: 2023/08/16 17:59:42 by acaplat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ int	compare_with_env(char *compare, t_mini *shell)
 			return (1);
 		else
 		{
-			free(shell->command);
+			safe_free(shell->command);
 			i++;
 		}
 	}

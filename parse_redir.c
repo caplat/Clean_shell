@@ -6,7 +6,7 @@
 /*   By: acaplat <acaplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/23 16:44:47 by acaplat           #+#    #+#             */
-/*   Updated: 2023/08/09 14:54:21 by acaplat          ###   ########.fr       */
+/*   Updated: 2023/08/16 17:10:20 by acaplat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,9 @@ void	do_redir(t_mini *shell)
 	redir = NULL;
 	while (current)
 	{
-		shell->flag = check_flag_bis(current, shell->flag);
 		next = current->next;
-		if (ft_strncmp(current->str, ">>", 2) == 0 && next)
+		check_flag_ter(current,shell);
+		if (ft_strncmp(current->str, ">>", 2) == 0 && next && shell->flag == 0)
 		{
 			redir = ft_strdup(next->str);
 			delete_node(&shell->simplecommand, current);
@@ -50,9 +50,9 @@ void	do_redir_output(t_mini *shell)
 	redir = NULL;
 	while (current)
 	{
-		shell->flag = check_flag_bis(current, shell->flag);
 		next = current->next;
-		if (ft_strncmp(current->str, ">", 1) == 0 && next)
+		check_flag_ter(current,shell);
+		if (ft_strncmp(current->str, ">", 1) == 0 && next && shell->flag == 0)
 		{
 			redir = ft_strdup(next->str);
 			delete_node(&shell->simplecommand, current);
@@ -79,9 +79,10 @@ void	do_redir_input(t_mini *shell)
 		redir = NULL;
 		while (current)
 		{
-			shell->flag = check_flag_bis(current, shell->flag);
 			next = current->next;
-			if (ft_strncmp(current->str, "<", 1) == 0 && next)
+			check_flag_ter(current,shell);
+			// printf("shell->flag %d\n",shell->flag);
+			if (ft_strncmp(current->str, "<", 1) == 0 && next && shell->flag == 0)
 			{
 				redir = ft_strdup(next->str);
 				delete_node(&shell->simplecommand, current);
@@ -99,6 +100,7 @@ void	do_redir_input(t_mini *shell)
 
 void	redir(t_mini *shell)
 {
+	
 	do_redir(shell);
 	do_redir_output(shell);
 	do_redir_input(shell);

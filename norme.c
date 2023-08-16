@@ -6,7 +6,7 @@
 /*   By: acaplat <acaplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 12:40:18 by acaplat           #+#    #+#             */
-/*   Updated: 2023/08/15 18:03:17 by acaplat          ###   ########.fr       */
+/*   Updated: 2023/08/16 16:57:27 by acaplat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,16 +34,37 @@ int error_child(pid_t child_pid)
     return(1);
 }
 
-int parse_export(char **tab,int i)
+int	parse_export(char **tab)
 {
+	int	i;
 
-    if(tab[i][0] != '-' || ft_isdigit(tab[i][0]) == 1)
-    {
-        printf("%c\n",tab[i][0]);
-        printf("ft_is_digit-->%d\n",ft_isdigit(tab[i][0]));
-        printf("minishell: export: `%s': not a valid identifier\n",tab[i]);
-        return(0);
-    }
-    return(1);
+	i = 1;
+	if ((65 <= tab[i][0] && tab[i][0] <= 90) || (97 <= tab[i][0]
+			&& tab[i][0] <= 122) || tab[i][0] == 95)
+            return 1;
+    else
+	    {
+		    printf("minishell: export: `%s': not a valid identifier\n", tab[i]);
+		    return (0);
+	    }
+	return (1);
 }
 
+void check_flag_ter(t_lex *current,t_mini *shell)
+{
+    int i;
+
+    i = 0;
+    while(current->str[i])
+    {
+        if (current->str[i] == '\"' && shell->flag == 0)
+            shell->flag = 2;
+        else if (current->str[i] == '\"' && shell->flag == 2)
+            shell->flag = 0;
+        else if (current->str[i] == '\'' && shell->flag == 0)
+            shell->flag = 1;
+        else if (current->str[i] == '\'' && shell->flag == 1)
+            shell->flag = 0;
+        i++;
+    }
+}

@@ -6,7 +6,7 @@
 /*   By: acaplat <acaplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 12:50:26 by acaplat           #+#    #+#             */
-/*   Updated: 2023/08/16 18:19:21 by acaplat          ###   ########.fr       */
+/*   Updated: 2023/08/17 17:57:49 by acaplat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include "libft/libft.h"
 # include <fcntl.h>
+#include <stdbool.h>
 # include <signal.h>
 # include <stdio.h>
 # include <stdlib.h>
@@ -42,7 +43,7 @@ typedef struct s_mini
 {
 	t_elem *lst_bis;
 	char *newline_bis;
-
+	char **tab_bis;
 	char			*line;
 	char			*newline;
 	char			**env;
@@ -143,7 +144,7 @@ void				add_element_bis(t_lex **head, char *simple_command);
 void				printlist_bis(t_lex *head);
 t_lex				*get_my_element(t_mini *shell);
 t_lex				*set_command(t_lex *head, t_mini *shell);
-int					check_flag_bis(t_lex *current, int flag);
+void				check_flag_bis(t_lex *current, t_mini *shell);
 
 // Parse_redir
 
@@ -161,7 +162,7 @@ void				redir_input(char *file, t_mini *shell);
 
 //Heredoc
 
-void				here_doc(t_lex *simple_command);
+void				here_doc(t_lex *simple_command,t_mini *shell);
 int					too_much(int fd, char *del);
 void				too_much_bis(int fd);
 void				norme_heredoc(t_lex *simplecommand, t_lex *current,
@@ -195,6 +196,10 @@ void				norme_export(void);
 void				norme_lex(t_lex **newlist, char *test);
 int	parse_export(char **tab);
 void check_flag_ter(t_lex *current,t_mini *shell);
+
+//Fix_echo
+
+void fix_echo(t_mini *shell);
 
 // BUILT-IN
 

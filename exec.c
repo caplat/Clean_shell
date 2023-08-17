@@ -6,7 +6,7 @@
 /*   By: acaplat <acaplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/03 12:03:18 by acaplat           #+#    #+#             */
-/*   Updated: 2023/08/15 17:27:44 by acaplat          ###   ########.fr       */
+/*   Updated: 2023/08/17 14:42:58 by acaplat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,8 @@ int	verify(t_mini *shell, int j)
 
 	i = 0;
 	current = find_node(j, shell);
-	// printf("current -->%s\n",current->str);
+	if (get_nb_node(shell->args) > 1)
+		check_built_in(shell);
 	if (current == NULL)
 		return (0);
 	if (shell->arg_bis != NULL)
@@ -54,17 +55,13 @@ int	verify(t_mini *shell, int j)
 			return (1);
 		free(shell->exe);
 	}
-	if (get_nb_node(shell->args) > 1)
-		check_built_in(shell);
 	return (0);
 }
 
 int	execute(t_mini *shell)
 {
-	if (ft_strncmp(shell->arg_bis[0], "echo", 4) == 0)
-		return (0);
-	if (ft_strncmp(shell->arg_bis[0], "cd", 2) == 0)
-		return (0);
+	if (verif_built_in(shell) == 1)
+		return(0);
 	if (execve(shell->exe, shell->arg_bis, shell->env) == -1)
 	{
 		if (shell->arg_bis[0] == NULL)

@@ -6,13 +6,13 @@
 /*   By: acaplat <acaplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 15:59:02 by acaplat           #+#    #+#             */
-/*   Updated: 2023/08/09 13:51:54 by acaplat          ###   ########.fr       */
+/*   Updated: 2023/08/17 15:37:47 by acaplat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	here_doc(t_lex *simplecommand)
+void	here_doc(t_lex *simplecommand,t_mini *shell)
 {
 	int		fd;
 	char	*del;
@@ -27,7 +27,8 @@ void	here_doc(t_lex *simplecommand)
 	while (current)
 	{
 		next = current->next;
-		if (ft_strncmp(current->str, "<<", 3) == 0 && next)
+		check_flag_ter(current,shell);
+		if (ft_strncmp(current->str, "<<", 3) == 0 && next && shell->flag == 0)
 		{
 			norme_heredoc(simplecommand, current, next, del);
 			if (too_much(fd, del) == 1)

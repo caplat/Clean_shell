@@ -6,7 +6,7 @@
 /*   By: acaplat <acaplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 15:13:26 by acaplat           #+#    #+#             */
-/*   Updated: 2023/08/18 12:53:10 by acaplat          ###   ########.fr       */
+/*   Updated: 2023/08/18 16:06:47 by acaplat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	free_shell(t_mini *shell)
 	free_list(shell->lst_bis);
 	safe_free(&shell->newline_bis);
 	free_arr(shell->tab_bis);
-	free_list_bis(shell->echo_list);
+	free_list_bis(shell->echo_lst);
 	free_arr(shell->command);
 	safe_free(&shell->line);
 	safe_free(&shell->newline);
@@ -78,6 +78,7 @@ void	free_list_bis(t_lex *head)
 	while (current != NULL)
 	{
 		temp = current->next;
+		// safe_free(&current->str);
 		free(current);
 		current = temp;
 	}
@@ -89,3 +90,26 @@ void	safe_free(char **str)
 		free(*str);
 	*str = NULL;
 }
+
+// void free_list_bis(t_lex *head)
+// {
+//     t_lex *current;
+//     t_lex *temp;
+
+//     if (head == NULL)
+//         return;
+
+//     current = head;
+//     while (current != NULL)
+//     {
+//         temp = current->next;
+
+//         // Libérer la mémoire de la chaîne de caractères dans la structure t_lex
+//         safe_free(&current->str);
+
+//         // Libérer la structure elle-même
+//         free(current);
+
+//         current = temp;
+//     }
+// }

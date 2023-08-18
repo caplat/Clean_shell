@@ -6,7 +6,7 @@
 /*   By: acaplat <acaplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 15:59:02 by acaplat           #+#    #+#             */
-/*   Updated: 2023/08/17 15:37:47 by acaplat          ###   ########.fr       */
+/*   Updated: 2023/08/18 17:23:50 by acaplat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,18 @@ void	here_doc(t_lex *simplecommand,t_mini *shell)
 		norme_heredoc_bis();
 	while (current)
 	{
+		// printf("current-->%s\n",current->str);
+		// printlist_bis(current);
 		next = current->next;
 		check_flag_ter(current,shell);
 		if (ft_strncmp(current->str, "<<", 3) == 0 && next && shell->flag == 0)
 		{
-			norme_heredoc(simplecommand, current, next, del);
+			// norme_heredoc(simplecommand, current, next, del);
+			del = ft_strdup(next->str);
+			delete_node(&simplecommand, current);
+			current = next;
+			delete_node(&simplecommand, current);
+			printlist_bis(current);
 			if (too_much(fd, del) == 1)
 				break ;
 			safe_free(&del);
@@ -48,24 +55,26 @@ int	too_much(int fd, char *del)
 	while (1)
 	{
 		buffer = readline(">");
+		printf("buffer-->%s\n",buffer);
+		printf("del-->%s\n",del);
 		if (!buffer)
 		{
 			perror("readline error");
 			too_much_bis(fd);
 		}
-		if (strncmp(buffer, del, ft_strlen(del) + 1) == 0)
+		if (ft_strncmp(buffer, del, ft_strlen(del) + 1) == 0)
 		{
-			free(buffer);
+			safe_free(&buffer);
 			return (1);
 		}
 		if (write(fd, buffer, ft_strlen(buffer)) == -1)
 		{
 			perror("write error");
-			free(buffer);
+			safe_free(&buffer);
 			too_much_bis(fd);
 		}
 		write(fd, "\n", 1);
-		free(buffer);
+		safe_free(&buffer);
 	}
 	return (0);
 }

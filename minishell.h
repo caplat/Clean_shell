@@ -6,7 +6,7 @@
 /*   By: acaplat <acaplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 12:50:26 by acaplat           #+#    #+#             */
-/*   Updated: 2023/08/18 13:09:27 by acaplat          ###   ########.fr       */
+/*   Updated: 2023/08/18 17:11:38 by acaplat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 
 # include "libft/libft.h"
 # include <fcntl.h>
-#include <stdbool.h>
 # include <signal.h>
+# include <stdbool.h>
 # include <stdio.h>
 # include <stdlib.h>
 # include <string.h>
@@ -41,10 +41,10 @@ typedef struct s_lex
 
 typedef struct s_mini
 {
-	t_elem *lst_bis;
-	char *newline_bis;
-	char **tab_bis;
-	t_lex *echo_list;
+	t_elem			*lst_bis;
+	char			*newline_bis;
+	char			**tab_bis;
+	t_lex			*echo_lst;
 	char			*line;
 	char			*newline;
 	char			**env;
@@ -64,7 +64,7 @@ typedef struct s_mini
 	int				exit_code;
 	int				stdout_cpy;
 	int				stdin_cpy;
-	int redir_input;
+	int				redir_input;
 }					t_mini;
 
 typedef struct s_compteur
@@ -163,7 +163,7 @@ void				redir_input(char *file, t_mini *shell);
 
 //Heredoc
 
-void				here_doc(t_lex *simple_command,t_mini *shell);
+void				here_doc(t_lex *simple_command, t_mini *shell);
 int					too_much(int fd, char *del);
 void				too_much_bis(int fd);
 void				norme_heredoc(t_lex *simplecommand, t_lex *current,
@@ -195,13 +195,13 @@ void				ft_exit_code(char **tab, t_mini *shell);
 
 void				norme_export(void);
 void				norme_lex(t_lex **newlist, char *test);
-int	parse_export(char **tab);
-void check_flag_ter(t_lex *current,t_mini *shell);
+int					parse_export(char **tab);
+void				check_flag_ter(t_lex *current, t_mini *shell);
 
 //Fix_echo
 
-void fix_echo(t_mini *shell);
-void echo_list(t_mini *shell);
+void				fix_echo(t_mini *shell);
+t_lex				*echo_list(t_mini *shell);
 
 // BUILT-IN
 
@@ -256,8 +256,8 @@ void				pwd(t_mini *shell);
 int					check_n(char **compare);
 void				echo(char **compare, t_mini *shell);
 void				exec_echo(t_mini *shell);
-int echo_help(char *compare,int k,char cote);
-void echo_norme(int i,int k, char **compare);
+int					echo_help(char *compare, int k, char cote);
+void				echo_norme(int i, int k, char **compare);
 
 //Exit
 

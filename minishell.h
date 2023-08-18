@@ -6,7 +6,7 @@
 /*   By: acaplat <acaplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 12:50:26 by acaplat           #+#    #+#             */
-/*   Updated: 2023/08/17 17:57:49 by acaplat          ###   ########.fr       */
+/*   Updated: 2023/08/18 13:09:27 by acaplat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ typedef struct s_mini
 	t_elem *lst_bis;
 	char *newline_bis;
 	char **tab_bis;
+	t_lex *echo_list;
 	char			*line;
 	char			*newline;
 	char			**env;
@@ -200,6 +201,7 @@ void check_flag_ter(t_lex *current,t_mini *shell);
 //Fix_echo
 
 void fix_echo(t_mini *shell);
+void echo_list(t_mini *shell);
 
 // BUILT-IN
 

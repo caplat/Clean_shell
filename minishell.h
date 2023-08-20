@@ -6,7 +6,7 @@
 /*   By: acaplat <acaplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 12:50:26 by acaplat           #+#    #+#             */
-/*   Updated: 2023/08/18 17:11:38 by acaplat          ###   ########.fr       */
+/*   Updated: 2023/08/20 18:44:02 by acaplat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,14 @@ typedef struct s_pipe
 	int				prev_pipe_read;
 	int				i;
 }					t_pipe;
+
+typedef struct s_here
+{
+	int fd;
+	char *del;
+	t_lex *current;
+	t_lex *next;
+}t_here;
 
 //Main
 
@@ -166,9 +174,8 @@ void				redir_input(char *file, t_mini *shell);
 void				here_doc(t_lex *simple_command, t_mini *shell);
 int					too_much(int fd, char *del);
 void				too_much_bis(int fd);
-void				norme_heredoc(t_lex *simplecommand, t_lex *current,
-						t_lex *next, char *del);
 void				norme_heredoc_bis(void);
+void				erase(t_lex **simplecommand,t_mini *shell);
 
 //Pipe
 

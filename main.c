@@ -6,7 +6,7 @@
 /*   By: acaplat <acaplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 12:36:57 by acaplat           #+#    #+#             */
-/*   Updated: 2023/08/18 17:10:35 by acaplat          ###   ########.fr       */
+/*   Updated: 2023/08/20 18:21:28 by acaplat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,10 @@ void	norme_main(t_mini *shell)
 	shell->simplecommand = get_my_element(shell);
 	// printlist_bis(shell->simplecommand);
 	here_doc(shell->simplecommand,shell);
+	printlist_bis(shell->simplecommand);
+	printf("\n\n");
+	erase(&shell->simplecommand,shell);
+	printlist_bis(shell->simplecommand);
 	redir(shell);
 	shell->args = set_command(shell->simplecommand, shell);
 	// printlist_bis(shell->args);

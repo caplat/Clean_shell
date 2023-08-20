@@ -6,7 +6,7 @@
 /*   By: acaplat <acaplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 15:59:02 by acaplat           #+#    #+#             */
-/*   Updated: 2023/08/18 17:23:50 by acaplat          ###   ########.fr       */
+/*   Updated: 2023/08/20 18:47:13 by acaplat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,38 +14,30 @@
 
 void	here_doc(t_lex *simplecommand,t_mini *shell)
 {
-	int		fd;
-	char	*del;
-	t_lex	*current;
-	t_lex	*next;
+	t_here var;
 
-	current = simplecommand;
-	del = NULL;
-	fd = open(".heredoc", O_CREAT | O_WRONLY | O_APPEND, 0777);
-	if (fd == -1)
+	var.current = simplecommand;
+	var.del = NULL;
+	var.fd = open(".heredoc", O_CREAT | O_WRONLY | O_APPEND, 0777);
+	if (var.fd == -1)
 		norme_heredoc_bis();
-	while (current)
+	while (var.current)
 	{
-		// printf("current-->%s\n",current->str);
-		// printlist_bis(current);
-		next = current->next;
-		check_flag_ter(current,shell);
-		if (ft_strncmp(current->str, "<<", 3) == 0 && next && shell->flag == 0)
+		var.next = var.current->next;
+		check_flag_ter(var.current,shell);
+		if (ft_strncmp(var.current->str, "<<", 3) == 0 && var.next && shell->flag == 0)
 		{
-			// norme_heredoc(simplecommand, current, next, del);
-			del = ft_strdup(next->str);
-			delete_node(&simplecommand, current);
-			current = next;
-			delete_node(&simplecommand, current);
-			printlist_bis(current);
-			if (too_much(fd, del) == 1)
+			var.del = ft_strdup(var.next->str);
+			if (too_much(var.fd, var.del) == 1)
 				break ;
-			safe_free(&del);
+			safe_free(&var.del);
+			var.current = var.next->next;
 		}
-		current = current->next;
+		else
+			var.current = var.current->next;
 	}
-	safe_free(&del);
-	close(fd);
+	safe_free(&var.del);
+	close(var.fd);
 }
 
 int	too_much(int fd, char *del)
@@ -55,8 +47,8 @@ int	too_much(int fd, char *del)
 	while (1)
 	{
 		buffer = readline(">");
-		printf("buffer-->%s\n",buffer);
-		printf("del-->%s\n",del);
+		// printf("buffer-->%s\n",buffer);
+		// printf("del-->%s\n",del);
 		if (!buffer)
 		{
 			perror("readline error");
@@ -85,17 +77,34 @@ void	too_much_bis(int fd)
 	exit(1);
 }
 
-void	norme_heredoc(t_lex *simplecommand, t_lex *current, t_lex *next,
-		char *del)
-{
-	del = ft_strdup(next->str);
-	delete_node(&simplecommand, current);
-	current = next;
-	delete_node(&simplecommand, current);
-}
-
 void	norme_heredoc_bis(void)
 {
 	perror("open error");
 	exit(1);
+}
+
+void erase(t_lex **simplecommand,t_mini *shell)
+{
+    t_lex *current;
+    t_lex *previous;
+	t_lex *next;
+
+    current = *simplecommand;
+	previous = NULL;
+	while (current)
+    {
+    	next = current->next;
+
+        check_flag_bis(current,shell);
+		if (ft_strncmp(current->str, "<<", 3) == 0 && next && shell->flag == 0)
+        {    
+			delete_node(simplecommand, current);
+			delete_node(simplecommand,next);
+			current = *simplecommand;
+			continue;
+		}
+        else
+            previous = current;
+        current = next;
+    }
 }

@@ -6,7 +6,7 @@
 /*   By: acaplat <acaplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 12:50:26 by acaplat           #+#    #+#             */
-/*   Updated: 2023/08/21 14:20:28 by acaplat          ###   ########.fr       */
+/*   Updated: 2023/08/21 18:25:46 by acaplat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -216,6 +216,11 @@ void				check_flag_ter(t_lex *current, t_mini *shell);
 
 void				fix_echo(t_mini *shell);
 t_lex				*echo_list(t_mini *shell);
+
+//Split_custom
+
+int word_nb(char *str,char del,t_mini *shell);
+void	check_flag_4(char *line, t_mini *shell, int i);
 
 // BUILT-IN
 

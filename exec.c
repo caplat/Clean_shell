@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: derblang <derblang@student.42.fr>          +#+  +:+       +#+        */
+/*   By: acaplat <acaplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/03 12:03:18 by acaplat           #+#    #+#             */
-/*   Updated: 2023/08/21 12:37:43 by derblang         ###   ########.fr       */
+/*   Updated: 2023/08/21 15:54:31 by acaplat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,8 @@ int	execute(t_mini *shell)
 	{
 		if (shell->arg_bis[0] == NULL)
 			return (0);
+		if (ft_strncmp(shell->arg_bis[0],"./",2) == 0 && access(shell->arg_bis[0], F_OK | X_OK) == 0)
+			return(0);
 		if (verif_built_in(shell) == 0)
 			printf("minishell: %s: command not found\n", shell->arg_bis[0]);
 	}

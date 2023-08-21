@@ -17,6 +17,7 @@ redir.c \
 heredoc.c \
 norme.c \
 fix_echo.c \
+split_custom.c \
 Built_in/env.c \
 Built_in/export.c \
 Built_in/export_bis.c \

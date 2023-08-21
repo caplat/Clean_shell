@@ -6,7 +6,7 @@
 /*   By: acaplat <acaplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/22 18:29:54 by acaplat           #+#    #+#             */
-/*   Updated: 2023/08/21 14:29:01 by acaplat          ###   ########.fr       */
+/*   Updated: 2023/08/21 16:30:35 by acaplat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ void	printlist_bis(t_lex *head)
 	current = head;
 	while (current != NULL)
 	{
+		printf("printlist --> %s\n",current->str);
 		current = current->next;
 	}
 }

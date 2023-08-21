@@ -6,7 +6,7 @@
 /*   By: acaplat <acaplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 16:29:39 by acaplat           #+#    #+#             */
-/*   Updated: 2023/08/21 14:29:37 by acaplat          ###   ########.fr       */
+/*   Updated: 2023/08/21 17:51:35 by acaplat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,10 @@
 void	fix_echo(t_mini *shell)
 {
 	t_lex	*newlist;
+	int nb;
 
+	nb = word_nb(shell->newline_bis,' ',shell);
+	printf("nb-->%d\n",nb);
 	if (shell->newline_bis != NULL)
 		newlist = echo_list(shell);
 }
@@ -29,6 +32,7 @@ t_lex	*echo_list(t_mini *shell)
 	newlist = NULL;
 	i = -1;
 	str = ft_calloc(1, 1);
+	printf("newlinebis-->%s\n",shell->newline_bis);
 	while (shell->newline_bis[++i])
 	{
 		set_flag(shell->newline_bis, shell, i);
@@ -45,5 +49,6 @@ t_lex	*echo_list(t_mini *shell)
 	safe_free(&str);
 	str = NULL;
 	shell->echo_lst = newlist;
+	printlist_bis(newlist);
 	return (newlist);
 }

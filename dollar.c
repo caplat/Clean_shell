@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   dollar.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: derblang <derblang@student.42.fr>          +#+  +:+       +#+        */
+/*   By: acaplat <acaplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 14:20:55 by acaplat           #+#    #+#             */
-/*   Updated: 2023/08/21 12:39:40 by derblang         ###   ########.fr       */
+/*   Updated: 2023/08/21 18:39:08 by acaplat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ void	replace_line(char *line, t_mini *shell)
 	while (line[++var.i])
 	{
 		set_flag(line, shell, var.i);
+		// printf("shell->flag -->%d\n",shell->flag);
 		if (line[var.i] == '$' && (shell->flag == 0 || shell->flag == 2)
 			&& line[var.i + 1] != '?')
 		{

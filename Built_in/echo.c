@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: derblang <derblang@student.42.fr>          +#+  +:+       +#+        */
+/*   By: acaplat <acaplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 16:33:42 by acaplat           #+#    #+#             */
-/*   Updated: 2023/08/21 12:08:40 by derblang         ###   ########.fr       */
+/*   Updated: 2023/08/21 16:21:07 by acaplat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ void	echo(char **compare, t_mini *shell)
 	k = 0;
 	i = check_n(compare);
 	ft_exit_code(compare, shell);
+	// print_tab(compare);
 	while (compare[i])
 	{
 		echo_norme(i, k, compare);

@@ -6,7 +6,7 @@
 /*   By: acaplat <acaplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/23 16:44:47 by acaplat           #+#    #+#             */
-/*   Updated: 2023/08/18 17:18:37 by acaplat          ###   ########.fr       */
+/*   Updated: 2023/08/21 14:28:06 by acaplat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	do_redir(t_mini *shell)
 	while (current)
 	{
 		next = current->next;
-		check_flag_ter(current,shell);
+		check_flag_ter(current, shell);
 		if (ft_strncmp(current->str, ">>", 2) == 0 && next && shell->flag == 0)
 		{
 			redir = ft_strdup(next->str);
@@ -51,7 +51,7 @@ void	do_redir_output(t_mini *shell)
 	while (current)
 	{
 		next = current->next;
-		check_flag_ter(current,shell);
+		check_flag_ter(current, shell);
 		if (ft_strncmp(current->str, ">", 1) == 0 && next && shell->flag == 0)
 		{
 			redir = ft_strdup(next->str);
@@ -70,37 +70,34 @@ void	do_redir_output(t_mini *shell)
 
 void	do_redir_input(t_mini *shell)
 {
-	t_lex	*current;
-	t_lex	*next;
-	char	*redir;
+	t_redir	var;
 
 	{
-		current = shell->simplecommand;
-		redir = NULL;
-		while (current)
+		var.current = shell->simplecommand;
+		var.redir = NULL;
+		while (var.current)
 		{
-			next = current->next;
-			check_flag_ter(current,shell);
-			// printf("shell->flag %d\n",shell->flag);
-			if (ft_strncmp(current->str, "<", 1) == 0 && next && shell->flag == 0)
+			var.next = var.current->next;
+			check_flag_ter(var.current, shell);
+			if (ft_strncmp(var.current->str, "<", 1) == 0 && var.next
+				&& shell->flag == 0)
 			{
-				redir = ft_strdup(next->str);
-				delete_node(&shell->simplecommand, current);
-				current = next;
-				delete_node(&shell->simplecommand, current);
-				redir_input(redir, shell);
-				free(redir);
-				redir = NULL;
+				var.redir = ft_strdup(var.next->str);
+				delete_node(&shell->simplecommand, var.current);
+				var.current = var.next;
+				delete_node(&shell->simplecommand, var.current);
+				redir_input(var.redir, shell);
+				free(var.redir);
+				var.redir = NULL;
 			}
-			current = current->next;
+			var.current = var.current->next;
 		}
-		norme_parse_redir(redir);
+		norme_parse_redir(var.redir);
 	}
 }
 
 void	redir(t_mini *shell)
 {
-	
 	do_redir(shell);
 	do_redir_output(shell);
 	do_redir_input(shell);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acaplat <acaplat@student.42.fr>            +#+  +:+       +#+        */
+/*   By: derblang <derblang@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 14:41:57 by acaplat           #+#    #+#             */
-/*   Updated: 2023/08/09 12:31:04 by acaplat          ###   ########.fr       */
+/*   Updated: 2023/08/21 11:51:26 by derblang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,27 +30,27 @@ void	ft_exit(t_mini *shell)
 
 void	exec_exit(char **tab, t_mini *shell)
 {
-	int	i;
+	int	num;
+	int	flag;
 
-	i = 0;
+	flag = 0;
+	printf("exit\n");
 	if (find_length(tab) == 1)
-	{
-		shell->exit_code = 0;
 		exit(0);
-	}
-	if (find_length(tab) > 2)
-		norme_exit(shell);
-	if (ft_is_digit_str(tab[1]) == 0
-		|| (long long)ft_atoi(tab[1]) > __LONG_MAX__)
+	else
 	{
-		printf("minishell: exit: %s: numeric argument required\n", tab[1]);
-		shell->exit_code = 255;
-		exit(shell->exit_code);
+		num = ft_atol(tab[1], &flag);
+		if (flag)
+			norme_exit(tab, shell);
+	}
+	if (find_length(tab) > 2 && ft_is_digit_str(tab[1]) == 1)
+	{
+		printf("minishell: exit: too many arguments\n");
+		shell->exit_code = 1;
 	}
 	else
 	{
 		shell->exit_code = ft_atoi(tab[1]) % 256;
-		printf("exit\n");
 		exit(ft_atoi(tab[1]) % 256);
 	}
 }
@@ -71,9 +71,11 @@ int	ft_is_digit_str(const char *str)
 	return (1);
 }
 
-void	norme_exit(t_mini *shell)
+void	norme_exit(char **tab, t_mini *shell)
 {
-	printf("exit: too many arguments\n");
-	shell->exit_code = 1;
+	ft_putstr_fd("minishell: exit: ", 2);
+	ft_putstr_fd(tab[1], 2);
+	ft_putstr_fd(": numeric argument required\n", 2);
+	shell->exit_code = 255;
 	exit(shell->exit_code);
 }

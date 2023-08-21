@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acaplat <acaplat@student.42.fr>            +#+  +:+       +#+        */
+/*   By: derblang <derblang@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 15:59:02 by acaplat           #+#    #+#             */
-/*   Updated: 2023/08/20 18:47:13 by acaplat          ###   ########.fr       */
+/*   Updated: 2023/08/21 12:38:49 by derblang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	here_doc(t_lex *simplecommand,t_mini *shell)
+void	here_doc(t_lex *simplecommand, t_mini *shell)
 {
-	t_here var;
+	t_here	var;
 
 	var.current = simplecommand;
 	var.del = NULL;
@@ -24,8 +24,9 @@ void	here_doc(t_lex *simplecommand,t_mini *shell)
 	while (var.current)
 	{
 		var.next = var.current->next;
-		check_flag_ter(var.current,shell);
-		if (ft_strncmp(var.current->str, "<<", 3) == 0 && var.next && shell->flag == 0)
+		check_flag_ter(var.current, shell);
+		if (ft_strncmp(var.current->str, "<<", 3) == 0 && var.next
+			&& shell->flag == 0)
 		{
 			var.del = ft_strdup(var.next->str);
 			if (too_much(var.fd, var.del) == 1)
@@ -47,8 +48,6 @@ int	too_much(int fd, char *del)
 	while (1)
 	{
 		buffer = readline(">");
-		// printf("buffer-->%s\n",buffer);
-		// printf("del-->%s\n",del);
 		if (!buffer)
 		{
 			perror("readline error");
@@ -83,28 +82,27 @@ void	norme_heredoc_bis(void)
 	exit(1);
 }
 
-void erase(t_lex **simplecommand,t_mini *shell)
+void	erase(t_lex **simplecommand, t_mini *shell)
 {
-    t_lex *current;
-    t_lex *previous;
-	t_lex *next;
+	t_lex	*current;
+	t_lex	*previous;
+	t_lex	*next;
 
-    current = *simplecommand;
+	current = *simplecommand;
 	previous = NULL;
 	while (current)
-    {
-    	next = current->next;
-
-        check_flag_bis(current,shell);
+	{
+		next = current->next;
+		check_flag_bis(current, shell);
 		if (ft_strncmp(current->str, "<<", 3) == 0 && next && shell->flag == 0)
-        {    
+		{
 			delete_node(simplecommand, current);
-			delete_node(simplecommand,next);
+			delete_node(simplecommand, next);
 			current = *simplecommand;
-			continue;
+			continue ;
 		}
-        else
-            previous = current;
-        current = next;
-    }
+		else
+			previous = current;
+		current = next;
+	}
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acaplat <acaplat@student.42.fr>            +#+  +:+       +#+        */
+/*   By: derblang <derblang@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 13:59:11 by acaplat           #+#    #+#             */
-/*   Updated: 2023/08/11 13:22:26 by acaplat          ###   ########.fr       */
+/*   Updated: 2023/08/21 12:05:24 by derblang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,13 +58,7 @@ void	change_directory(char *dir, t_mini *shell)
 	}
 	too_much_line(&dir, &path, &cwd);
 	if (chdir(path) == 0)
-	{
 		change_env(cwd, shell);
-		// if (cwd != NULL)
-		// 	printf("current dir : %s\n", cwd);
-		// else
-		// 	perror("error getting dir");
-	}
 	else
 		perror("dir not found");
 	free(cwd);

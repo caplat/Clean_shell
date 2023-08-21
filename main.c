@@ -6,7 +6,7 @@
 /*   By: acaplat <acaplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 12:36:57 by acaplat           #+#    #+#             */
-/*   Updated: 2023/08/20 18:21:28 by acaplat          ###   ########.fr       */
+/*   Updated: 2023/08/21 14:07:22 by acaplat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,9 @@ int	main(int argc, char **argv, char **env)
 	shell = malloc(sizeof(t_mini));
 	initialize(env, shell);
 	shell->env_cpy = do_export(shell);
-	// rl_catch_signals = 0;
+	rl_catch_signals = 0;
 	do_signal(shell);
 	minishell_loop(shell);
-	// system("leaks minishell");
 }
 
 void	minishell_loop(t_mini *shell)
@@ -53,7 +52,6 @@ void	minishell_loop(t_mini *shell)
 		}
 		else
 		{
-			// printf("allo\n");
 			free_shell(shell);
 			exit(0);
 		}
@@ -66,21 +64,14 @@ void	norme_main(t_mini *shell)
 	shell->lst = get_my_list(shell);
 	shell->lst_bis = get_my_list(shell);
 	shell->newline_bis = convert_to_str(shell->lst_bis);
-	// printf("shell->newline_bis--> %s\n",shell->newline_bis);
 	fix_echo(shell);
-	// printlist(shell->lst);
 	safe_free(&shell->add_char);
 	shell->add_char = ft_calloc(1, 2);
 	separate_command(shell->lst);
 	shell->newline = convert_to_str(shell->lst);
 	shell->simplecommand = get_my_element(shell);
-	// printlist_bis(shell->simplecommand);
-	here_doc(shell->simplecommand,shell);
-	printlist_bis(shell->simplecommand);
-	printf("\n\n");
-	erase(&shell->simplecommand,shell);
-	printlist_bis(shell->simplecommand);
+	here_doc(shell->simplecommand, shell);
+	erase(&shell->simplecommand, shell);
 	redir(shell);
 	shell->args = set_command(shell->simplecommand, shell);
-	// printlist_bis(shell->args);
 }

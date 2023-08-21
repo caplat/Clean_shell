@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acaplat <acaplat@student.42.fr>            +#+  +:+       +#+        */
+/*   By: derblang <derblang@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/03 12:03:18 by acaplat           #+#    #+#             */
-/*   Updated: 2023/08/17 14:42:58 by acaplat          ###   ########.fr       */
+/*   Updated: 2023/08/21 12:37:43 by derblang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ int	verify(t_mini *shell, int j)
 int	execute(t_mini *shell)
 {
 	if (verif_built_in(shell) == 1)
-		return(0);
+		return (0);
 	if (execve(shell->exe, shell->arg_bis, shell->env) == -1)
 	{
 		if (shell->arg_bis[0] == NULL)
@@ -91,6 +91,6 @@ void	exec_all(t_mini *shell, int i)
 {
 	get_my_path(shell);
 	verify(shell, i);
-	if(shell->redir_input == 0)
+	if (shell->redir_input == 0)
 		execute(shell);
 }

@@ -6,7 +6,7 @@
 /*   By: acaplat <acaplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 12:50:26 by acaplat           #+#    #+#             */
-/*   Updated: 2023/08/20 18:44:02 by acaplat          ###   ########.fr       */
+/*   Updated: 2023/08/21 14:20:28 by acaplat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,11 +83,18 @@ typedef struct s_pipe
 
 typedef struct s_here
 {
-	int fd;
-	char *del;
-	t_lex *current;
-	t_lex *next;
-}t_here;
+	int				fd;
+	char			*del;
+	t_lex			*current;
+	t_lex			*next;
+}					t_here;
+
+typedef struct s_redir
+{
+	t_lex			*current;
+	t_lex			*next;
+	char			*redir;
+}					t_redir;
 
 //Main
 
@@ -175,7 +182,7 @@ void				here_doc(t_lex *simple_command, t_mini *shell);
 int					too_much(int fd, char *del);
 void				too_much_bis(int fd);
 void				norme_heredoc_bis(void);
-void				erase(t_lex **simplecommand,t_mini *shell);
+void				erase(t_lex **simplecommand, t_mini *shell);
 
 //Pipe
 
@@ -271,7 +278,7 @@ void				echo_norme(int i, int k, char **compare);
 void				ft_exit(t_mini *shell);
 void				exec_exit(char **tab, t_mini *shell);
 int					ft_is_digit_str(const char *str);
-void				norme_exit(t_mini *shell);
+void				norme_exit(char **tab, t_mini *shell);
 
 //Check_built_in
 

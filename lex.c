@@ -6,7 +6,7 @@
 /*   By: acaplat <acaplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/22 18:29:54 by acaplat           #+#    #+#             */
-/*   Updated: 2023/08/17 16:34:44 by acaplat          ###   ########.fr       */
+/*   Updated: 2023/08/21 14:29:01 by acaplat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@ void	printlist_bis(t_lex *head)
 	current = head;
 	while (current != NULL)
 	{
-		printf("printlist-->%s\n", current->str);
 		current = current->next;
 	}
 }
@@ -60,7 +59,6 @@ t_lex	*get_my_element(t_mini *shell)
 		add_element_bis(&newlist, shell->simple_command[i]);
 		i++;
 	}
-	// printlist_bis(newlist);
 	return (newlist);
 }
 
@@ -78,7 +76,6 @@ t_lex	*set_command(t_lex *head, t_mini *shell)
 	while (current)
 	{
 		check_flag_bis(current, shell);
-		// printf("flag --> %d\n",shell->flag);
 		test = ft_strjoin(test, current->str);
 		test = ft_strjoin(test, " ");
 		if (current->next && ft_strncmp(current->next->str, "|", 2) == 0
@@ -94,21 +91,21 @@ t_lex	*set_command(t_lex *head, t_mini *shell)
 	return (newlist);
 }
 
-void	check_flag_bis(t_lex *current,	t_mini *shell)
+void	check_flag_bis(t_lex *current, t_mini *shell)
 {
-	int i;
+	int	i;
 
 	i = 0;
-	while(current->str[i])
-    {
-        if (current->str[i] == '\"' && shell->flag == 0)
-            shell->flag = 2;
-        else if (current->str[i] == '\"' && shell->flag == 2)
-            shell->flag = 0;
-        else if (current->str[i] == '\'' && shell->flag == 0)
-            shell->flag = 1;
-        else if (current->str[i] == '\'' && shell->flag == 1)
-            shell->flag = 0;
-        i++;
-    }
+	while (current->str[i])
+	{
+		if (current->str[i] == '\"' && shell->flag == 0)
+			shell->flag = 2;
+		else if (current->str[i] == '\"' && shell->flag == 2)
+			shell->flag = 0;
+		else if (current->str[i] == '\'' && shell->flag == 0)
+			shell->flag = 1;
+		else if (current->str[i] == '\'' && shell->flag == 1)
+			shell->flag = 0;
+		i++;
+	}
 }

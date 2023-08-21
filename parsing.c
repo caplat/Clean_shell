@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acaplat <acaplat@student.42.fr>            +#+  +:+       +#+        */
+/*   By: derblang <derblang@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 14:03:12 by acaplat           #+#    #+#             */
-/*   Updated: 2023/08/18 14:28:22 by acaplat          ###   ########.fr       */
+/*   Updated: 2023/08/21 12:24:50 by derblang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,8 +69,6 @@ t_elem	*get_my_list(t_mini *shell)
 void	separate_command(t_elem *lst)
 {
 	processlist(lst, '|', ' ');
-	// processlist(lst, '\'', ' ');
-	// processlist(lst, '\"', ' ');
 	processlist_chevron(lst, '<', ' ');
 	processlist_chevron(lst, '>', ' ');
 }

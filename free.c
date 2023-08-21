@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acaplat <acaplat@student.42.fr>            +#+  +:+       +#+        */
+/*   By: derblang <derblang@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 15:13:26 by acaplat           #+#    #+#             */
-/*   Updated: 2023/08/18 16:06:47 by acaplat          ###   ########.fr       */
+/*   Updated: 2023/08/21 12:35:47 by derblang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,6 @@ void	free_list_bis(t_lex *head)
 	while (current != NULL)
 	{
 		temp = current->next;
-		// safe_free(&current->str);
 		free(current);
 		current = temp;
 	}
@@ -90,26 +89,3 @@ void	safe_free(char **str)
 		free(*str);
 	*str = NULL;
 }
-
-// void free_list_bis(t_lex *head)
-// {
-//     t_lex *current;
-//     t_lex *temp;
-
-//     if (head == NULL)
-//         return;
-
-//     current = head;
-//     while (current != NULL)
-//     {
-//         temp = current->next;
-
-//         // Libérer la mémoire de la chaîne de caractères dans la structure t_lex
-//         safe_free(&current->str);
-
-//         // Libérer la structure elle-même
-//         free(current);
-
-//         current = temp;
-//     }
-// }

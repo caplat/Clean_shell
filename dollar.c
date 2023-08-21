@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   dollar.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acaplat <acaplat@student.42.fr>            +#+  +:+       +#+        */
+/*   By: derblang <derblang@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 14:20:55 by acaplat           #+#    #+#             */
-/*   Updated: 2023/08/16 17:59:42 by acaplat          ###   ########.fr       */
+/*   Updated: 2023/08/21 12:39:40 by derblang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	replace_line(char *line, t_mini *shell)
 		}
 		shell->add_char = add_char(shell->add_char, line[var.i]);
 	}
-	shell->add_char = add_char(shell->add_char,'\0');
+	shell->add_char = add_char(shell->add_char, '\0');
 }
 
 void	set_flag(char *line, t_mini *shell, int i)

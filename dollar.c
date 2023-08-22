@@ -6,7 +6,7 @@
 /*   By: acaplat <acaplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 14:20:55 by acaplat           #+#    #+#             */
-/*   Updated: 2023/08/21 18:39:08 by acaplat          ###   ########.fr       */
+/*   Updated: 2023/08/22 17:55:53 by acaplat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,18 +23,19 @@ void	replace_line(char *line, t_mini *shell)
 	while (line[++var.i])
 	{
 		set_flag(line, shell, var.i);
-		// printf("shell->flag -->%d\n",shell->flag);
 		if (line[var.i] == '$' && (shell->flag == 0 || shell->flag == 2)
-			&& line[var.i + 1] != '?')
+			&& (line[var.i + 1] != '?' && line[var.i + 1] != '\0'))
 		{
 			compare = compare_line(line, var.i);
+			// printf("compare--> %s\n",compare);
 			if (compare_with_env(compare, shell) == 1)
 				norme_dollar(&var, shell);
 			else
-				var.i += ft_strlen(compare) + 1;
+				var.i += ft_strlen(compare);
 			free(compare);
 		}
-		shell->add_char = add_char(shell->add_char, line[var.i]);
+		else
+			shell->add_char = add_char(shell->add_char, line[var.i]);
 	}
 	shell->add_char = add_char(shell->add_char, '\0');
 }
@@ -110,6 +111,6 @@ void	norme_dollar(t_compteur *var, t_mini *shell)
 		shell->add_char = add_char(shell->add_char,
 				shell->command[1][var->j++]);
 	}
-	var->i += ft_strlen(shell->command[0]) + 1;
+	var->i += ft_strlen(shell->command[0]);
 	var->j = 0;
 }

@@ -6,7 +6,7 @@
 /*   By: acaplat <acaplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 12:36:57 by acaplat           #+#    #+#             */
-/*   Updated: 2023/08/21 17:49:54 by acaplat          ###   ########.fr       */
+/*   Updated: 2023/08/22 18:00:11 by acaplat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,4 +74,5 @@ void	norme_main(t_mini *shell)
 	erase(&shell->simplecommand, shell);
 	redir(shell);
 	shell->args = set_command(shell->simplecommand, shell);
+	// printlist_bis(shell->args);
 }

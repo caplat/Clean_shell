@@ -6,7 +6,7 @@
 /*   By: acaplat <acaplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 17:14:38 by acaplat           #+#    #+#             */
-/*   Updated: 2023/08/21 18:37:09 by acaplat          ###   ########.fr       */
+/*   Updated: 2023/08/22 19:33:34 by acaplat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,18 +19,26 @@ int word_nb(char *str,char del,t_mini *shell)
 
 	i = 0;
 	word = 0;
+
 	while(str[i])
 	{
-		check_flag_4(str,shell,i);
-		// printf("i--> %d\n",i);
-		// printf("flag --> %d\n",shell->flag);
-		while(str[i] == del && str[i])
-			i++;
-		if(str[i])
+		if(str[i] == del && shell->flag == 0 && str[i])
+		{
+			while(str[i] == del)
+				i++;
+		}
+		if(str[i] != del && str[i] && str[i + 1] != del)
+		{
 			word++;
-		while((str[i] != del && str[i]) ||
-			(str[i] == del && shell->flag != 0))
-			i++;
+			printf("i--> %d -->str %c\n",i,str[i]);
+			printf("flag--> %d\n",shell->flag);
+			while(str[i] != del && str[i])
+			{
+				check_flag_4(str,shell,i);
+				i++;
+			}
+		}
+		i++;
 	}
 	return(word);
 }
@@ -46,4 +54,31 @@ void	check_flag_4(char *line, t_mini *shell, int i)
 	else if (line[i] == '\'' && shell->flag == 1)
 		shell->flag = 0;
 	i++;
+}
+
+int word_length(t_mini *shell,char *str,char del)
+{
+	int i;
+	int length;
+
+	i = 0;
+
+}
+
+char **custom_split(char *str, char del,t_mini *shell)
+{
+	char **tab;
+	int i;
+	int k;
+
+	i = 0;
+	k = 0;
+	tab = malloc(sizeof(char *) * (word_nb(str,' ',shell)) + 1);
+	if(!tab || !str)
+		return(NULL);
+	while(i < word_nb(str,' ',shell));
+	{
+		tab[i] = malloc(sizeof(char) * (word_length(shell,&str[k],' ')) + 1);
+	}
+	
 }

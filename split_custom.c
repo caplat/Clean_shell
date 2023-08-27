@@ -6,7 +6,7 @@
 /*   By: acaplat <acaplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 17:14:38 by acaplat           #+#    #+#             */
-/*   Updated: 2023/08/25 15:11:43 by acaplat          ###   ########.fr       */
+/*   Updated: 2023/08/27 15:08:42 by acaplat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,52 +24,44 @@ void	check_flag_4(char *line, t_mini *shell, int i)
 		shell->flag = 0;
 	i++;
 }
-
-int word_count(t_mini *shell,char *str,char del)
+void replace_char(char *str, char target, char replacement,t_mini *shell) 
 {
     int i;
-    int word;
 
-    i = 0;
-    word = 0;
-    while(str[i])
-    {
+	i = 0;
+	while(str[i]) 
+	{
         check_flag_4(str,shell,i);
-        if(str[i] != del)
-        {
-            word++;
-            while(str[i] && (str[i] != del || (str[i] == del && shell->flag != 0)))
-            {
-                check_flag_4(str,shell,i);
-                i++;
-            }
-        }
-        i++;
+		if (str[i] == target && shell->flag == 0)
+            str[i] = replacement;
+		i++;
     }
-    shell->flag = 0;
-    return(word);
 }
 
-int word_length(t_mini *shell,char *str,char del)
+void delete_char(char *str,char tg1,char tg2,int pos)
 {
-    int i;
-    int len;
+	int len;
+	int ind_l;
+	int ind_e;
+	int flag;
 
-    i = 0;
-    len = 0;
-    while(str[i])
-    {
-        check_flag_4(str,shell,i);
-        while(str[i] && str[i] == del && shell->flag == 0)
-            i++;
-        while(str[i] && (str[i] != del || (str[i] == del && shell->flag != 0)))
-        {
-            check_flag_4(str,shell,i);
-            i++;
-            len++;
-        }
-        break;
-    }
-    shell->flag = 0;
-    return(len);
+	ind_l = 0;
+	ind_e = 0;
+	len = ft_strlen(str);
+	flag = 0;
+	while(ind_l < len)
+	{
+		if(ind_l > pos && str[ind_l] == tg2 && flag == 0)
+			flag = 1;
+		if(ind_l > pos && str[ind_l] == tg2 && flag == 0)
+			flag = 0;
+		if((str[ind_l] != tg1 && flag == 0) || str[ind_l] != tg2)
+		{	
+			str[ind_e] = str[ind_l];
+			ind_e++;
+		}
+		// printf("flag--> %d\n",flag);
+		ind_l++;	
+	}
+	str[ind_e] = '\0';
 }

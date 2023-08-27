@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export_bis.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: derblang <derblang@student.42.fr>          +#+  +:+       +#+        */
+/*   By: acaplat <acaplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 16:42:55 by acaplat           #+#    #+#             */
-/*   Updated: 2023/08/21 12:09:16 by derblang         ###   ########.fr       */
+/*   Updated: 2023/08/27 15:07:09 by acaplat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,8 @@ void	add_var_export(char *str, t_mini *shell)
 	char	*newstr;
 
 	pos = find_character(str, '=');
+	delete_char(str,'\'','\"',pos);
+	// printf("str --> %s\n",str);
 	res = check_dup(shell->env_cpy, str);
 	if (res != -1)
 		remove_str_from_tab(&shell->env_cpy, res);
@@ -112,3 +114,5 @@ void	add_var_export(char *str, t_mini *shell)
 	sort_tab(shell->env_cpy);
 	free(newstr);
 }
+
+

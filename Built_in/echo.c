@@ -6,7 +6,7 @@
 /*   By: acaplat <acaplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 16:33:42 by acaplat           #+#    #+#             */
-/*   Updated: 2023/08/21 16:21:07 by acaplat          ###   ########.fr       */
+/*   Updated: 2023/08/26 18:28:34 by acaplat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,8 @@ void	exec_echo(t_mini *shell)
 	current = shell->echo_lst;
 	while (current)
 	{
-		shell->tab = ft_split(current->str, ' ');
+		shell->tab = ft_split(current->str,31);
+		// print_tab(shell->tab);
 		if (ft_strncmp(shell->tab[0], "echo", 5) == 0)
 			echo(shell->tab, shell);
 		free_arr(shell->tab);

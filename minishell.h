@@ -6,7 +6,7 @@
 /*   By: acaplat <acaplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 12:50:26 by acaplat           #+#    #+#             */
-/*   Updated: 2023/08/25 15:09:45 by acaplat          ###   ########.fr       */
+/*   Updated: 2023/08/27 15:11:31 by acaplat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 
 # include "libft/libft.h"
 # include <fcntl.h>
+# include <readline/history.h>
+# include <readline/readline.h>
 # include <signal.h>
 # include <stdbool.h>
 # include <stdio.h>
@@ -22,8 +24,6 @@
 # include <string.h>
 # include <termios.h>
 # include <unistd.h>
-# include <readline/history.h>
-# include <readline/readline.h>
 
 typedef struct s_elem
 {
@@ -219,9 +219,10 @@ t_lex				*echo_list(t_mini *shell);
 
 //Split_custom
 
-void	check_flag_4(char *line, t_mini *shell, int i);
-int word_count(t_mini *shell,char *str,char del);
-int word_length(t_mini *shell,char *str,char del);
+void				delete_char(char *str, char tg1, char tg2, int pos);
+void				check_flag_4(char *line, t_mini *shell, int i);
+void				replace_char(char *str, char target, char replacement,
+						t_mini *shell);
 
 // BUILT-IN
 

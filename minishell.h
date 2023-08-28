@@ -6,7 +6,7 @@
 /*   By: acaplat <acaplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 12:50:26 by acaplat           #+#    #+#             */
-/*   Updated: 2023/08/28 16:24:00 by acaplat          ###   ########.fr       */
+/*   Updated: 2023/08/28 17:04:07 by acaplat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -238,6 +238,7 @@ void				replace_char(char *str, char target, char replacement,
 
 void				print_env(t_mini *shell);
 void				env_cpy(t_mini *shell);
+void shlvl(t_mini *shell);
 
 // Export
 

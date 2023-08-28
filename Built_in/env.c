@@ -6,7 +6,7 @@
 /*   By: acaplat <acaplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 16:32:59 by acaplat           #+#    #+#             */
-/*   Updated: 2023/08/09 12:24:55 by acaplat          ###   ########.fr       */
+/*   Updated: 2023/08/28 17:03:43 by acaplat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,4 +40,24 @@ void	env_cpy(t_mini *shell)
 		i++;
 	}
 	shell->env_cpy[i] = NULL;
+}
+
+void shlvl(t_mini *shell)
+{
+	
+	int i;
+	char  *shlvl;
+	char *level;
+
+	level = NULL;
+	shlvl = NULL;
+	level = getenv("SHLVL");
+	i = ft_atoi(level);
+	i++;
+	level = ft_itoa(i);
+	shlvl = ft_strjoin("SHLVL=", level);
+	add_var_env(shlvl, shell);
+	add_var_export(shlvl, shell);
+	free(shlvl);
+	free(level);
 }

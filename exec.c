@@ -6,7 +6,7 @@
 /*   By: acaplat <acaplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/03 12:03:18 by acaplat           #+#    #+#             */
-/*   Updated: 2023/08/28 16:58:38 by acaplat          ###   ########.fr       */
+/*   Updated: 2023/08/28 17:04:27 by acaplat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@ int	execute(t_mini *shell)
 			return (0);
 		if (access(shell->arg_bis[0], F_OK | X_OK) == 0)
 		{	
+			shlvl(shell);
 			execve(shell->arg_bis[0],shell->arg_bis,shell->env);
 		}
 		if (verif_built_in(shell) == 0)

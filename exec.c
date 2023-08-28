@@ -6,7 +6,7 @@
 /*   By: acaplat <acaplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/03 12:03:18 by acaplat           #+#    #+#             */
-/*   Updated: 2023/08/26 16:58:30 by acaplat          ###   ########.fr       */
+/*   Updated: 2023/08/28 16:58:38 by acaplat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,12 +62,15 @@ int	execute(t_mini *shell)
 {
 	if (verif_built_in(shell) == 1)
 		return (0);
+	// printf("arg_bis -->%s\n",shell->arg_bis[0]);
 	if (execve(shell->exe, shell->arg_bis, shell->env) == -1)
 	{
 		if (shell->arg_bis[0] == NULL)
 			return (0);
-		if (ft_strncmp(shell->arg_bis[0],"./",2) == 0 && access(shell->arg_bis[0], F_OK | X_OK) == 0)
-			return(0);
+		if (access(shell->arg_bis[0], F_OK | X_OK) == 0)
+		{	
+			execve(shell->arg_bis[0],shell->arg_bis,shell->env);
+		}
 		if (verif_built_in(shell) == 0)
 		{	
 			dup2(shell->stdout_cpy, STDOUT_FILENO);

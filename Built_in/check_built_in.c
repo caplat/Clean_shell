@@ -6,7 +6,7 @@
 /*   By: acaplat <acaplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 11:58:47 by acaplat           #+#    #+#             */
-/*   Updated: 2023/08/17 14:19:08 by acaplat          ###   ########.fr       */
+/*   Updated: 2023/08/28 16:20:37 by acaplat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,4 +35,12 @@ int	verif_built_in(t_mini *shell)
 		return (1);
 	else
 		return (0);
+}
+
+void norme_export_bis(t_mini *shell,char *cpy)
+{
+	free_arr(shell->tab);
+	cpy = NULL;
+	shell->tab = NULL;
+	// current = current->next;
 }

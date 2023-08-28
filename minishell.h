@@ -6,7 +6,7 @@
 /*   By: acaplat <acaplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 12:50:26 by acaplat           #+#    #+#             */
-/*   Updated: 2023/08/27 15:11:31 by acaplat          ###   ########.fr       */
+/*   Updated: 2023/08/28 16:24:00 by acaplat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,6 @@
 
 # include "libft/libft.h"
 # include <fcntl.h>
-# include <readline/history.h>
-# include <readline/readline.h>
 # include <signal.h>
 # include <stdbool.h>
 # include <stdio.h>
@@ -24,6 +22,8 @@
 # include <string.h>
 # include <termios.h>
 # include <unistd.h>
+# include <readline/history.h>
+# include <readline/readline.h>
 
 typedef struct s_elem
 {
@@ -95,6 +95,14 @@ typedef struct s_redir
 	t_lex			*next;
 	char			*redir;
 }					t_redir;
+
+typedef struct s_exp
+{
+	int				length;
+	int				i;
+	char			*cpy;
+	t_lex			*current;
+}					t_exp;
 
 //Main
 
@@ -291,5 +299,6 @@ void				norme_exit(char **tab, t_mini *shell);
 
 void				check_built_in(t_mini *shell);
 int					verif_built_in(t_mini *shell);
+void				norme_export_bis(t_mini *shell, char *cpy);
 
 #endif

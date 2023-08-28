@@ -6,7 +6,7 @@
 /*   By: acaplat <acaplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 16:42:55 by acaplat           #+#    #+#             */
-/*   Updated: 2023/08/27 15:07:09 by acaplat          ###   ########.fr       */
+/*   Updated: 2023/08/28 16:27:04 by acaplat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,31 +58,32 @@ char	**do_export(t_mini *shell)
 
 void	export(t_mini *shell)
 {
-	int		length;
-	t_lex	*current;
-	int		i;
+	t_exp var;
 
-	current = shell->args;
-	i = 1;
-	while (current)
+	var.current = shell->echo_lst;
+	var.i = 1;
+	while (var.current)
 	{
-		shell->tab = ft_split(current->str, ' ');
-		length = find_length(shell->tab);
-		if (ft_strncmp(shell->tab[0], "export", 7) == 0 && length == 1)
+		var.cpy = ft_strdup(var.current->str);
+		// printf("cpy-->%s\n",cpy);
+		replace_char(var.cpy,' ',31,shell);
+		shell->tab = ft_split(var.cpy,31);
+		var.length = find_length(shell->tab);
+		if (ft_strncmp(shell->tab[0], "export", 7) == 0 && var.length == 1)
 			print_tab(shell->env_cpy);
-		else if (ft_strncmp(shell->tab[0], "export", 7) == 0 && length > 1)
+		else if (ft_strncmp(shell->tab[0], "export", 7) == 0 && var.length > 1)
 		{
-			while (shell->tab[i] && parse_export(shell->tab) == 1)
+			while (shell->tab[var.i] && parse_export(shell->tab) == 1)
 			{
-				add_var_export(shell->tab[i], shell);
-				add_var_env(shell->tab[i], shell);
-				i++;
+				add_var_export(shell->tab[var.i], shell);
+				add_var_env(shell->tab[var.i], shell);
+				var.i++;
 			}
 		}
-		free_arr(shell->tab);
-		shell->tab = NULL;
-		current = current->next;
+		norme_export_bis(shell,var.cpy);
+		var.current = var.current->next;
 	}
+	safe_free(&var.cpy);
 }
 
 void	add_var_export(char *str, t_mini *shell)
@@ -94,7 +95,7 @@ void	add_var_export(char *str, t_mini *shell)
 
 	pos = find_character(str, '=');
 	delete_char(str,'\'','\"',pos);
-	// printf("str --> %s\n",str);
+	printf("str --> %s\n",str);
 	res = check_dup(shell->env_cpy, str);
 	if (res != -1)
 		remove_str_from_tab(&shell->env_cpy, res);

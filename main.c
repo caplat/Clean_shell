@@ -6,7 +6,7 @@
 /*   By: acaplat <acaplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 12:36:57 by acaplat           #+#    #+#             */
-/*   Updated: 2023/08/26 18:17:13 by acaplat          ###   ########.fr       */
+/*   Updated: 2023/08/28 15:51:08 by acaplat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	main(int argc, char **argv, char **env)
 	shell = malloc(sizeof(t_mini));
 	initialize(env, shell);
 	shell->env_cpy = do_export(shell);
-	// rl_catch_signals = 0;
+	rl_catch_signals = 0;
 	do_signal(shell);
 	minishell_loop(shell);
 }

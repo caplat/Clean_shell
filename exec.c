@@ -6,7 +6,7 @@
 /*   By: acaplat <acaplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/03 12:03:18 by acaplat           #+#    #+#             */
-/*   Updated: 2023/08/28 17:04:27 by acaplat          ###   ########.fr       */
+/*   Updated: 2023/08/29 14:27:10 by acaplat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,18 +62,18 @@ int	execute(t_mini *shell)
 {
 	if (verif_built_in(shell) == 1)
 		return (0);
-	// printf("arg_bis -->%s\n",shell->arg_bis[0]);
 	if (execve(shell->exe, shell->arg_bis, shell->env) == -1)
 	{
 		if (shell->arg_bis[0] == NULL)
 			return (0);
 		if (access(shell->arg_bis[0], F_OK | X_OK) == 0)
-		{	
-			shlvl(shell);
-			execve(shell->arg_bis[0],shell->arg_bis,shell->env);
+		{
+			if (ft_strncmp("./minishell", shell->arg_bis[0], 12) == 0)
+				shlvl(shell);
+			execve(shell->arg_bis[0], shell->arg_bis, shell->env);
 		}
 		if (verif_built_in(shell) == 0)
-		{	
+		{
 			dup2(shell->stdout_cpy, STDOUT_FILENO);
 			dup2(shell->stdin_cpy, STDIN_FILENO);
 			printf("minishell: %s: command not found\n", shell->arg_bis[0]);

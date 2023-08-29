@@ -6,7 +6,7 @@
 /*   By: acaplat <acaplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 16:42:55 by acaplat           #+#    #+#             */
-/*   Updated: 2023/08/28 16:27:04 by acaplat          ###   ########.fr       */
+/*   Updated: 2023/08/29 14:35:10 by acaplat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,16 +58,15 @@ char	**do_export(t_mini *shell)
 
 void	export(t_mini *shell)
 {
-	t_exp var;
+	t_exp	var;
 
 	var.current = shell->echo_lst;
 	var.i = 1;
 	while (var.current)
 	{
 		var.cpy = ft_strdup(var.current->str);
-		// printf("cpy-->%s\n",cpy);
-		replace_char(var.cpy,' ',31,shell);
-		shell->tab = ft_split(var.cpy,31);
+		replace_char(var.cpy, ' ', 31, shell);
+		shell->tab = ft_split(var.cpy, 31);
 		var.length = find_length(shell->tab);
 		if (ft_strncmp(shell->tab[0], "export", 7) == 0 && var.length == 1)
 			print_tab(shell->env_cpy);
@@ -80,7 +79,7 @@ void	export(t_mini *shell)
 				var.i++;
 			}
 		}
-		norme_export_bis(shell,var.cpy);
+		norme_export_bis(shell, var.cpy);
 		var.current = var.current->next;
 	}
 	safe_free(&var.cpy);
@@ -94,8 +93,7 @@ void	add_var_export(char *str, t_mini *shell)
 	char	*newstr;
 
 	pos = find_character(str, '=');
-	delete_char(str,'\'','\"',pos);
-	printf("str --> %s\n",str);
+	delete_char(str, '\'', '\"', pos);
 	res = check_dup(shell->env_cpy, str);
 	if (res != -1)
 		remove_str_from_tab(&shell->env_cpy, res);
@@ -115,5 +113,3 @@ void	add_var_export(char *str, t_mini *shell)
 	sort_tab(shell->env_cpy);
 	free(newstr);
 }
-
-

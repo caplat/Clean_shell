@@ -6,7 +6,7 @@
 /*   By: acaplat <acaplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 16:33:42 by acaplat           #+#    #+#             */
-/*   Updated: 2023/08/26 18:28:34 by acaplat          ###   ########.fr       */
+/*   Updated: 2023/08/29 14:34:42 by acaplat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,6 @@ void	echo(char **compare, t_mini *shell)
 	k = 0;
 	i = check_n(compare);
 	ft_exit_code(compare, shell);
-	// print_tab(compare);
 	while (compare[i])
 	{
 		echo_norme(i, k, compare);
@@ -60,8 +59,7 @@ void	exec_echo(t_mini *shell)
 	current = shell->echo_lst;
 	while (current)
 	{
-		shell->tab = ft_split(current->str,31);
-		// print_tab(shell->tab);
+		shell->tab = ft_split(current->str, 31);
 		if (ft_strncmp(shell->tab[0], "echo", 5) == 0)
 			echo(shell->tab, shell);
 		free_arr(shell->tab);
@@ -92,7 +90,7 @@ void	echo_norme(int i, int k, char **compare)
 	while (compare[i][k])
 	{
 		if (compare[i][k] == '\'')
-		{	
+		{
 			k += echo_help(compare[i], k, '\'');
 			if (compare[i][k] == '\'')
 				continue ;

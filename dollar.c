@@ -6,7 +6,7 @@
 /*   By: acaplat <acaplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 14:20:55 by acaplat           #+#    #+#             */
-/*   Updated: 2023/08/22 17:55:53 by acaplat          ###   ########.fr       */
+/*   Updated: 2023/08/29 14:26:17 by acaplat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ void	replace_line(char *line, t_mini *shell)
 			&& (line[var.i + 1] != '?' && line[var.i + 1] != '\0'))
 		{
 			compare = compare_line(line, var.i);
-			// printf("compare--> %s\n",compare);
 			if (compare_with_env(compare, shell) == 1)
 				norme_dollar(&var, shell);
 			else

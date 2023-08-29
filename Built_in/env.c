@@ -6,7 +6,7 @@
 /*   By: acaplat <acaplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 16:32:59 by acaplat           #+#    #+#             */
-/*   Updated: 2023/08/28 17:03:43 by acaplat          ###   ########.fr       */
+/*   Updated: 2023/08/29 14:35:36 by acaplat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,12 +42,11 @@ void	env_cpy(t_mini *shell)
 	shell->env_cpy[i] = NULL;
 }
 
-void shlvl(t_mini *shell)
+void	shlvl(t_mini *shell)
 {
-	
-	int i;
-	char  *shlvl;
-	char *level;
+	int		i;
+	char	*shlvl;
+	char	*level;
 
 	level = NULL;
 	shlvl = NULL;

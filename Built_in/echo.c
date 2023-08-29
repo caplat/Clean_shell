@@ -6,7 +6,7 @@
 /*   By: acaplat <acaplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 16:33:42 by acaplat           #+#    #+#             */
-/*   Updated: 2023/08/29 14:34:42 by acaplat          ###   ########.fr       */
+/*   Updated: 2023/08/29 17:55:20 by acaplat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ int	check_n(char **compare)
 	int	j;
 
 	i = 0;
+	// print_tab(compare);
 	while (compare[++i])
 	{
 		j = 0;
@@ -37,19 +38,29 @@ int	check_n(char **compare)
 void	echo(char **compare, t_mini *shell)
 {
 	int	i;
+	int j;
 	int	k;
+	int flag;
 
 	k = 0;
 	i = check_n(compare);
+	j = find_length(compare);
+	flag = i;
+	// printf("%d\n",i);
 	ft_exit_code(compare, shell);
 	while (compare[i])
 	{
 		echo_norme(i, k, compare);
-		printf(" ");
+		if(i < j - 1)
+			ft_putchar_fd(' ',1);
+		// printf(" ");
+		// printf("allo\n");
 		i++;
 		k = 0;
 	}
-	printf("\n");
+	if(flag == 1)
+		ft_putchar_fd('\n',1);
+	// printf("\n");
 }
 
 void	exec_echo(t_mini *shell)
@@ -78,7 +89,8 @@ int	echo_help(char *compare, int k, char cote)
 	k++;
 	while (compare[k] && compare[k] != cote)
 	{
-		printf("%c", compare[k]);
+		// printf("%c", compare[k]);
+		ft_putchar_fd(compare[k],1);
 		k++;
 	}
 	k++;
@@ -101,7 +113,9 @@ void	echo_norme(int i, int k, char **compare)
 			if (compare[i][k] == '\"')
 				continue ;
 		}
-		printf("%c", compare[i][k]);
+		// printf("allo\n");
+		ft_putchar_fd(compare[i][k],1);
+		// printf("%c", compare[i][k]);
 		k++;
 	}
 }

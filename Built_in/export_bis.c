@@ -6,7 +6,7 @@
 /*   By: acaplat <acaplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 16:42:55 by acaplat           #+#    #+#             */
-/*   Updated: 2023/08/29 14:35:10 by acaplat          ###   ########.fr       */
+/*   Updated: 2023/08/29 18:15:17 by acaplat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ void	export(t_mini *shell)
 		replace_char(var.cpy, ' ', 31, shell);
 		shell->tab = ft_split(var.cpy, 31);
 		var.length = find_length(shell->tab);
-		if (ft_strncmp(shell->tab[0], "export", 7) == 0 && var.length == 1)
+		if (ft_strncmp(shell->tab[0], "export", 7) == 0 && var.length == 1 /*&& var.current->next == NULL*/)
 			print_tab(shell->env_cpy);
 		else if (ft_strncmp(shell->tab[0], "export", 7) == 0 && var.length > 1)
 		{

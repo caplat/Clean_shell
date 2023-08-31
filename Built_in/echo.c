@@ -6,7 +6,7 @@
 /*   By: acaplat <acaplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 16:33:42 by acaplat           #+#    #+#             */
-/*   Updated: 2023/08/29 17:55:20 by acaplat          ###   ########.fr       */
+/*   Updated: 2023/08/31 17:06:16 by acaplat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ int	check_n(char **compare)
 	int	j;
 
 	i = 0;
-	// print_tab(compare);
 	while (compare[++i])
 	{
 		j = 0;
@@ -38,45 +37,44 @@ int	check_n(char **compare)
 void	echo(char **compare, t_mini *shell)
 {
 	int	i;
-	int j;
+	int	j;
 	int	k;
-	int flag;
+	int	flag;
 
 	k = 0;
 	i = check_n(compare);
 	j = find_length(compare);
 	flag = i;
-	// printf("%d\n",i);
 	ft_exit_code(compare, shell);
 	while (compare[i])
 	{
 		echo_norme(i, k, compare);
-		if(i < j - 1)
-			ft_putchar_fd(' ',1);
-		// printf(" ");
-		// printf("allo\n");
+		if (i < j - 1)
+			ft_putchar_fd(' ', 1);
 		i++;
 		k = 0;
 	}
-	if(flag == 1)
-		ft_putchar_fd('\n',1);
-	// printf("\n");
+	if (flag == 1)
+		ft_putchar_fd('\n', 1);
 }
 
 void	exec_echo(t_mini *shell)
 {
 	t_lex	*current;
+	int		i;
 
+	i = 0;
 	current = shell->echo_lst;
-	while (current)
+	while (i < shell->node_pos)
 	{
-		shell->tab = ft_split(current->str, 31);
-		if (ft_strncmp(shell->tab[0], "echo", 5) == 0)
-			echo(shell->tab, shell);
-		free_arr(shell->tab);
-		shell->tab = NULL;
 		current = current->next;
+		i++;
 	}
+	shell->tab = ft_split(current->str, 31);
+	if (ft_strncmp(shell->tab[0], "echo", 5) == 0)
+		echo(shell->tab, shell);
+	free_arr(shell->tab);
+	shell->tab = NULL;
 }
 
 int	echo_help(char *compare, int k, char cote)
@@ -89,8 +87,7 @@ int	echo_help(char *compare, int k, char cote)
 	k++;
 	while (compare[k] && compare[k] != cote)
 	{
-		// printf("%c", compare[k]);
-		ft_putchar_fd(compare[k],1);
+		ft_putchar_fd(compare[k], 1);
 		k++;
 	}
 	k++;
@@ -113,9 +110,7 @@ void	echo_norme(int i, int k, char **compare)
 			if (compare[i][k] == '\"')
 				continue ;
 		}
-		// printf("allo\n");
-		ft_putchar_fd(compare[i][k],1);
-		// printf("%c", compare[i][k]);
+		ft_putchar_fd(compare[i][k], 1);
 		k++;
 	}
 }

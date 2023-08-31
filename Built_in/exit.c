@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: derblang <derblang@student.42.fr>          +#+  +:+       +#+        */
+/*   By: acaplat <acaplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 14:41:57 by acaplat           #+#    #+#             */
-/*   Updated: 2023/08/21 11:51:26 by derblang         ###   ########.fr       */
+/*   Updated: 2023/08/31 17:02:06 by acaplat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,17 +15,20 @@
 void	ft_exit(t_mini *shell)
 {
 	t_lex	*current;
+	int		i;
 
+	i = 0;
 	current = shell->args;
-	while (current)
+	while (i < shell->node_pos)
 	{
-		shell->tab = ft_split(current->str, ' ');
-		if (ft_strncmp(shell->tab[0], "exit", 5) == 0)
-			exec_exit(shell->tab, shell);
-		free_arr(shell->tab);
-		shell->tab = NULL;
 		current = current->next;
+		i++;
 	}
+	shell->tab = ft_split(current->str, ' ');
+	if (ft_strncmp(shell->tab[0], "exit", 5) == 0)
+		exec_exit(shell->tab, shell);
+	free_arr(shell->tab);
+	shell->tab = NULL;
 }
 
 void	exec_exit(char **tab, t_mini *shell)

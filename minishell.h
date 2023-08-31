@@ -6,7 +6,7 @@
 /*   By: acaplat <acaplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 12:50:26 by acaplat           #+#    #+#             */
-/*   Updated: 2023/08/29 14:29:58 by acaplat          ###   ########.fr       */
+/*   Updated: 2023/08/31 16:53:53 by acaplat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ typedef struct s_mini
 	int				stdout_cpy;
 	int				stdin_cpy;
 	int				redir_input;
+	int				node_pos;
 }					t_mini;
 
 typedef struct s_compteur
@@ -301,5 +302,8 @@ void				norme_exit(char **tab, t_mini *shell);
 void				check_built_in(t_mini *shell);
 int					verif_built_in(t_mini *shell);
 void				norme_export_bis(t_mini *shell, char *cpy);
+void				find_node_position(t_lex *target, t_lex *head,
+						t_mini *shell);
+t_exp				norme_export_ter(t_mini *shell);
 
 #endif

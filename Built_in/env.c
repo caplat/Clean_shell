@@ -6,7 +6,7 @@
 /*   By: acaplat <acaplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 16:32:59 by acaplat           #+#    #+#             */
-/*   Updated: 2023/08/29 14:35:36 by acaplat          ###   ########.fr       */
+/*   Updated: 2023/08/31 17:02:21 by acaplat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,17 +15,20 @@
 void	print_env(t_mini *shell)
 {
 	t_lex	*current;
+	int		i;
 
+	i = 0;
 	current = shell->args;
-	while (current)
+	while (i < shell->node_pos)
 	{
-		shell->tab = ft_split(current->str, ' ');
-		if (ft_strncmp(shell->tab[0], "env", 4) == 0)
-			print_tab(shell->env);
-		free_arr(shell->tab);
-		shell->tab = NULL;
 		current = current->next;
+		i++;
 	}
+	shell->tab = ft_split(current->str, ' ');
+	if (ft_strncmp(shell->tab[0], "env", 4) == 0)
+		print_tab(shell->env);
+	free_arr(shell->tab);
+	shell->tab = NULL;
 }
 
 void	env_cpy(t_mini *shell)

@@ -6,7 +6,7 @@
 /*   By: acaplat <acaplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/03 12:03:18 by acaplat           #+#    #+#             */
-/*   Updated: 2023/08/29 18:33:53 by acaplat          ###   ########.fr       */
+/*   Updated: 2023/08/31 16:54:50 by acaplat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ int	verify(t_mini *shell, int j)
 
 	i = 0;
 	current = find_node(j, shell);
+	find_node_position(current, shell->args, shell);
 	if (get_nb_node(shell->args) > 1)
 		check_built_in(shell);
 	if (current == NULL)

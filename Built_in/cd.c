@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: derblang <derblang@student.42.fr>          +#+  +:+       +#+        */
+/*   By: acaplat <acaplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 13:59:11 by acaplat           #+#    #+#             */
-/*   Updated: 2023/08/21 12:05:24 by derblang         ###   ########.fr       */
+/*   Updated: 2023/08/31 17:00:53 by acaplat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,17 +15,20 @@
 void	cd(t_mini *shell)
 {
 	t_lex	*current;
+	int		i;
 
+	i = 0;
 	current = shell->args;
-	while (current)
+	while (i < shell->node_pos)
 	{
-		shell->tab = ft_split(current->str, ' ');
-		if (ft_strncmp(shell->tab[0], "cd", 3) == 0 && shell->tab[1])
-			change_directory(shell->tab[1], shell);
-		free_arr(shell->tab);
-		shell->tab = NULL;
 		current = current->next;
+		i++;
 	}
+	shell->tab = ft_split(current->str, ' ');
+	if (ft_strncmp(shell->tab[0], "cd", 3) == 0 && shell->tab[1])
+		change_directory(shell->tab[1], shell);
+	free_arr(shell->tab);
+	shell->tab = NULL;
 }
 
 void	change_env(char *cwd, t_mini *shell)

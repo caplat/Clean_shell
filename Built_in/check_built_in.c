@@ -6,7 +6,7 @@
 /*   By: acaplat <acaplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 11:58:47 by acaplat           #+#    #+#             */
-/*   Updated: 2023/08/29 14:33:09 by acaplat          ###   ########.fr       */
+/*   Updated: 2023/08/31 17:05:44 by acaplat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,4 +41,39 @@ void	norme_export_bis(t_mini *shell, char *cpy)
 	free_arr(shell->tab);
 	cpy = NULL;
 	shell->tab = NULL;
+}
+
+void	find_node_position(t_lex *target, t_lex *head, t_mini *shell)
+{
+	t_lex	*current;
+	int		i;
+
+	i = 0;
+	current = head;
+	while (current != target)
+	{
+		current = current->next;
+		i++;
+	}
+	shell->node_pos = i;
+}
+
+t_exp	norme_export_ter(t_mini *shell)
+{
+	t_exp	var;
+	int		j;
+
+	j = 0;
+	var.current = shell->echo_lst;
+	var.i = 1;
+	while (j < shell->node_pos)
+	{
+		var.current = var.current->next;
+		j++;
+	}
+	var.cpy = ft_strdup(var.current->str);
+	replace_char(var.cpy, ' ', 31, shell);
+	shell->tab = ft_split(var.cpy, 31);
+	var.length = find_length(shell->tab);
+	return (var);
 }

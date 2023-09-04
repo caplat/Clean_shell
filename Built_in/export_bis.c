@@ -6,7 +6,7 @@
 /*   By: acaplat <acaplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 16:42:55 by acaplat           #+#    #+#             */
-/*   Updated: 2023/08/31 16:52:06 by acaplat          ###   ########.fr       */
+/*   Updated: 2023/09/04 16:57:07 by acaplat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ void	export(t_mini *shell)
 	t_exp	var;
 
 	var = norme_export_ter(shell);
+	// print_tab(shell->tab);
 	if (ft_strncmp(shell->tab[0], "export", 7) == 0 && var.length == 1)
 		print_tab(shell->env_cpy);
 	else if (ft_strncmp(shell->tab[0], "export", 7) == 0 && var.length > 1)

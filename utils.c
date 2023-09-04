@@ -6,7 +6,7 @@
 /*   By: acaplat <acaplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 13:04:00 by acaplat           #+#    #+#             */
-/*   Updated: 2023/08/31 15:37:28 by acaplat          ###   ########.fr       */
+/*   Updated: 2023/09/03 18:40:07 by acaplat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ char	*add_char(char *str, char c)
 		i++;
 	}
 	newstr[i] = c;
-	free(str);
+	safe_free(&str);
 	return (newstr);
 }
 

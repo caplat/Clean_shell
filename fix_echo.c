@@ -6,7 +6,7 @@
 /*   By: acaplat <acaplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 16:29:39 by acaplat           #+#    #+#             */
-/*   Updated: 2023/08/31 17:00:41 by acaplat          ###   ########.fr       */
+/*   Updated: 2023/09/03 18:43:10 by acaplat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,5 +46,6 @@ t_lex	*echo_list(t_mini *shell)
 	safe_free(&str);
 	str = NULL;
 	shell->echo_lst = newlist;
+	// printlist_bis(shell->echo_lst);
 	return (newlist);
 }

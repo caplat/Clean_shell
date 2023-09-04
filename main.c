@@ -6,7 +6,7 @@
 /*   By: acaplat <acaplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 12:36:57 by acaplat           #+#    #+#             */
-/*   Updated: 2023/08/31 17:08:07 by acaplat          ###   ########.fr       */
+/*   Updated: 2023/09/04 16:53:52 by acaplat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ int	main(int argc, char **argv, char **env)
 	rl_catch_signals = 0;
 	do_signal(shell);
 	minishell_loop(shell);
+	// system("leaks ./minishell");
 }
 
 void	minishell_loop(t_mini *shell)
@@ -64,6 +65,8 @@ void	norme_main(t_mini *shell)
 	shell->lst = get_my_list(shell);
 	shell->lst_bis = get_my_list(shell);
 	shell->newline_bis = convert_to_str(shell->lst_bis);
+	parse_newline_bis(shell, shell->newline_bis);
+	// printf("%s\n",shell->newline_bis);
 	fix_echo(shell);
 	safe_free(&shell->add_char);
 	shell->add_char = ft_calloc(1, 2);
@@ -75,4 +78,54 @@ void	norme_main(t_mini *shell)
 	redir(shell);
 	shell->args = set_command(shell->simplecommand, shell);
 	// printlist_bis(shell->args);
+}
+
+void	parse_newline_bis(t_mini *shell, char *str)
+{
+	int		i;
+	char	*newstr;
+
+	(void)shell;
+	i = 0;
+	newstr = ft_calloc(1, 2);
+	while (str[i])
+	{
+		set_flag(str, shell, i);
+		if (str[i] == ' ' && (str[i + 1] == '<' || str[i + 1] == '<')
+			&& shell->flag == 0)
+			i++;
+		main_ter(shell, str, &i);
+		newstr = add_char(newstr, str[i]);
+		i++;
+	}
+	// printf("%zu\n",ft_strlen(newstr));
+	// printf("newstr --> %s\n",newstr);
+	safe_free(&shell->newline_bis);
+	shell->newline_bis = newstr;
+}
+
+void	main_ter(t_mini *shell, char *str, int *i)
+{
+	if ((str[*i] == '<' || str[*i] == '>') && shell->flag == 0)
+	{
+		(*i)++;
+		if (str[*i] == '<' || str[*i] == '>')
+			(*i)++;
+		if (str[*i] != ' ')
+			while (str[*i] != ' ' && str[*i])
+				(*i)++;
+		else if (str[*i] == ' ')
+		{
+			while (str[*i] == ' ' && str[*i])
+			{
+				set_flag(str, shell, *i);
+				(*i)++;
+			}
+			while (str[*i] != ' ' && str[*i])
+			{
+				set_flag(str, shell, *i);
+				(*i)++;
+			}
+		}
+	}
 }

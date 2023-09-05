@@ -6,7 +6,7 @@
 /*   By: acaplat <acaplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 12:36:57 by acaplat           #+#    #+#             */
-/*   Updated: 2023/09/05 12:01:09 by acaplat          ###   ########.fr       */
+/*   Updated: 2023/09/05 17:42:41 by acaplat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,9 @@
 int	main(int argc, char **argv, char **env)
 {
 	t_mini	*shell;
-
 	(void)argv;
+
+	error_code = 0;
 	if (argc != 1)
 	{
 		printf("retry without arguments\n");
@@ -27,6 +28,7 @@ int	main(int argc, char **argv, char **env)
 	shell->env_cpy = do_export(shell);
 	rl_catch_signals = 0;
 	do_signal(shell);
+	// printf("%d\n",shell->exit_code);
 	minishell_loop(shell);
 	// system("leaks ./minishell");
 }
@@ -36,6 +38,8 @@ void	minishell_loop(t_mini *shell)
 	while (1)
 	{
 		shell->line = readline(">>");
+		// shell->exit_code = error_code;
+		// printf("%d\n",shell->exit_code);
 		if (shell->line)
 		{
 			if (ft_strlen(shell->line) > 0)

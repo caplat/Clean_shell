@@ -6,7 +6,7 @@
 /*   By: acaplat <acaplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 14:41:57 by acaplat           #+#    #+#             */
-/*   Updated: 2023/08/31 17:02:06 by acaplat          ###   ########.fr       */
+/*   Updated: 2023/09/05 17:40:11 by acaplat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,12 +49,14 @@ void	exec_exit(char **tab, t_mini *shell)
 	if (find_length(tab) > 2 && ft_is_digit_str(tab[1]) == 1)
 	{
 		printf("minishell: exit: too many arguments\n");
-		shell->exit_code = 1;
+		// shell->exit_code = 1;
+		error_code = 1;
 	}
 	else
 	{
-		shell->exit_code = ft_atoi(tab[1]) % 256;
-		exit(ft_atoi(tab[1]) % 256);
+		// shell->exit_code = ft_atoi(tab[1]) % 256;
+		error_code = ft_atoi(tab[1]) % 256;
+		exit(error_code);
 	}
 }
 
@@ -76,9 +78,13 @@ int	ft_is_digit_str(const char *str)
 
 void	norme_exit(char **tab, t_mini *shell)
 {
+	(void)shell;
+	
 	ft_putstr_fd("minishell: exit: ", 2);
 	ft_putstr_fd(tab[1], 2);
 	ft_putstr_fd(": numeric argument required\n", 2);
-	shell->exit_code = 255;
-	exit(shell->exit_code);
+	// shell->exit_code = 255;
+	error_code = 255;
+	// exit(shell->exit_code);
+	exit(error_code);
 }

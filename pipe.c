@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipe.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: derblang <derblang@student.42.fr>          +#+  +:+       +#+        */
+/*   By: acaplat <acaplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/03 11:55:14 by acaplat           #+#    #+#             */
-/*   Updated: 2023/08/21 12:19:11 by derblang         ###   ########.fr       */
+/*   Updated: 2023/09/05 15:58:52 by acaplat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ void	do_the_pipe(t_mini *shell)
 
 	var.prev_pipe_read = 0;
 	var.nb_node = get_nb_node(shell->args);
+	// child_pid = malloc(sizeof(pid_t) * var.nb_node + 1);
 	var.i = -1;
 	while (++var.i < var.nb_node)
 	{
@@ -83,10 +84,13 @@ void	ft_wait(t_mini *shell, int nb_node)
 	int		status;
 	int		i;
 	pid_t	child_pid;
+	// (void)shell;
 
 	i = -1;
 	while (++i < nb_node)
 	{
+		// waitpid(child_pid,&status,0);
+		// shell->exit_code = WEXITSTATUS(status);
 		child_pid = wait(&status);
 		if (child_pid == -1)
 			perror("wait");
@@ -95,6 +99,7 @@ void	ft_wait(t_mini *shell, int nb_node)
 			if (WIFEXITED(status))
 			{
 				shell->exit_code = WEXITSTATUS(status);
+				// printf("exitcode %d\n",status);	
 			}
 		}
 	}

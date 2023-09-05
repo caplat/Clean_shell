@@ -6,7 +6,7 @@
 /*   By: acaplat <acaplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/22 18:29:54 by acaplat           #+#    #+#             */
-/*   Updated: 2023/08/29 14:28:42 by acaplat          ###   ########.fr       */
+/*   Updated: 2023/09/05 11:58:40 by acaplat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,3 +110,4 @@ void	check_flag_bis(t_lex *current, t_mini *shell)
 		i++;
 	}
 }
+

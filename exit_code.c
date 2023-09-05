@@ -6,7 +6,7 @@
 /*   By: acaplat <acaplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/06 16:55:42 by acaplat           #+#    #+#             */
-/*   Updated: 2023/08/09 13:42:33 by acaplat          ###   ########.fr       */
+/*   Updated: 2023/09/05 15:45:15 by acaplat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	ft_exit_code(char **tab, t_mini *shell)
 	i = -1;
 	while (tab[++i])
 	{
-		if (ft_strncmp(tab[i], "$?", 3) == 0)
+		if (ft_strncmp(tab[i], "$?", 2) == 0)
 		{
 			exit_code_str = ft_itoa(shell->exit_code);
 			if (exit_code_str != NULL)

@@ -6,7 +6,7 @@
 /*   By: acaplat <acaplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 16:30:33 by acaplat           #+#    #+#             */
-/*   Updated: 2023/08/31 17:37:49 by acaplat          ###   ########.fr       */
+/*   Updated: 2023/09/05 10:55:06 by acaplat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,11 +66,14 @@ int	compare_length(char *str1, char *str2)
 void	declare_x(char **env_cpy)
 {
 	int	i;
+	char *str;
 
 	i = 0;
 	while (env_cpy[i])
 	{
-		env_cpy[i] = ft_strjoin("declare -x ", env_cpy[i]);
+		str = env_cpy[i];
+		env_cpy[i] = ft_strjoin("declare -x ", str);
+		free(str);
 		i++;
 	}
 }

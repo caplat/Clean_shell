@@ -6,7 +6,7 @@
 /*   By: acaplat <acaplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 12:36:57 by acaplat           #+#    #+#             */
-/*   Updated: 2023/09/04 16:53:52 by acaplat          ###   ########.fr       */
+/*   Updated: 2023/09/05 12:01:09 by acaplat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,8 @@ void	norme_main(t_mini *shell)
 	shell->lst = get_my_list(shell);
 	shell->lst_bis = get_my_list(shell);
 	shell->newline_bis = convert_to_str(shell->lst_bis);
-	parse_newline_bis(shell, shell->newline_bis);
+	if(shell->newline_bis != NULL)
+		parse_newline_bis(shell, shell->newline_bis);
 	// printf("%s\n",shell->newline_bis);
 	fix_echo(shell);
 	safe_free(&shell->add_char);

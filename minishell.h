@@ -6,7 +6,7 @@
 /*   By: acaplat <acaplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 12:50:26 by acaplat           #+#    #+#             */
-/*   Updated: 2023/09/04 16:55:13 by acaplat          ###   ########.fr       */
+/*   Updated: 2023/09/05 15:57:39 by acaplat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -199,7 +199,7 @@ void				erase(t_lex **simplecommand, t_mini *shell);
 
 int					get_nb_node(t_lex *head);
 void				do_the_pipe(t_mini *shell);
-void				ft_wait(t_mini *shell, int nb_node);
+void	ft_wait(t_mini *shell, int nb_node);
 void				handle_parent(int pipe_fd[2], int i, int *prev_pipe_read);
 void				norme_pipe(t_mini *shell, int pipe_fd[2], t_pipe var);
 int					error_child(pid_t child_pid);

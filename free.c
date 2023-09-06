@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: derblang <derblang@student.42.fr>          +#+  +:+       +#+        */
+/*   By: acaplat <acaplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 15:13:26 by acaplat           #+#    #+#             */
-/*   Updated: 2023/08/21 12:35:47 by derblang         ###   ########.fr       */
+/*   Updated: 2023/09/06 13:06:32 by acaplat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,23 @@
 
 void	free_shell(t_mini *shell)
 {
-	free_list(shell->lst_bis);
+	if(shell->lst_bis != NULL)
+		free_list(shell->lst_bis);
 	safe_free(&shell->newline_bis);
 	free_arr(shell->tab_bis);
-	free_list_bis(shell->echo_lst);
+	if(shell->echo_lst != NULL)
+		free_list_bis(shell->echo_lst);
 	free_arr(shell->command);
 	safe_free(&shell->line);
 	safe_free(&shell->newline);
 	safe_free(&shell->add_char);
-	free_list(shell->lst);
+	if(shell->lst != NULL)
+		free_list(shell->lst);
 	free_arr(shell->simple_command);
-	free_list_bis(shell->simplecommand);
-	free_list_bis(shell->args);
+	if(shell->simplecommand != NULL)
+		free_list_bis(shell->simplecommand);
+	if(shell->args != NULL)
+		free_list_bis(shell->args);
 	free_arr(shell->env_cpy);
 	free_arr(shell->tab);
 	free_arr(shell->allpath);

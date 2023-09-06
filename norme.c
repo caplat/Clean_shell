@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   norme.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: derblang <derblang@student.42.fr>          +#+  +:+       +#+        */
+/*   By: acaplat <acaplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 12:40:18 by acaplat           #+#    #+#             */
-/*   Updated: 2023/08/21 12:25:12 by derblang         ###   ########.fr       */
+/*   Updated: 2023/09/06 12:54:48 by acaplat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	norme_export(void)
 
 void	norme_lex(t_lex **newlist, char *test)
 {
-	add_element_bis(newlist, ft_strdup(test));
+	add_element_bis(newlist,(test));
 	free(test);
 }
 

@@ -6,7 +6,7 @@
 /*   By: acaplat <acaplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 16:30:33 by acaplat           #+#    #+#             */
-/*   Updated: 2023/09/05 10:55:06 by acaplat          ###   ########.fr       */
+/*   Updated: 2023/09/06 09:59:44 by acaplat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,8 +65,8 @@ int	compare_length(char *str1, char *str2)
 
 void	declare_x(char **env_cpy)
 {
-	int	i;
-	char *str;
+	int		i;
+	char	*str;
 
 	i = 0;
 	while (env_cpy[i])

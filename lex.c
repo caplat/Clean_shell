@@ -6,7 +6,7 @@
 /*   By: acaplat <acaplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/22 18:29:54 by acaplat           #+#    #+#             */
-/*   Updated: 2023/09/05 11:58:40 by acaplat          ###   ########.fr       */
+/*   Updated: 2023/09/06 13:51:51 by acaplat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@ t_lex	*set_command(t_lex *head, t_mini *shell)
 	t_lex	*current;
 	int		i;
 	char	*test;
+	char *test2;
 
 	i = 0;
 	newlist = NULL;
@@ -77,18 +78,21 @@ t_lex	*set_command(t_lex *head, t_mini *shell)
 	while (current)
 	{
 		check_flag_bis(current, shell);
-		test = ft_strjoin(test, current->str);
-		test = ft_strjoin(test, " ");
-		if (current->next && ft_strncmp(current->next->str, "|", 2) == 0
-			&& shell->flag == 0)
-		{
-			add_element_bis(&newlist, ft_strdup(test));
-			current = current->next;
-			test = ft_calloc(1, 1);
-		}
+		test2 = ft_strjoin(test, current->str);
+		free(test);
+		test = ft_strjoin(test2, " ");
+		lex_norme(current,newlist,shell,test);
+		// if (current->next && ft_strncmp(current->next->str, "|", 2) == 0
+		// 	&& shell->flag == 0)
+		// {
+		// 	add_element_bis(&newlist, ft_strdup(test));
+		// 	current = current->next;
+		// }
 		current = current->next;
 	}
+	free(test2);
 	norme_lex(&newlist, test);
+	printlist_bis(newlist);
 	return (newlist);
 }
 
@@ -110,4 +114,3 @@ void	check_flag_bis(t_lex *current, t_mini *shell)
 		i++;
 	}
 }
-

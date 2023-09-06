@@ -6,7 +6,7 @@
 /*   By: acaplat <acaplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 12:36:57 by acaplat           #+#    #+#             */
-/*   Updated: 2023/09/05 17:42:41 by acaplat          ###   ########.fr       */
+/*   Updated: 2023/09/06 13:51:58 by acaplat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 int	main(int argc, char **argv, char **env)
 {
 	t_mini	*shell;
-	(void)argv;
 
-	error_code = 0;
+	(void)argv;
+	g_error_code = 0;
 	if (argc != 1)
 	{
 		printf("retry without arguments\n");
@@ -28,9 +28,7 @@ int	main(int argc, char **argv, char **env)
 	shell->env_cpy = do_export(shell);
 	rl_catch_signals = 0;
 	do_signal(shell);
-	// printf("%d\n",shell->exit_code);
 	minishell_loop(shell);
-	// system("leaks ./minishell");
 }
 
 void	minishell_loop(t_mini *shell)
@@ -38,8 +36,6 @@ void	minishell_loop(t_mini *shell)
 	while (1)
 	{
 		shell->line = readline(">>");
-		// shell->exit_code = error_code;
-		// printf("%d\n",shell->exit_code);
 		if (shell->line)
 		{
 			if (ft_strlen(shell->line) > 0)
@@ -54,6 +50,11 @@ void	minishell_loop(t_mini *shell)
 			dup2(shell->stdout_cpy, STDOUT_FILENO);
 			dup2(shell->stdin_cpy, STDIN_FILENO);
 			shell->redir_input = 0;
+			// free_list(shell->lst);
+			// free_list(shell->lst_bis);
+			// free_list_bis(shell->args);
+			// free_list_bis(shell->echo_lst);
+			free_shell(shell);
 		}
 		else
 		{
@@ -65,23 +66,29 @@ void	minishell_loop(t_mini *shell)
 
 void	norme_main(t_mini *shell)
 {
+	
 	replace_line(shell->line, shell);
-	shell->lst = get_my_list(shell);
-	shell->lst_bis = get_my_list(shell);
+	if(shell->add_char != NULL)
+		shell->lst = get_my_list(shell);
+	if(shell->add_char != NULL)
+		shell->lst_bis = get_my_list(shell);
+	printf("%s\n",shell->add_char);
 	shell->newline_bis = convert_to_str(shell->lst_bis);
-	if(shell->newline_bis != NULL)
+	if (shell->newline_bis != NULL)
 		parse_newline_bis(shell, shell->newline_bis);
-	// printf("%s\n",shell->newline_bis);
+	printf("%s\n",shell->newline_bis);
 	fix_echo(shell);
 	safe_free(&shell->add_char);
 	shell->add_char = ft_calloc(1, 2);
 	separate_command(shell->lst);
 	shell->newline = convert_to_str(shell->lst);
 	shell->simplecommand = get_my_element(shell);
+	printlist_bis(shell->simplecommand);
 	here_doc(shell->simplecommand, shell);
 	erase(&shell->simplecommand, shell);
 	redir(shell);
-	shell->args = set_command(shell->simplecommand, shell);
+	if(shell->simplecommand != NULL)
+		shell->args = set_command(shell->simplecommand, shell);
 	// printlist_bis(shell->args);
 }
 
@@ -103,8 +110,6 @@ void	parse_newline_bis(t_mini *shell, char *str)
 		newstr = add_char(newstr, str[i]);
 		i++;
 	}
-	// printf("%zu\n",ft_strlen(newstr));
-	// printf("newstr --> %s\n",newstr);
 	safe_free(&shell->newline_bis);
 	shell->newline_bis = newstr;
 }

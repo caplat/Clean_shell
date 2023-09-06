@@ -6,7 +6,7 @@
 /*   By: acaplat <acaplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 16:29:39 by acaplat           #+#    #+#             */
-/*   Updated: 2023/09/03 18:43:10 by acaplat          ###   ########.fr       */
+/*   Updated: 2023/09/06 12:53:24 by acaplat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,15 +37,14 @@ t_lex	*echo_list(t_mini *shell)
 		if (shell->newline_bis[i + 1] == '|' && shell->flag == 0
 			&& shell->newline_bis[i + 1])
 		{
-			add_element_bis(&newlist, ft_strdup(str));
+			add_element_bis(&newlist, (str));
 			str = ft_calloc(1, 1);
 			i++;
 		}
 	}
-	add_element_bis(&newlist, ft_strdup(str));
+	add_element_bis(&newlist, (str));
 	safe_free(&str);
 	str = NULL;
 	shell->echo_lst = newlist;
-	// printlist_bis(shell->echo_lst);
 	return (newlist);
 }

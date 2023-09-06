@@ -6,7 +6,7 @@
 /*   By: acaplat <acaplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 12:50:26 by acaplat           #+#    #+#             */
-/*   Updated: 2023/09/05 17:16:38 by acaplat          ###   ########.fr       */
+/*   Updated: 2023/09/06 10:25:56 by acaplat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 # include <readline/history.h>
 # include <readline/readline.h>
 
-int error_code;
+int					g_error_code;
 
 typedef struct s_elem
 {
@@ -63,7 +63,6 @@ typedef struct s_mini
 	char			**allpath;
 	char			**arg_bis;
 	char			*exe;
-	// int				exit_code;
 	int				stdout_cpy;
 	int				stdin_cpy;
 	int				redir_input;
@@ -120,6 +119,8 @@ void				initialize(char **env, t_mini *shell);
 char				*add_char(char *str, char c);
 int					find_length(char **str);
 void				print_tab(char **tab);
+void				lex_norme(t_lex *current, t_lex *newlist, t_mini *shell,
+						char *test);
 
 //Signal
 
@@ -201,7 +202,7 @@ void				erase(t_lex **simplecommand, t_mini *shell);
 
 int					get_nb_node(t_lex *head);
 void				do_the_pipe(t_mini *shell);
-void	ft_wait(t_mini *shell, int nb_node,pid_t child_pid);
+void				ft_wait(t_mini *shell, int nb_node, pid_t child_pid);
 void				handle_parent(int pipe_fd[2], int i, int *prev_pipe_read);
 void				norme_pipe(t_mini *shell, int pipe_fd[2], t_pipe var);
 int					error_child(pid_t child_pid);

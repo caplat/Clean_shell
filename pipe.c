@@ -6,7 +6,7 @@
 /*   By: acaplat <acaplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/03 11:55:14 by acaplat           #+#    #+#             */
-/*   Updated: 2023/09/05 17:39:09 by acaplat          ###   ########.fr       */
+/*   Updated: 2023/09/06 09:55:15 by acaplat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ void	do_the_pipe(t_mini *shell)
 
 	var.prev_pipe_read = 0;
 	var.nb_node = get_nb_node(shell->args);
-	// child_pid = malloc(sizeof(pid_t) * var.nb_node + 1);
 	var.i = -1;
 	while (++var.i < var.nb_node)
 	{
@@ -53,7 +52,7 @@ void	do_the_pipe(t_mini *shell)
 			handle_parent(pipe_fd, var.i, &var.prev_pipe_read);
 	}
 	close(var.prev_pipe_read);
-	ft_wait(shell, var.nb_node,child_pid);
+	ft_wait(shell, var.nb_node, child_pid);
 }
 
 void	handle_parent(int pipe_fd[2], int i, int *prev_pipe_read)
@@ -78,18 +77,15 @@ void	norme_pipe(t_mini *shell, int pipe_fd[2], t_pipe var)
 	exec_all(shell, var.i);
 }
 
-void	ft_wait(t_mini *shell, int nb_node,pid_t child_pid)
+void	ft_wait(t_mini *shell, int nb_node, pid_t child_pid)
 {
-	int		status;
-	int		i;
-	// pid_t	child_pid;
-	(void)shell;
+	int	status;
+	int	i;
 
+	(void)shell;
 	i = -1;
 	while (++i < nb_node)
 	{
-		// waitpid(child_pid,&status,0);
-		// shell->exit_code = WEXITSTATUS(status);
 		child_pid = wait(&status);
 		if (child_pid == -1)
 			perror("wait");
@@ -97,9 +93,7 @@ void	ft_wait(t_mini *shell, int nb_node,pid_t child_pid)
 		{
 			if (WIFEXITED(status))
 			{
-				// printf("exitcode %d\n",status);	
-				// shell->exit_code = WEXITSTATUS(status);
-				error_code = WEXITSTATUS(status);
+				g_error_code = WEXITSTATUS(status);
 			}
 		}
 	}

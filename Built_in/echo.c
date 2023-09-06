@@ -6,7 +6,7 @@
 /*   By: acaplat <acaplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 16:33:42 by acaplat           #+#    #+#             */
-/*   Updated: 2023/09/05 12:07:11 by acaplat          ###   ########.fr       */
+/*   Updated: 2023/09/06 09:57:24 by acaplat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,6 @@ void	exec_echo(t_mini *shell)
 		i++;
 	}
 	shell->tab = ft_split(current->str, 31);
-	// print_tab(shell->tab);
 	if (ft_strncmp(shell->tab[0], "echo", 5) == 0)
 		echo(shell->tab, shell);
 	free_arr(shell->tab);

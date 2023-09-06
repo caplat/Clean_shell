@@ -6,7 +6,7 @@
 /*   By: acaplat <acaplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/03 12:03:18 by acaplat           #+#    #+#             */
-/*   Updated: 2023/09/05 16:29:18 by acaplat          ###   ########.fr       */
+/*   Updated: 2023/09/06 09:58:28 by acaplat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,13 @@
 
 void	get_my_path(t_mini *shell)
 {
-	int	i;
-	char *str;
+	int		i;
+	char	*str;
 
 	i = 0;
 	while (shell->env[i])
 	{
-		str = ft_substr(shell->env[i], 5,ft_strlen(shell->env[i]) - 5);
+		str = ft_substr(shell->env[i], 5, ft_strlen(shell->env[i]) - 5);
 		if (ft_strncmp("PATH", shell->env[i], 4) == 0)
 		{
 			shell->allpath = ft_split(str, ':');
@@ -110,7 +110,6 @@ void	exec_all(t_mini *shell, int i)
 	verify(shell, i);
 	if (shell->redir_input == 0)
 		execute(shell);
-	if(access(shell->arg_bis[0], F_OK) != 0)
+	if (access(shell->arg_bis[0], F_OK) != 0)
 		exit(127);
-	
 }

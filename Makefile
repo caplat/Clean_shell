@@ -2,6 +2,7 @@ NAME = minishell
 
 SRCS = main.c \
 utils.c \
+utils_bis.c \
 signal.c \
 parsing.c \
 dollar.c \

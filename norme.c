@@ -6,7 +6,7 @@
 /*   By: acaplat <acaplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 12:40:18 by acaplat           #+#    #+#             */
-/*   Updated: 2023/09/06 12:54:48 by acaplat          ###   ########.fr       */
+/*   Updated: 2023/09/06 16:33:00 by acaplat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,7 @@ void	norme_export(void)
 
 void	norme_lex(t_lex **newlist, char *test)
 {
-	add_element_bis(newlist,(test));
-	free(test);
+	add_element_bis(newlist,test);
 }
 
 int	error_child(pid_t child_pid)

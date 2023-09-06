@@ -6,7 +6,7 @@
 /*   By: acaplat <acaplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 12:50:26 by acaplat           #+#    #+#             */
-/*   Updated: 2023/09/06 10:25:56 by acaplat          ###   ########.fr       */
+/*   Updated: 2023/09/06 17:09:22 by acaplat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,6 +121,10 @@ int					find_length(char **str);
 void				print_tab(char **tab);
 void				lex_norme(t_lex *current, t_lex *newlist, t_mini *shell,
 						char *test);
+
+//Utils_bis
+
+char	*ft_strjoin_bis(char *s1, char *s2);
 
 //Signal
 

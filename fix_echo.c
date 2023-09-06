@@ -6,7 +6,7 @@
 /*   By: acaplat <acaplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 16:29:39 by acaplat           #+#    #+#             */
-/*   Updated: 2023/09/06 12:53:24 by acaplat          ###   ########.fr       */
+/*   Updated: 2023/09/06 17:28:05 by acaplat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,9 @@ void	fix_echo(t_mini *shell)
 {
 	t_lex	*newlist;
 
-	replace_char(shell->newline_bis, ' ', 31, shell);
+	printf("newline_bis -->%s\n",shell->newline_bis);
+	replace_char(shell->newline_bis, ' ','#', shell);
+	printf("newline_bis -->%s\n",shell->newline_bis);
 	if (shell->newline_bis != NULL)
 		newlist = echo_list(shell);
 }

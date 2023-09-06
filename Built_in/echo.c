@@ -6,7 +6,7 @@
 /*   By: acaplat <acaplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 16:33:42 by acaplat           #+#    #+#             */
-/*   Updated: 2023/09/06 09:57:24 by acaplat          ###   ########.fr       */
+/*   Updated: 2023/09/06 17:31:08 by acaplat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,13 +64,18 @@ void	exec_echo(t_mini *shell)
 	int		i;
 
 	i = 0;
+	printlist_bis(shell->echo_lst);
 	current = shell->echo_lst;
 	while (i < shell->node_pos)
 	{
 		current = current->next;
 		i++;
 	}
-	shell->tab = ft_split(current->str, 31);
+	shell->tab = ft_split(current->str, '#');
+	// print_tab(shell->tab);
+	i = 0;
+	while(shell->tab[i])
+		printf("tab -->%s\n",shell->tab[i++]);
 	if (ft_strncmp(shell->tab[0], "echo", 5) == 0)
 		echo(shell->tab, shell);
 	free_arr(shell->tab);

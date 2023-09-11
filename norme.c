@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   norme.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acaplat <acaplat@student.42.fr>            +#+  +:+       +#+        */
+/*   By: derblang <derblang@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 12:40:18 by acaplat           #+#    #+#             */
-/*   Updated: 2023/09/06 16:33:00 by acaplat          ###   ########.fr       */
+/*   Updated: 2023/09/11 11:40:42 by derblang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	norme_export(void)
 
 void	norme_lex(t_lex **newlist, char *test)
 {
-	add_element_bis(newlist,test);
+	add_element_bis(newlist, test);
 }
 
 int	error_child(pid_t child_pid)
@@ -40,21 +40,27 @@ int	parse_export(char **tab)
 
 	i = 1;
 	j = 0;
-	if ((65 <= tab[i][j] && tab[i][j] <= 90) || (91 <= tab[i][j]
-			&& tab[i][j] <= 122) || tab[i][j] == '$' || tab[i][j] == '\''
-		|| tab[i][j] == '\"' || ((tab[i][j] >= '0' && tab[i][j] <= '9'
-		&& j > 0)) || (tab[i][j] == '+' && tab[i][j + 1] == '=' && j > 0))
+	while(tab[i])
 	{
-		return (1);
-		j++;
-		i++;
+		while(tab[i][j] && tab[i][j] != '=')
+		{
+			if ((65 <= tab[i][j] && tab[i][j] <= 90) || (91 <= tab[i][j]
+				&& tab[i][j] <= 122) || tab[i][j] == '$' || tab[i][j] == '\''
+			|| tab[i][j] == '\"' || ((tab[i][j] >= '0' && tab[i][j] <= '9'
+			&& j > 0)) || (tab[i][j] == '+' && tab[i][j + 1] == '=' && j > 0))
+				;
+			else
+		{
+			printf("minishell: export: `%s': not a valid identifier\n", tab[i]);
+			return (0);
+		}
+			j++;
+		}
+		if(j == 0)
+		return 1;
+				i++;
 	}
-	else
-	{
-		printf("minishell: export: `%s': not a valid identifier\n", tab[i]);
-		return (0);
-	}
-	return (1);
+	return (0);
 }
 
 void	check_flag_ter(t_lex *current, t_mini *shell)

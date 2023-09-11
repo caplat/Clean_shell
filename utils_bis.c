@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_bis.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acaplat <acaplat@student.42.fr>            +#+  +:+       +#+        */
+/*   By: derblang <derblang@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/06 17:06:42 by acaplat           #+#    #+#             */
-/*   Updated: 2023/09/06 17:07:47 by acaplat          ###   ########.fr       */
+/*   Updated: 2023/09/11 11:21:29 by derblang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,11 @@ char	*ft_strjoin_bis(char *s1, char *s2)
 		return (0);
 	dest = (char *)malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
 	if (!dest)
-		return (0);
+	{
+		//free(dest);
+		return (NULL);
+	}
+		
 	while (s1[i])
 	{
 		dest[i] = s1[i];

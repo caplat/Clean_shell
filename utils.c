@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acaplat <acaplat@student.42.fr>            +#+  +:+       +#+        */
+/*   By: derblang <derblang@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 13:04:00 by acaplat           #+#    #+#             */
-/*   Updated: 2023/09/06 11:25:14 by acaplat          ###   ########.fr       */
+/*   Updated: 2023/09/08 13:08:50 by derblang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,19 @@
 
 void	initialize(char **env, t_mini *shell)
 {
+	shell->flag = 0;
 	shell->lst_bis = NULL;
 	shell->newline_bis = NULL;
 	shell->tab_bis = NULL;
 	shell->echo_lst = NULL;
+	shell->command = NULL;
 	shell->env = env;
 	shell->line = NULL;
-	shell->newline = NULL;
-	shell->flag = 0;
-	shell->command = NULL;
-	shell->length_command = 0;
-	shell->add_char = ft_calloc(1, 2);
-	shell->lst = NULL;
 	shell->simple_command = NULL;
+	shell->newline = NULL;
+	shell->length_command = 0;
+	//shell->add_char = ft_calloc(1, 2);
+	shell->lst = NULL;
 	shell->simplecommand = NULL;
 	shell->args = NULL;
 	shell->env_cpy = NULL;

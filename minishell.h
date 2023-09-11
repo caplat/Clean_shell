@@ -6,7 +6,7 @@
 /*   By: acaplat <acaplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 12:50:26 by acaplat           #+#    #+#             */
-/*   Updated: 2023/09/06 17:09:22 by acaplat          ###   ########.fr       */
+/*   Updated: 2023/09/11 15:04:28 by acaplat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,6 +108,7 @@ typedef struct s_exp
 
 //Main
 
+t_lex *echo_list_bis(t_mini *shell,char *str,char target);
 void				minishell_loop(t_mini *shell);
 void				norme_main(t_mini *shell);
 void				parse_newline_bis(t_mini *shell, char *str);
@@ -233,7 +234,7 @@ void				check_flag_ter(t_lex *current, t_mini *shell);
 //Fix_echo
 
 void				fix_echo(t_mini *shell);
-t_lex				*echo_list(t_mini *shell);
+t_lex *echo_list(t_mini *shell);
 
 //Split_custom
 

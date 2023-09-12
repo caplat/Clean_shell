@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fix_echo.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acaplat <acaplat@student.42.fr>            +#+  +:+       +#+        */
+/*   By: akastler <akastler@student.42mulhouse.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 16:29:39 by acaplat           #+#    #+#             */
-/*   Updated: 2023/09/11 15:44:33 by acaplat          ###   ########.fr       */
+/*   Updated: 2023/09/11 17:50:45 by akastler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,18 +38,16 @@ t_lex *echo_list(t_mini *shell)
 	{
 		check_flag_4(shell->newline_bis, shell, i);
 		str = add_char(str, shell->newline_bis[i]);
-		if (shell->newline_bis[i + 1] == '|' && shell->flag == 0
-			&& shell->newline_bis[i + 1])
+		if ((shell->newline_bis[i + 1] == '|' && shell->flag == 0
+			&& shell->newline_bis[i + 1]) || (shell->newline_bis[i + 1] == '\0' && shell->flag == 0))
 		{
-			add_element_bis(&newlist, ft_strdup(str));
-			free(str);
+			add_element_bis(&newlist, str);
 			str = ft_calloc(1, 1);
 			i++;
 		}
 	}
-	add_element_bis(&newlist, ft_strdup(str));
-	safe_free(&str);
-	str = NULL;
+	// printf("%s\n",str);
+	// add_element_bis(&newlist, str);
 	shell->echo_lst = newlist;
 	return (newlist);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acaplat <acaplat@student.42.fr>            +#+  +:+       +#+        */
+/*   By: akastler <akastler@student.42mulhouse.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 15:59:02 by acaplat           #+#    #+#             */
-/*   Updated: 2023/08/29 14:28:27 by acaplat          ###   ########.fr       */
+/*   Updated: 2023/09/11 18:24:38 by akastler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ void	here_doc(t_lex *simplecommand, t_mini *shell)
 	var.fd = open(".heredoc", O_CREAT | O_WRONLY | O_TRUNC, 0777);
 	if (var.fd == -1)
 		norme_heredoc_bis();
+	(void)shell;
+	(void)simplecommand;
 	while (var.current)
 	{
 		var.next = var.current->next;
@@ -98,8 +100,8 @@ void	erase(t_lex **simplecommand, t_mini *shell)
 		{
 			delete_node(simplecommand, current);
 			delete_node(simplecommand, next);
-			if (current->prev)
-				add_element_bis(simplecommand, ".heredoc");
+			// if (current->prev)
+			add_element_bis(simplecommand, ft_strdup(".heredoc"));
 			current = *simplecommand;
 			continue ;
 		}

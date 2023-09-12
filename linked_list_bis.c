@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   linked_list_bis.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acaplat <acaplat@student.42.fr>            +#+  +:+       +#+        */
+/*   By: akastler <akastler@student.42mulhouse.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 14:57:03 by acaplat           #+#    #+#             */
-/*   Updated: 2023/08/09 13:59:49 by acaplat          ###   ########.fr       */
+/*   Updated: 2023/09/11 18:15:53 by akastler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,7 @@ char	*convert_to_str(t_elem *head)
 		i++;
 		current = current->next;
 	}
-	str = malloc(sizeof(char) * (i + 1));
-	str[i] = '\0';
+	str = ft_calloc(i + 2, sizeof(char));
 	current = head;
 	i = 0;
 	while (current != NULL)
@@ -64,7 +63,6 @@ char	*convert_to_str(t_elem *head)
 		current = current->next;
 		i++;
 	}
-	str[i] = '\0';
 	return (str);
 }
 

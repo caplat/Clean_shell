@@ -6,7 +6,7 @@
 /*   By: acaplat <acaplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 12:36:57 by acaplat           #+#    #+#             */
-/*   Updated: 2023/09/11 15:11:20 by acaplat          ###   ########.fr       */
+/*   Updated: 2023/09/12 13:23:33 by acaplat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	main(int argc, char **argv, char **env)
 {
-	t_mini	*shell;
+	t_mini	shell;
 
 	(void)argv;
 	g_error_code = 0;
@@ -23,12 +23,12 @@ int	main(int argc, char **argv, char **env)
 		printf("retry without arguments\n");
 		exit(0);
 	}
-	shell = malloc(sizeof(t_mini));
-	initialize(env, shell);
-	shell->env_cpy = do_export(shell);
+	initialize(env, &shell);
+	shell.env_cpy = do_export(&shell);
+	// free_arr(shell.env_cpy);
 	rl_catch_signals = 0;
-	do_signal(shell);
-	minishell_loop(shell);
+	do_signal(&shell);
+	minishell_loop(&shell);
 }
 
 void	minishell_loop(t_mini *shell)
@@ -45,18 +45,17 @@ void	minishell_loop(t_mini *shell)
 				norme_main(shell);
 				if (get_nb_node(shell->args) == 1)
 					check_built_in(shell);
-				if(shell->args != NULL)
-					do_the_pipe(shell);
+				// if(shell->args != NULL)
+				// 	do_the_pipe(shell);
 			}
-			dup2(shell->stdout_cpy, STDOUT_FILENO);
-			dup2(shell->stdin_cpy, STDIN_FILENO);
-			shell->redir_input = 0;
+			// dup2(shell->stdout_cpy, STDOUT_FILENO);
+			// dup2(shell->stdin_cpy, STDIN_FILENO);
+			// shell->redir_input = 0;
 			free_shell(shell);
 		}
 		else
 		{
 			free_arr(shell->env_cpy);
-			free(shell);
 			exit(0);
 		}
 	}
@@ -72,15 +71,14 @@ void	norme_main(t_mini *shell)
 	shell->newline_bis = convert_to_str(shell->lst_bis);
 	if (shell->newline_bis != NULL)
 		parse_newline_bis(shell, shell->newline_bis);
-	fix_echo(shell);
-	safe_free(&shell->add_char);
+	// fix_echo(shell);
 	separate_command(shell->lst);
 	shell->newline = convert_to_str(shell->lst);
 	shell->simplecommand = get_my_element(shell);
 	here_doc(shell->simplecommand, shell);
 	erase(&shell->simplecommand, shell);
 	redir(shell);
-	shell->args = set_command(shell->simplecommand, shell);
+	// shell->args = set_command(shell->simplecommand, shell);
 	//printlist_bis(shell->args);
 }
 
@@ -91,6 +89,8 @@ void	parse_newline_bis(t_mini *shell, char *str)
 
 	(void)shell;
 	i = 0;
+	if (!str || ft_strlen(str) == 0)
+		return ;
 	newstr = ft_calloc(1, 2);
 	while (str[i])
 	{

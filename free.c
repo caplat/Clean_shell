@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acaplat <acaplat@student.42.fr>            +#+  +:+       +#+        */
+/*   By: akastler <akastler@student.42mulhouse.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 15:13:26 by acaplat           #+#    #+#             */
-/*   Updated: 2023/09/11 16:07:12 by acaplat          ###   ########.fr       */
+/*   Updated: 2023/09/11 18:01:44 by akastler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,20 +16,22 @@ void	free_shell(t_mini *shell)
 {
 	free_list(shell->lst_bis);
 	safe_free(&shell->newline_bis);
-	//free_arr(shell->simple_command);
-	free_arr(shell->tab_bis);
-	free_list_bis(shell->echo_lst);
+	// free_arr(shell->simple_command);
+	// free_arr(shell->tab_bis);
+	if (shell->echo_lst)
+		free(shell->echo_lst);
+	// free_list_bis(shell->echo_lst);
 	// free_arr(shell->command);
 	safe_free(&shell->line);
 	safe_free(&shell->newline);
 	safe_free(&shell->add_char);
 	free_list(shell->lst);
 	free_list_bis(shell->simplecommand);
-	free_list_bis(shell->args);
-	free_arr(shell->tab);
-	free_arr(shell->allpath);
-	free_arr(shell->arg_bis);
-	safe_free(&shell->exe);
+	// free_list_bis(shell->args);
+	// free_arr(shell->tab);
+	// free_arr(shell->allpath);
+	// free_arr(shell->arg_bis);
+	// safe_free(&shell->exe);
 	// free_arr(shell->env_cpy);
 }
 

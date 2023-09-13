@@ -6,7 +6,7 @@
 /*   By: acaplat <acaplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 15:13:26 by acaplat           #+#    #+#             */
-/*   Updated: 2023/09/13 16:11:53 by acaplat          ###   ########.fr       */
+/*   Updated: 2023/09/13 17:08:18 by acaplat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@ void	free_shell(t_mini *shell)
 	free_list(shell->lst_bis);
 	safe_free(&shell->newline_bis);
 	free_arr(shell->simple_command);
+	// free_list_bis(shell->echo_lst);
 	// if (shell->echo_lst)
 	// 	free(shell->echo_lst);
-	// free_list_bis(shell->echo_lst);
 	// free_arr(shell->command);
 	safe_free(&shell->line);
 	safe_free(&shell->newline);

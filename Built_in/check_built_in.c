@@ -6,7 +6,7 @@
 /*   By: acaplat <acaplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 11:58:47 by acaplat           #+#    #+#             */
-/*   Updated: 2023/09/13 14:49:50 by acaplat          ###   ########.fr       */
+/*   Updated: 2023/09/13 17:09:23 by acaplat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 void	check_built_in(t_mini *shell)
 {
-	if (shell->newline_bis != NULL)
+	if (shell->newline_bis != NULL && shell->echo_lst != NULL)
 		export(shell);
-	if (shell->newline_bis != NULL)
+	if (shell->newline_bis != NULL && shell->echo_lst != NULL)
 		exec_echo(shell);
 	cd(shell);
 	unset(shell);

@@ -6,7 +6,7 @@
 /*   By: acaplat <acaplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 12:36:57 by acaplat           #+#    #+#             */
-/*   Updated: 2023/09/12 13:23:33 by acaplat          ###   ########.fr       */
+/*   Updated: 2023/09/13 15:50:02 by acaplat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ int	main(int argc, char **argv, char **env)
 	}
 	initialize(env, &shell);
 	shell.env_cpy = do_export(&shell);
-	// free_arr(shell.env_cpy);
 	rl_catch_signals = 0;
 	do_signal(&shell);
 	minishell_loop(&shell);
@@ -43,14 +42,12 @@ void	minishell_loop(t_mini *shell)
 			if (count_quotes(shell->line, shell) == 1)
 			{
 				norme_main(shell);
-				if (get_nb_node(shell->args) == 1)
-					check_built_in(shell);
-				// if(shell->args != NULL)
-				// 	do_the_pipe(shell);
+				if (shell->args != NULL)
+					do_the_pipe(shell);
 			}
-			// dup2(shell->stdout_cpy, STDOUT_FILENO);
-			// dup2(shell->stdin_cpy, STDIN_FILENO);
-			// shell->redir_input = 0;
+			dup2(shell->stdout_cpy, STDOUT_FILENO);
+			dup2(shell->stdin_cpy, STDIN_FILENO);
+			shell->redir_input = 0;
 			free_shell(shell);
 		}
 		else
@@ -63,7 +60,6 @@ void	minishell_loop(t_mini *shell)
 
 void	norme_main(t_mini *shell)
 {
-	
 	shell->add_char = ft_calloc(1, 2);
 	replace_line(shell->line, shell);
 	shell->lst = get_my_list(shell);
@@ -71,15 +67,16 @@ void	norme_main(t_mini *shell)
 	shell->newline_bis = convert_to_str(shell->lst_bis);
 	if (shell->newline_bis != NULL)
 		parse_newline_bis(shell, shell->newline_bis);
-	// fix_echo(shell);
 	separate_command(shell->lst);
 	shell->newline = convert_to_str(shell->lst);
 	shell->simplecommand = get_my_element(shell);
 	here_doc(shell->simplecommand, shell);
 	erase(&shell->simplecommand, shell);
 	redir(shell);
-	// shell->args = set_command(shell->simplecommand, shell);
-	//printlist_bis(shell->args);
+	shell->args = set_command(shell->simplecommand, shell);
+	fix_echo(shell);
+	if (get_nb_node(shell->args) == 1)
+		check_built_in(shell);
 }
 
 void	parse_newline_bis(t_mini *shell, char *str)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lex.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akastler <akastler@student.42mulhouse.f    +#+  +:+       +#+        */
+/*   By: acaplat <acaplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/22 18:29:54 by acaplat           #+#    #+#             */
-/*   Updated: 2023/09/11 18:31:54 by akastler         ###   ########.fr       */
+/*   Updated: 2023/09/13 14:55:15 by acaplat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	add_element_bis(t_lex **head, char *simple_command)
 	t_lex	*current;
 
 	newelem = malloc(sizeof(t_lex));
-	if(newelem == NULL)
+	if (newelem == NULL)
 		return ;
 	newelem->str = simple_command;
 	newelem->next = NULL;
@@ -47,39 +47,19 @@ void	printlist_bis(t_lex *head)
 	}
 }
 
-// t_lex	*get_my_element(t_mini *shell)
-// {
-// 	t_lex	*newlist;
-// 	int		i;
-
-// 	newlist = NULL;
-// 	i = 0;
-// 	if (shell->newline == NULL)
-// 		return (NULL);
-// 	shell->simple_command = ft_split(shell->newline, ' ');
-// 	if(shell->simple_command == NULL)
-// 		return NULL;
-// 	while (shell->simple_command[i])
-// 	{
-// 		add_element_bis(&newlist, shell->simple_command[i]);
-// 		i++;
-// 	}
-// 	return (newlist);
-// }
-
 t_lex	*get_my_element(t_mini *shell)
 {
 	t_lex	*newlist;
 	int		i;
-	char **temp;
+	char	**temp;
 
 	newlist = NULL;
 	i = 0;
 	if (shell->newline == NULL)
 		return (NULL);
 	temp = ft_split(shell->newline, ' ');
-	if(temp == NULL)
-		return NULL;
+	if (temp == NULL)
+		return (NULL);
 	while (temp[i])
 	{
 		add_element_bis(&newlist, temp[i]);
@@ -105,18 +85,16 @@ t_lex	*set_command(t_lex *head, t_mini *shell)
 		check_flag_bis(current, shell);
 		test = ft_strjoin_bis(test, current->str);
 		test = ft_strjoin_bis(test, " ");
-		// lex_norme(current,newlist,shell,test);
 		if (current->next && ft_strncmp(current->next->str, "|", 2) == 0
 			&& shell->flag == 0)
 		{
 			add_element_bis(&newlist, test);
 			current = current->next;
-			test = ft_calloc(1,1);
+			test = ft_calloc(1, 1);
 		}
 		current = current->next;
 	}
 	add_element_bis(&newlist, test);
-	//norme_lex(&newlist, test);
 	return (newlist);
 }
 

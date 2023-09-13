@@ -6,7 +6,7 @@
 /*   By: acaplat <acaplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 12:50:26 by acaplat           #+#    #+#             */
-/*   Updated: 2023/09/11 15:04:28 by acaplat          ###   ########.fr       */
+/*   Updated: 2023/09/13 14:48:02 by acaplat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,6 @@ typedef struct s_mini
 {
 	t_elem			*lst_bis;
 	char			*newline_bis;
-	char			**tab_bis;
 	t_lex			*echo_lst;
 	char			*line;
 	char			*newline;
@@ -108,7 +107,7 @@ typedef struct s_exp
 
 //Main
 
-t_lex *echo_list_bis(t_mini *shell,char *str,char target);
+t_lex				*echo_list_bis(t_mini *shell, char *str, char target);
 void				minishell_loop(t_mini *shell);
 void				norme_main(t_mini *shell);
 void				parse_newline_bis(t_mini *shell, char *str);
@@ -125,7 +124,7 @@ void				lex_norme(t_lex *current, t_lex *newlist, t_mini *shell,
 
 //Utils_bis
 
-char	*ft_strjoin_bis(char *s1, char *s2);
+char				*ft_strjoin_bis(char *s1, char *s2);
 
 //Signal
 
@@ -197,7 +196,7 @@ void				redir_input(char *file, t_mini *shell);
 
 //Heredoc
 
-void				here_doc(t_lex *simple_command, t_mini *shell);
+void				here_doc(t_lex *simplecommand, t_mini *shell);
 int					too_much(int fd, char *del);
 void				too_much_bis(int fd);
 void				norme_heredoc_bis(void);
@@ -227,14 +226,13 @@ void				ft_exit_code(char **tab, t_mini *shell);
 //Norme
 
 void				norme_export(void);
-void				norme_lex(t_lex **newlist, char *test);
 int					parse_export(char **tab);
 void				check_flag_ter(t_lex *current, t_mini *shell);
 
 //Fix_echo
 
 void				fix_echo(t_mini *shell);
-t_lex *echo_list(t_mini *shell);
+t_lex				*echo_list(t_mini *shell);
 
 //Split_custom
 

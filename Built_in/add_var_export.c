@@ -6,7 +6,7 @@
 /*   By: acaplat <acaplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 18:15:06 by acaplat           #+#    #+#             */
-/*   Updated: 2023/08/10 19:03:26 by acaplat          ###   ########.fr       */
+/*   Updated: 2023/09/13 15:58:42 by acaplat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,11 @@ void	add_str_to_tab(char ***tab, char *str)
 	while (++i < length)
 	{
 		newtab[i] = ft_strdup((*tab)[i]);
+		// safe_free((tab)[i]);
 	}
 	newtab[length] = ft_strdup(str);
 	newtab[length + 1] = NULL;
+	// safe_free(*tab);
 	*tab = newtab;
 }
 
@@ -47,10 +49,7 @@ void	remove_str_from_tab(char ***tab, int position)
 	length = find_length(*tab);
 	newtab = malloc(sizeof(char *) * (length + 1));
 	if (!newtab)
-	{
-		perror("erreur allocation memoire");
 		return ;
-	}
 	while (++i < length)
 	{
 		if (i != position)
@@ -58,7 +57,10 @@ void	remove_str_from_tab(char ***tab, int position)
 			newtab[j] = ft_strdup((*tab)[i]);
 			j++;
 		}
+		// else
+		// 	free((*tab)[i]);
 	}
+	// free((*tab));
 	newtab[j] = NULL;
 	*tab = newtab;
 }

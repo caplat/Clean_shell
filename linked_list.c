@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   linked_list.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: derblang <derblang@student.42.fr>          +#+  +:+       +#+        */
+/*   By: acaplat <acaplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 14:50:50 by acaplat           #+#    #+#             */
-/*   Updated: 2023/09/08 13:33:37 by derblang         ###   ########.fr       */
+/*   Updated: 2023/09/13 14:58:10 by acaplat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	add_element(t_elem **head, char data)
 	t_elem	*current;
 
 	newelem = malloc(sizeof(t_elem));
-	if(!newelem)
+	if (!newelem)
 		return ;
 	newelem->data = data;
 	newelem->next = NULL;

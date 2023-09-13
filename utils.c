@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akastler <akastler@student.42mulhouse.f    +#+  +:+       +#+        */
+/*   By: acaplat <acaplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 13:04:00 by acaplat           #+#    #+#             */
-/*   Updated: 2023/09/11 16:43:31 by akastler         ###   ########.fr       */
+/*   Updated: 2023/09/13 14:51:03 by acaplat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ void	initialize(char **env, t_mini *shell)
 	shell->flag = 0;
 	shell->lst_bis = NULL;
 	shell->newline_bis = NULL;
-	shell->tab_bis = NULL;
 	shell->echo_lst = NULL;
 	shell->command = NULL;
 	shell->env = env;
@@ -25,7 +24,6 @@ void	initialize(char **env, t_mini *shell)
 	shell->simple_command = NULL;
 	shell->newline = NULL;
 	shell->length_command = 0;
-	//shell->add_char = ft_calloc(1, 2);
 	shell->lst = NULL;
 	shell->simplecommand = NULL;
 	shell->args = NULL;
@@ -76,7 +74,7 @@ void	print_tab(char **tab)
 		printf("%s\n", tab[i++]);
 }
 
-void lex_norme(t_lex *current,t_lex *newlist,t_mini *shell,char *test)
+void	lex_norme(t_lex *current, t_lex *newlist, t_mini *shell, char *test)
 {
 	if (current->next && ft_strncmp(current->next->str, "|", 2) == 0
 		&& shell->flag == 0)

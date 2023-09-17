@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   dollar.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akastler <akastler@student.42mulhouse.f    +#+  +:+       +#+        */
+/*   By: acaplat <acaplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 14:20:55 by acaplat           #+#    #+#             */
-/*   Updated: 2023/09/11 16:43:00 by akastler         ###   ########.fr       */
+/*   Updated: 2023/09/17 16:45:35 by acaplat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,11 +105,14 @@ int	compare_with_env(char *compare, t_mini *shell)
 
 void	norme_dollar(t_compteur *var, t_mini *shell)
 {
-	while (shell->command[1][var->j])
+	if(shell->command[1])
 	{
-		shell->add_char = add_char(shell->add_char,
-				shell->command[1][var->j++]);
+		while (shell->command[1][var->j])
+		{
+			shell->add_char = add_char(shell->add_char,
+					shell->command[1][var->j++]);
+		}
+		var->i += ft_strlen(shell->command[0]);
+		var->j = 0;
 	}
-	var->i += ft_strlen(shell->command[0]);
-	var->j = 0;
 }

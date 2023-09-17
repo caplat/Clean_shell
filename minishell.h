@@ -6,7 +6,7 @@
 /*   By: acaplat <acaplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 12:50:26 by acaplat           #+#    #+#             */
-/*   Updated: 2023/09/13 14:48:02 by acaplat          ###   ########.fr       */
+/*   Updated: 2023/09/17 16:28:17 by acaplat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -256,6 +256,7 @@ void				swap_strings(char **str1, char **str2);
 int					compare_length(char *str1, char *str2);
 void				declare_x(char **env_cpy);
 void				insert_char(char **str, char c, int pos);
+char	*insert_char_bis(char **str, char c, int pos);
 
 //Export_bis
 
@@ -267,8 +268,9 @@ void				export(t_mini *shell);
 
 //Add_var_export
 
-void				add_str_to_tab(char ***tab, char *str);
-void				remove_str_from_tab(char ***tab, int position);
+// void				add_str_to_tab(char ***tab, char *str);
+char	**add_str_to_tab(t_mini *shell,char **tab, char *str);
+void				remove_str_from_tab(t_mini *shell,char ***tab, int position);
 int					check_dup(char **tab, char *compare);
 int					check_dup_env(char **tab, char *compare);
 void				add_var_env(char *str, t_mini *shell);

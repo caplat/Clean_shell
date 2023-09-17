@@ -6,7 +6,7 @@
 /*   By: acaplat <acaplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/03 12:03:18 by acaplat           #+#    #+#             */
-/*   Updated: 2023/09/06 09:58:28 by acaplat          ###   ########.fr       */
+/*   Updated: 2023/09/17 11:59:31 by acaplat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,5 +111,5 @@ void	exec_all(t_mini *shell, int i)
 	if (shell->redir_input == 0)
 		execute(shell);
 	if (access(shell->arg_bis[0], F_OK) != 0)
-		exit(127);
+		exit(g_error_code);
 }

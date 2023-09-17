@@ -6,7 +6,7 @@
 /*   By: acaplat <acaplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 14:20:55 by acaplat           #+#    #+#             */
-/*   Updated: 2023/09/17 16:45:35 by acaplat          ###   ########.fr       */
+/*   Updated: 2023/09/17 16:59:30 by acaplat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,7 @@ int	compare_with_env(char *compare, t_mini *shell)
 
 void	norme_dollar(t_compteur *var, t_mini *shell)
 {
-	if(shell->command[1])
+	if (shell->command[1])
 	{
 		while (shell->command[1][var->j])
 		{

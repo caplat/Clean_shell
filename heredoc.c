@@ -6,7 +6,7 @@
 /*   By: acaplat <acaplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 15:59:02 by acaplat           #+#    #+#             */
-/*   Updated: 2023/09/13 16:34:37 by acaplat          ###   ########.fr       */
+/*   Updated: 2023/09/17 17:00:01 by acaplat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ void	erase(t_lex **simplecommand, t_mini *shell)
 		{
 			delete_node(simplecommand, current);
 			delete_node(simplecommand, next);
-			if(current->prev)
+			if (current->prev)
 				add_element_bis(simplecommand, ft_strdup(".heredoc"));
 			current = *simplecommand;
 			continue ;

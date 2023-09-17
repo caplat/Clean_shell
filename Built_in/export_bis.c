@@ -6,7 +6,7 @@
 /*   By: acaplat <acaplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 16:42:55 by acaplat           #+#    #+#             */
-/*   Updated: 2023/09/17 16:28:00 by acaplat          ###   ########.fr       */
+/*   Updated: 2023/09/17 16:56:27 by acaplat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,14 +87,12 @@ void	add_var_export(char *str, t_mini *shell)
 	int		pos;
 	int		new_pos;
 	char	*newstr;
-	// (void) shell;
 
 	pos = find_character(str, '=');
 	delete_char(str, '\'', '\"', pos);
-	printf("%s\n",str);
 	res = check_dup(shell->env_cpy, str);
 	if (res != -1)
-		remove_str_from_tab(shell,&shell->env_cpy, res);
+		remove_str_from_tab(shell, &shell->env_cpy, res);
 	newstr = ft_strjoin("declare -x ", str);
 	new_pos = find_character(newstr, '=');
 	if (new_pos != -1 && newstr[new_pos + 1] == '\0')
@@ -107,7 +105,7 @@ void	add_var_export(char *str, t_mini *shell)
 		insert_char(&newstr, '\"', new_pos + 1);
 		newstr = ft_strjoin(newstr, "\"");
 	}
-	shell->env_cpy = add_str_to_tab(shell,shell->env_cpy, newstr);
+	shell->env_cpy = add_str_to_tab(shell, shell->env_cpy, newstr);
 	sort_tab(shell->env_cpy);
 	free(newstr);
 }

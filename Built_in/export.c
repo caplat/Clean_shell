@@ -6,7 +6,7 @@
 /*   By: acaplat <acaplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 16:30:33 by acaplat           #+#    #+#             */
-/*   Updated: 2023/09/17 15:51:55 by acaplat          ###   ########.fr       */
+/*   Updated: 2023/09/17 16:57:38 by acaplat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,31 +106,3 @@ void	insert_char(char **str, char c, int pos)
 	free(*str);
 	*str = new_str;
 }
-
-// char	*insert_char_bis(char **str, char c, int pos)
-// {
-// 	int		length;
-// 	char	*new_str;
-// 	int		i;
-// 	int		j;
-
-// 	length = ft_strlen(*str);
-// 	new_str = malloc(sizeof(char) * (length + 2));
-// 	if (!new_str)
-// 		norme_export();
-// 	i = 0;
-// 	j = 0;
-// 	while (i < length)
-// 	{
-// 		if (i == pos)
-// 		{
-// 			new_str[j] = c;
-// 			j++;
-// 		}
-// 		new_str[j] = (*str)[i];
-// 		i++;
-// 		j++;
-// 	}
-// 	new_str[j] = '\0';
-// 	return(new_str);
-// }

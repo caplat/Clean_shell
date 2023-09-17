@@ -6,7 +6,7 @@
 /*   By: acaplat <acaplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 13:59:11 by acaplat           #+#    #+#             */
-/*   Updated: 2023/09/13 15:27:01 by acaplat          ###   ########.fr       */
+/*   Updated: 2023/09/17 16:54:00 by acaplat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,27 +82,3 @@ void	too_much_line(char **dir, char **path, char **cwd)
 		*path = ft_strjoin(*path, *dir);
 	}
 }
-
-// void too_much_line(char **dir, char **path, char **cwd)
-// {
-//     char *temp_path;
-
-// 	temp_path = NULL;
-
-//     if (*dir[0] == '/')
-//     {
-//         temp_path = ft_strjoin(*path, *dir);
-//     }
-//     else if (ft_strncmp(*dir, "~", 2) == 0)
-//     {
-//         temp_path = ft_strjoin(getenv("HOME"), "");
-//     }
-//     else
-//     {
-//         temp_path = ft_strjoin_bis(*path, *cwd);
-//         temp_path = ft_strjoin_bis(temp_path, "/");
-//         temp_path = ft_strjoin_bis(temp_path, *dir);
-//     }
-//     free(*path);
-//     *path = temp_path;
-// }

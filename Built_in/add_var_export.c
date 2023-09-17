@@ -6,38 +6,13 @@
 /*   By: acaplat <acaplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 18:15:06 by acaplat           #+#    #+#             */
-/*   Updated: 2023/09/17 16:29:50 by acaplat          ###   ########.fr       */
+/*   Updated: 2023/09/17 16:57:18 by acaplat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-// void	add_str_to_tab(char ***tab, char *str)
-// {
-// 	int		length;
-// 	char	**newtab;
-// 	int		i;
-
-// 	length = find_length(*tab);
-// 	newtab = malloc(sizeof(char *) * (length + 2));
-// 	if (!newtab)
-// 	{
-// 		perror("erreur allocation memoire");
-// 		return ;
-// 	}
-// 	i = -1;
-// 	while (++i < length)
-// 	{
-// 		newtab[i] = ft_strdup((*tab)[i]);
-// 		// safe_free((tab)[i]);
-// 	}
-// 	newtab[length] = ft_strdup(str);
-// 	newtab[length + 1] = NULL;
-// 	// safe_free(*tab);
-// 	*tab = newtab;
-// }
-
-char	**add_str_to_tab(t_mini *shell,char **tab, char *str)
+char	**add_str_to_tab(t_mini *shell, char **tab, char *str)
 {
 	int		length;
 	char	**newtab;
@@ -52,40 +27,12 @@ char	**add_str_to_tab(t_mini *shell,char **tab, char *str)
 		i++;
 	}
 	newtab[i] = ft_strjoin(str, "");
-	if(tab != shell->env)
+	if (tab != shell->env)
 		free_arr(tab);
 	return (newtab);
 }
 
-// void	remove_str_from_tab(char ***tab, int position)
-// {
-// 	int		length;
-// 	char	**newtab;
-// 	int		i;
-// 	int		j;
-
-// 	i = -1;
-// 	j = 0;
-// 	length = find_length(*tab);
-// 	newtab = malloc(sizeof(char *) * (length + 1));
-// 	if (!newtab)
-// 		return ;
-// 	while (++i < length)
-// 	{
-// 		if (i != position)
-// 		{
-// 			newtab[j] = ft_strdup((*tab)[i]);
-// 			j++;
-// 		}
-// 		// else
-// 		// 	free((*tab)[i]);
-// 	}
-// 	// free((*tab));
-// 	newtab[j] = NULL;
-// 	*tab = newtab;
-// }
-
-void	remove_str_from_tab(t_mini *shell,char ***tab, int position)
+void	remove_str_from_tab(t_mini *shell, char ***tab, int position)
 {
 	int		length;
 	char	**newtab;
@@ -105,10 +52,10 @@ void	remove_str_from_tab(t_mini *shell,char ***tab, int position)
 			newtab[j] = ((*tab)[i]);
 			j++;
 		}
-		else if((*tab != shell->env))
+		else if ((*tab != shell->env))
 			free((*tab)[i]);
 	}
-	if(*tab != shell->env)
+	if (*tab != shell->env)
 		free((*tab));
 	newtab[j] = NULL;
 	*tab = newtab;
@@ -163,8 +110,8 @@ void	add_var_env(char *str, t_mini *shell)
 			return ;
 		if (res != -1)
 		{
-			remove_str_from_tab(shell,&shell->env, res);
+			remove_str_from_tab(shell, &shell->env, res);
 		}
-		shell->env = add_str_to_tab(shell,shell->env, str);
+		shell->env = add_str_to_tab(shell, shell->env, str);
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: acaplat <acaplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 13:07:48 by acaplat           #+#    #+#             */
-/*   Updated: 2023/09/06 09:59:18 by acaplat          ###   ########.fr       */
+/*   Updated: 2023/09/18 15:53:33 by acaplat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,19 @@
 void	handle_sigint(int signal)
 {
 	(void)signal;
-	printf("\n");
-	rl_on_new_line();
-	rl_replace_line("", 0);
-	rl_redisplay();
-	g_error_code = 1;
+	if (!(waitpid(-1, NULL, WNOHANG) > 0))
+	{
+			printf("\n");
+		rl_on_new_line();
+		rl_replace_line("", 0);
+		rl_redisplay();
+		g_error_code = 1;
+	}
+	else if((waitpid(-1, NULL, WNOHANG) > 0))
+	{
+		printf("\n");
+		g_error_code = 130;
+	}
 }
 
 void	handle_sigquit(int signal)

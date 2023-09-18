@@ -6,7 +6,7 @@
 /*   By: acaplat <acaplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 15:59:02 by acaplat           #+#    #+#             */
-/*   Updated: 2023/09/17 17:00:01 by acaplat          ###   ########.fr       */
+/*   Updated: 2023/09/18 17:07:16 by acaplat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,7 @@ void	erase(t_lex **simplecommand, t_mini *shell)
 	t_lex	*current;
 	t_lex	*previous;
 	t_lex	*next;
+	int i;
 
 	current = *simplecommand;
 	previous = NULL;
@@ -96,9 +97,11 @@ void	erase(t_lex **simplecommand, t_mini *shell)
 		check_flag_bis(current, shell);
 		if (ft_strncmp(current->str, "<<", 3) == 0 && next && shell->flag == 0)
 		{
+			i = return_node_position(simplecommand,current);
+			printf("%d\n",i);
 			delete_node(simplecommand, current);
 			delete_node(simplecommand, next);
-			if (current->prev)
+			if (i > 1)
 				add_element_bis(simplecommand, ft_strdup(".heredoc"));
 			current = *simplecommand;
 			continue ;

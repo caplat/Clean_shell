@@ -6,7 +6,7 @@
 /*   By: acaplat <acaplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 11:58:47 by acaplat           #+#    #+#             */
-/*   Updated: 2023/09/18 12:37:32 by acaplat          ###   ########.fr       */
+/*   Updated: 2023/09/18 15:34:37 by acaplat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,8 @@ t_exp	norme_export_ter(t_mini *shell)
 		var.current = var.current->next;
 		j++;
 	}
-	var.cpy = ft_strdup(var.current->str);
+	if(var.current->str != NULL)
+		var.cpy = ft_strdup(var.current->str);
 	replace_char(var.cpy, ' ', 31, shell);
 	shell->tab = ft_split(var.cpy, 31);
 	var.length = find_length(shell->tab);

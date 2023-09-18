@@ -6,7 +6,7 @@
 /*   By: acaplat <acaplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 12:50:26 by acaplat           #+#    #+#             */
-/*   Updated: 2023/09/18 13:07:46 by acaplat          ###   ########.fr       */
+/*   Updated: 2023/09/18 17:06:02 by acaplat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,6 @@
 
 # include "libft/libft.h"
 # include <fcntl.h>
-# include <readline/history.h>
-# include <readline/readline.h>
 # include <signal.h>
 # include <stdbool.h>
 # include <stdio.h>
@@ -24,6 +22,8 @@
 # include <string.h>
 # include <termios.h>
 # include <unistd.h>
+# include <readline/history.h>
+# include <readline/readline.h>
 
 int					g_error_code;
 
@@ -68,6 +68,8 @@ typedef struct s_mini
 	int				node_pos;
 	int				flag_cote;
 	int				flag_exit;
+	struct termios	attr;
+	int				term;
 }					t_mini;
 
 typedef struct s_compteur
@@ -126,6 +128,9 @@ void				lex_norme(t_lex *current, t_lex *newlist, t_mini *shell,
 //Utils_bis
 
 char				*ft_strjoin_bis(char *s1, char *s2);
+void				fix_cote(t_mini *shell, t_lex *current);
+void				main_line(t_mini *shell);
+int					return_node_position(t_lex **head, t_lex *target);
 
 //Signal
 

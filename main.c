@@ -6,7 +6,7 @@
 /*   By: acaplat <acaplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 12:36:57 by acaplat           #+#    #+#             */
-/*   Updated: 2023/09/18 12:39:44 by acaplat          ###   ########.fr       */
+/*   Updated: 2023/09/18 15:59:09 by acaplat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,15 @@ int	main(int argc, char **argv, char **env)
 	rl_catch_signals = 0;
 	do_signal(&shell);
 	minishell_loop(&shell);
+	shell.term = dup(STDIN_FILENO);
+	tcsetattr(shell.term, 0, &shell.attr);
 }
 
 void	minishell_loop(t_mini *shell)
 {
 	while (1)
 	{
+		tcsetattr(shell->term, 0, &shell->attr);
 		shell->line = readline(">>");
 		if (shell->line)
 		{
@@ -45,11 +48,7 @@ void	minishell_loop(t_mini *shell)
 				if (shell->args != NULL)
 					do_the_pipe(shell);
 			}
-			dup2(shell->stdout_cpy, STDOUT_FILENO);
-			dup2(shell->stdin_cpy, STDIN_FILENO);
-			shell->redir_input = 0;
-			shell->flag_cote = 0;
-			free_shell(shell);
+			main_line(shell);
 		}
 		else
 		{
@@ -76,6 +75,7 @@ void	norme_main(t_mini *shell)
 	erase(&shell->simplecommand, shell);
 	redir(shell);
 	shell->args = set_command(shell->simplecommand, shell);
+	printlist_bis(shell->args);
 	fix_echo(shell);
 	if (get_nb_node(shell->args) == 1)
 		check_built_in(shell);

@@ -6,7 +6,7 @@
 /*   By: acaplat <acaplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/03 12:03:18 by acaplat           #+#    #+#             */
-/*   Updated: 2023/09/18 13:07:59 by acaplat          ###   ########.fr       */
+/*   Updated: 2023/09/18 16:46:14 by acaplat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,10 @@ int	verify(t_mini *shell, int j)
 		return (0);
 	if (shell->arg_bis != NULL)
 		free_arr(shell->arg_bis);
-	shell->arg_bis = ft_split(current->str, ' ');
+	fix_cote(shell,current);
+	// replace_char(current->str,' ',31,shell);
+	// shell->arg_bis = ft_split(current->str, 31);
+	// print_tab(shell->arg_bis);
 	ft_exit_code(shell->arg_bis, shell);
 	while (shell->allpath[i++])
 	{

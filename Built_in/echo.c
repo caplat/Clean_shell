@@ -6,7 +6,7 @@
 /*   By: acaplat <acaplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 16:33:42 by acaplat           #+#    #+#             */
-/*   Updated: 2023/09/18 11:25:52 by acaplat          ###   ########.fr       */
+/*   Updated: 2023/09/18 15:09:34 by acaplat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ int	check_n(char **compare)
 		{
 			while (compare[i][j] == 'n')
 				j++;
+			if (compare[i][j] && compare[i][j] != 'n' && compare[i][j + 1] != '\0')
+				return(i);	
 			if (compare[i][j] && compare[i][j] != 'n')
 				return (1);
 		}

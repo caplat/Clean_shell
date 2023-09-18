@@ -6,7 +6,7 @@
 /*   By: acaplat <acaplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 13:04:00 by acaplat           #+#    #+#             */
-/*   Updated: 2023/09/13 14:51:03 by acaplat          ###   ########.fr       */
+/*   Updated: 2023/09/18 11:50:23 by acaplat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ void	initialize(char **env, t_mini *shell)
 	shell->stdout_cpy = dup(STDOUT_FILENO);
 	shell->redir_input = 0;
 	shell->node_pos = 0;
+	shell->flag_cote = 0;
 }
 
 char	*add_char(char *str, char c)

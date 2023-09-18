@@ -6,7 +6,7 @@
 /*   By: acaplat <acaplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/03 12:03:18 by acaplat           #+#    #+#             */
-/*   Updated: 2023/09/17 11:59:31 by acaplat          ###   ########.fr       */
+/*   Updated: 2023/09/18 13:07:59 by acaplat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,10 @@ int	verify(t_mini *shell, int j)
 int	execute(t_mini *shell)
 {
 	if (verif_built_in(shell) == 1)
+	{
+		shell->flag_exit = 1;
 		return (0);
+	}
 	if (execve(shell->exe, shell->arg_bis, shell->env) == -1)
 	{
 		if (shell->arg_bis[0] == NULL)
@@ -111,5 +114,10 @@ void	exec_all(t_mini *shell, int i)
 	if (shell->redir_input == 0)
 		execute(shell);
 	if (access(shell->arg_bis[0], F_OK) != 0)
-		exit(g_error_code);
+	{
+		if (shell->flag_exit == 1)
+			exit(0);
+		else
+			exit(127);
+	}
 }

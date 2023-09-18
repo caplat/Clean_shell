@@ -6,7 +6,7 @@
 /*   By: acaplat <acaplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 14:03:12 by acaplat           #+#    #+#             */
-/*   Updated: 2023/09/06 12:19:38 by acaplat          ###   ########.fr       */
+/*   Updated: 2023/09/18 11:51:06 by acaplat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,8 @@ int	count_quotes(char *line, t_mini *shell)
 	}
 	if ((d > 0 && d % 2 != 0) || (s > 0 && s % 2 != 0))
 	{
-		free_shell(shell);
 		printf("quotes not closed\n");
-		exit(0);
+		shell->flag_cote = 1;
 	}
 	return (1);
 }

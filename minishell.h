@@ -6,7 +6,7 @@
 /*   By: acaplat <acaplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 12:50:26 by acaplat           #+#    #+#             */
-/*   Updated: 2023/09/17 16:58:22 by acaplat          ###   ########.fr       */
+/*   Updated: 2023/09/18 13:07:46 by acaplat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 
 # include "libft/libft.h"
 # include <fcntl.h>
+# include <readline/history.h>
+# include <readline/readline.h>
 # include <signal.h>
 # include <stdbool.h>
 # include <stdio.h>
@@ -22,8 +24,6 @@
 # include <string.h>
 # include <termios.h>
 # include <unistd.h>
-# include <readline/history.h>
-# include <readline/readline.h>
 
 int					g_error_code;
 
@@ -66,6 +66,8 @@ typedef struct s_mini
 	int				stdin_cpy;
 	int				redir_input;
 	int				node_pos;
+	int				flag_cote;
+	int				flag_exit;
 }					t_mini;
 
 typedef struct s_compteur
@@ -107,7 +109,6 @@ typedef struct s_exp
 
 //Main
 
-t_lex				*echo_list_bis(t_mini *shell, char *str, char target);
 void				minishell_loop(t_mini *shell);
 void				norme_main(t_mini *shell);
 void				parse_newline_bis(t_mini *shell, char *str);

@@ -6,7 +6,7 @@
 /*   By: acaplat <acaplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 12:22:30 by acaplat           #+#    #+#             */
-/*   Updated: 2023/08/29 14:33:58 by acaplat          ###   ########.fr       */
+/*   Updated: 2023/09/17 17:22:25 by acaplat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	unset_helper_helper(t_mini *shell)
 void	unset_helper(t_mini *shell, int res, int res_bis)
 {
 	if (res >= 0)
-		remove_str_from_tab(&shell->env, res);
+		remove_str_from_tab(shell, &shell->env, res);
 	if (res_bis >= 0)
-		remove_str_from_tab(&shell->env_cpy, res_bis);
+		remove_str_from_tab(shell, &shell->env_cpy, res_bis);
 }

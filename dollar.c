@@ -6,7 +6,7 @@
 /*   By: acaplat <acaplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 14:20:55 by acaplat           #+#    #+#             */
-/*   Updated: 2023/09/17 16:59:30 by acaplat          ###   ########.fr       */
+/*   Updated: 2023/09/17 18:06:36 by acaplat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,5 +114,6 @@ void	norme_dollar(t_compteur *var, t_mini *shell)
 		}
 		var->i += ft_strlen(shell->command[0]);
 		var->j = 0;
+		free_arr(shell->command);
 	}
 }

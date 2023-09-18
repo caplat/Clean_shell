@@ -6,7 +6,7 @@
 /*   By: acaplat <acaplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 12:36:57 by acaplat           #+#    #+#             */
-/*   Updated: 2023/09/17 16:53:16 by acaplat          ###   ########.fr       */
+/*   Updated: 2023/09/18 12:39:44 by acaplat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ void	minishell_loop(t_mini *shell)
 			dup2(shell->stdout_cpy, STDOUT_FILENO);
 			dup2(shell->stdin_cpy, STDIN_FILENO);
 			shell->redir_input = 0;
+			shell->flag_cote = 0;
 			free_shell(shell);
 		}
 		else
@@ -65,8 +66,9 @@ void	norme_main(t_mini *shell)
 	shell->lst = get_my_list(shell);
 	shell->lst_bis = get_my_list(shell);
 	shell->newline_bis = convert_to_str(shell->lst_bis);
-	if (shell->newline_bis != NULL)
-		parse_newline_bis(shell, shell->newline_bis);
+	if (shell->flag_cote == 0)
+		if (shell->newline_bis != NULL)
+			parse_newline_bis(shell, shell->newline_bis);
 	separate_command(shell->lst);
 	shell->newline = convert_to_str(shell->lst);
 	shell->simplecommand = get_my_element(shell);

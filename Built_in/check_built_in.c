@@ -6,7 +6,7 @@
 /*   By: acaplat <acaplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 11:58:47 by acaplat           #+#    #+#             */
-/*   Updated: 2023/09/13 17:09:23 by acaplat          ###   ########.fr       */
+/*   Updated: 2023/09/18 12:37:32 by acaplat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,18 @@
 
 void	check_built_in(t_mini *shell)
 {
-	if (shell->newline_bis != NULL && shell->echo_lst != NULL)
-		export(shell);
-	if (shell->newline_bis != NULL && shell->echo_lst != NULL)
-		exec_echo(shell);
-	cd(shell);
-	unset(shell);
-	print_env(shell);
-	pwd(shell);
-	ft_exit(shell);
+	if (shell->flag_cote == 0)
+	{
+		if (shell->newline_bis != NULL && shell->echo_lst != NULL)
+			export(shell);
+		if (shell->newline_bis != NULL && shell->echo_lst != NULL)
+			exec_echo(shell);
+		cd(shell);
+		unset(shell);
+		print_env(shell);
+		pwd(shell);
+		ft_exit(shell);
+	}
 }
 
 int	verif_built_in(t_mini *shell)

@@ -6,7 +6,7 @@
 /*   By: acaplat <acaplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 12:36:57 by acaplat           #+#    #+#             */
-/*   Updated: 2023/09/18 15:59:09 by acaplat          ###   ########.fr       */
+/*   Updated: 2023/09/19 12:21:07 by acaplat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,6 @@ void	norme_main(t_mini *shell)
 	erase(&shell->simplecommand, shell);
 	redir(shell);
 	shell->args = set_command(shell->simplecommand, shell);
-	printlist_bis(shell->args);
 	fix_echo(shell);
 	if (get_nb_node(shell->args) == 1)
 		check_built_in(shell);

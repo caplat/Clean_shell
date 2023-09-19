@@ -6,7 +6,7 @@
 /*   By: acaplat <acaplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 15:59:02 by acaplat           #+#    #+#             */
-/*   Updated: 2023/09/18 17:07:16 by acaplat          ###   ########.fr       */
+/*   Updated: 2023/09/19 12:22:00 by acaplat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,29 +15,24 @@
 void	here_doc(t_lex *simplecommand, t_mini *shell)
 {
 	t_here	var;
+	pid_t	child;
 
 	var.current = simplecommand;
 	var.del = NULL;
 	var.fd = open(".heredoc", O_CREAT | O_WRONLY | O_TRUNC, 0777);
 	if (var.fd == -1)
 		norme_heredoc_bis();
-	while (var.current)
+	signal(SIGINT, SIG_DFL);
+	child = fork();
+	if (child == -1)
+		return ;
+	if (child == 0)
 	{
-		var.next = var.current->next;
-		check_flag_ter(var.current, shell);
-		if (ft_strncmp(var.current->str, "<<", 3) == 0 && var.next
-			&& shell->flag == 0)
-		{
-			var.del = ft_strdup(var.next->str);
-			if (too_much(var.fd, var.del) == 1)
-				break ;
-			safe_free(&var.del);
-			var.current = var.next->next;
-		}
-		else
-			var.current = var.current->next;
+		heredoc_loop(var, shell);
+		exit(0);
 	}
-	safe_free(&var.del);
+	else
+		waitpid(child, NULL, 0);
 	close(var.fd);
 }
 
@@ -87,7 +82,7 @@ void	erase(t_lex **simplecommand, t_mini *shell)
 	t_lex	*current;
 	t_lex	*previous;
 	t_lex	*next;
-	int i;
+	int		i;
 
 	current = *simplecommand;
 	previous = NULL;
@@ -97,8 +92,7 @@ void	erase(t_lex **simplecommand, t_mini *shell)
 		check_flag_bis(current, shell);
 		if (ft_strncmp(current->str, "<<", 3) == 0 && next && shell->flag == 0)
 		{
-			i = return_node_position(simplecommand,current);
-			printf("%d\n",i);
+			i = return_node_position(simplecommand, current);
 			delete_node(simplecommand, current);
 			delete_node(simplecommand, next);
 			if (i > 1)

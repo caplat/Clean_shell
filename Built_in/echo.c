@@ -6,7 +6,7 @@
 /*   By: acaplat <acaplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 16:33:42 by acaplat           #+#    #+#             */
-/*   Updated: 2023/09/18 15:09:34 by acaplat          ###   ########.fr       */
+/*   Updated: 2023/09/19 12:20:38 by acaplat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,9 @@ int	check_n(char **compare)
 		{
 			while (compare[i][j] == 'n')
 				j++;
-			if (compare[i][j] && compare[i][j] != 'n' && compare[i][j + 1] != '\0')
-				return(i);	
+			if (compare[i][j] && compare[i][j] != 'n' && compare[i][j
+				+ 1] != '\0')
+				return (i);
 			if (compare[i][j] && compare[i][j] != 'n')
 				return (1);
 		}
@@ -81,45 +82,45 @@ void	exec_echo(t_mini *shell)
 
 int	echo_help(char *compare, int k, char cote)
 {
+	int	i;
 	int	j;
-	int	extracted;
 
+	i = 0;
 	j = k;
-	extracted = 0;
-	if (compare[k] == cote)
+	k++;
+	while (compare[k] && compare[k] != cote)
 	{
+		ft_putchar_fd(compare[k], 1);
 		k++;
-		while (compare[k] && compare[k] != cote)
-		{
-			ft_putchar_fd(compare[k], 1);
-			k++;
-			extracted = 1;
-		}
-		if (extracted)
-		{
-			while (compare[k] && compare[k] != ' ' && compare[k] != '\t')
-			{
-				k++;
-			}
-			return (k - j);
-		}
 	}
-	ft_putchar_fd(compare[k], 1);
-	return (1);
+	k++;
+	return (k - j);
 }
 
 void	echo_norme(int i, int k, char **compare)
 {
-	while (compare[i][k])
+	while (compare[i])
 	{
-		if (compare[i][k] == '\'' || compare[i][k] == '\"')
+		while (compare[i][k])
 		{
-			k += echo_help(compare[i], k, compare[i][k]);
+			if (compare[i][k] == '\'')
+			{
+				k += echo_help(compare[i], k, '\'');
+				if (compare[i][k] == '\'')
+					continue ;
+			}
+			if (compare[i][k] == '\"')
+			{
+				k += echo_help(compare[i], k, '\"');
+				if (compare[i][k] == '\"')
+					continue ;
+			}
+			if (compare[i][k])
+			{
+				write(1, &compare[i][k], 1);
+				k++;
+			}
 		}
-		else
-		{
-			ft_putchar_fd(compare[i][k], 1);
-			k++;
-		}
+		i++;
 	}
 }

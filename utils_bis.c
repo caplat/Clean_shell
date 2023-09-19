@@ -6,7 +6,7 @@
 /*   By: acaplat <acaplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/06 17:06:42 by acaplat           #+#    #+#             */
-/*   Updated: 2023/09/18 17:07:53 by acaplat          ###   ########.fr       */
+/*   Updated: 2023/09/19 12:20:42 by acaplat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,6 @@ void	fix_cote(t_mini *shell, t_lex *current)
 	}
 	free(current->str);
 	current->str = newstr;
-	// printf("current-->%s\n",current->str);
 	shell->arg_bis = ft_split(current->str, 31);
 }
 
@@ -83,5 +82,27 @@ int	return_node_position(t_lex **head, t_lex *target)
 		current = current->next;
 		i++;
 	}
-	return(i);
+	return (i);
+}
+
+void	heredoc_loop(t_here var, t_mini *shell)
+{
+	while (var.current)
+	{
+		var.next = var.current->next;
+		check_flag_ter(var.current, shell);
+		if (ft_strncmp(var.current->str, "<<", 3) == 0 && var.next
+			&& shell->flag == 0)
+		{
+			var.del = ft_strdup(var.next->str);
+			if (too_much(var.fd, var.del) == 1)
+				break ;
+			safe_free(&var.del);
+			var.current = var.next->next;
+		}
+		else
+			var.current = var.current->next;
+	}
+	safe_free(&var.del);
+	close(var.fd);
 }

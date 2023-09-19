@@ -6,7 +6,7 @@
 /*   By: acaplat <acaplat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 12:50:26 by acaplat           #+#    #+#             */
-/*   Updated: 2023/09/18 17:06:02 by acaplat          ###   ########.fr       */
+/*   Updated: 2023/09/19 12:21:35 by acaplat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,6 +131,7 @@ char				*ft_strjoin_bis(char *s1, char *s2);
 void				fix_cote(t_mini *shell, t_lex *current);
 void				main_line(t_mini *shell);
 int					return_node_position(t_lex **head, t_lex *target);
+void				heredoc_loop(t_here var, t_mini *shell);
 
 //Signal
 
